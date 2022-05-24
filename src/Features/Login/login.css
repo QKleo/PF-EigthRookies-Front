@@ -1,0 +1,30 @@
+.container-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 88.7vh;
+  background-color: azure;
+}
+
+.container-LoginAuth0 {
+  margin: 20px;
+  margin-bottom: 0px;
+  background-color: #fff;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 700px;
+  height: max-content;
+  padding: 25px 30px;
+  border-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.title-Auth0{
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: 800;
+  position: relative;
+}
