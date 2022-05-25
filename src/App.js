@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import LoginAuth0 from './Features/Login/LoginAuth0';
 import { useAuth0 } from '@auth0/auth0-react';
+import ProductDetail from './productDetail';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       }
       <Routes>
         <Route path="/login" element={<LoginAuth0 />} />
+        <Route path="products/:id" element={<ProductDetail/>}/>
       </Routes>
     </div>
   );
