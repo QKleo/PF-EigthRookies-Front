@@ -8,8 +8,12 @@ const LoginAuth0 = () => {
     const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
 
     return (
-
-        <div className='container-index'>
+        <div className={s.login}>
+        <div className={s.loginContainer}>
+        <img src="https://hotmart.com/media/2019/09/670x419-O-que-e-Landing-Page-e-como-criar-uma.webp" 
+        width="650px" height="500px" alt=""/>
+        </div>
+        <div className={s.loginContainer}>
             {
             isAuthenticated
             ? <div className="container-LoginAuth0">
@@ -25,6 +29,7 @@ const LoginAuth0 = () => {
                 <button className={s.basicBtn} onClick={loginWithRedirect} >Registrarme</button>
             </div>
             }
+        </div>
         </div>
     );
 };

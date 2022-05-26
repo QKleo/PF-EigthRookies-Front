@@ -112,6 +112,17 @@ h4{
     align-items: center;
 }
 
+.login{
+    display: flex;
+}
+
+.loginContainer{
+    width: 49vw;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
 .inputContainer{
     border: 1px solid #000000;
     border-radius: 25px;
