@@ -28,8 +28,14 @@ const reducer = (state, action) => {
 };
 export default function CreateProductScreen() {
   const navigate = useNavigate();
+  const params = useParams(); // /product/:id
+  const { id: productId } = params;
 
-  const [{ loading, error, loadingCreate }, dispatch] =
+  // useContext no lo estoy usando por ahora, pues no estoy trayendo del store userInfor.token
+  // que necesitare cuando tenga protegida la ruta... por ahora me apareceran esos warnings
+  // const { state } = useContext(Store);
+  // const { userInfo } = state;
+  const [{ loading, error, loadingCreate, loadingUpload }, dispatch] =
     useReducer(reducer, {
       loading: true,
       error: "",
