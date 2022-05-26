@@ -24,6 +24,10 @@ a{
     text-decoration: none;
 }
 
+.link{
+    color: black
+}
+
 h1{
     font-family: var(--primary-font);
     font-style: normal;
@@ -53,6 +57,7 @@ h3{
     line-height: 48px;
 /* identical to box height */
     text-align: center;
+    color: var(--secondary-color);
 }
 
 h4{
@@ -61,6 +66,7 @@ h4{
     font-weight: 400;
     font-size: var(--h3-size);
     line-height: 38px;
+    color: var(--primary-font);
 }
 
 .priceHome{
