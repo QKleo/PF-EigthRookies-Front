@@ -1,7 +1,7 @@
 import { useEffect, useReducer} from 'react';
 import axios from 'axios';
 import React from 'react';
-import Product from '../components/Product';
+import Product from '../components/Product.jsx';
 
 // import data from '../data';
 
@@ -38,6 +38,8 @@ function HomeScreen() {
     };
     axiosData();
   }, []);
+
+  console.log(products[0]);
   
   
    return (
@@ -49,9 +51,9 @@ function HomeScreen() {
       <div className="products">
    
           <div>
-            {products.map((product) => (
+            {products && products.map((product) => (
               <div key={product.slug} >
-                <Product products={products}></Product>
+                <Product products={product}></Product>
               </div>
             ))}
           </div>
