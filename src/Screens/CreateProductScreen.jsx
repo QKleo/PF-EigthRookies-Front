@@ -80,7 +80,6 @@ export default function CreateProductScreen() {
       dispatch({ type: "CREATE_FAIL" });
     }
   };
-
   return (
     <Container className="small-container">
       {/* <Helmet>
