@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import style from './NavBar.module.css';
-import logo from '../../assets/letra R.png';
+import logo from '../../assets/8Rookies.png';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
