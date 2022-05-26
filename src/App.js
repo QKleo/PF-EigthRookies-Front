@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginAuth0 from './Features/Login/LoginAuth0';
-import NavBar from './Components/NavBar/NavBar'
-
+import NavBar from './Components/NavBar/NavBar';
+import ProductDetail from './productDetail';
 
 function App() {
 
@@ -10,7 +10,8 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route path='/login' element={<LoginAuth0 />} />
+        <Route path="/login" element={<LoginAuth0 />} />
+        <Route path="products/:id" element={<ProductDetail />} />
       </Routes>
     </>
   );
