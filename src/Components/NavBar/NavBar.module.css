@@ -1,0 +1,33 @@
+.container {
+    background-color: #094067;
+    color: #b7e1ff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo {
+    cursor: pointer;
+    height: 100px;
+    width: 150px;
+}
+
+.login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: #b7e1ff
+}
+
+.imgUser {
+    margin: 0.5rem;
+    width: 50px;
+    border-radius: 99%;
+}
