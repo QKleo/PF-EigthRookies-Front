@@ -1,7 +1,7 @@
 import { useEffect, useReducer} from 'react';
 import axios from 'axios';
 import React from 'react';
-import Product from '../components/Product.jsx';
+import Product from '../components/Product/Product';
 
 // import data from '../data';
 

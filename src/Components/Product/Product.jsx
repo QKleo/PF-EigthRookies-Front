@@ -6,11 +6,11 @@ console.log(props);
 
   return (
     <div>
-      <Link to={`http://localhost:3001/products`}>
+      <Link to={`/products/${products.id}`}>
         <img src={products.image} alt={products.name} />
       </Link>
       <div>
-        <Link to={`http://localhost:3001/products`}>
+        <Link to={`/products/${products.id}`}>
           <div>{products.name}</div>
         </Link>
      
