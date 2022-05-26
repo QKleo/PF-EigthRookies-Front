@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer} from "react";
 import { useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import { getError } from "./utils";
+import { getError } from "../../utils";
+import s from "../../Global.module.css"
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -57,13 +58,12 @@ export default function ProductDetail(){
                 <p> {error}</p>
             </>   
             ) :
-            (<>
+            (<div className={s.productContainer}>
+            <h1>{product.name}</h1>
             <img src={product.image} width="100px" height="100px" alt=""/>
-            <div>{product.name}</div>
-            <div>{product.description}</div>
-            <div>$ {product.price}</div>
-            <div>{product.categoria}</div>
-
-            </>)
+            {/* <div className={s.categories}>Product category: {product.categoryId}</div> */}
+            <div className={s.description}>{product.description}</div>
+            <button className={s.basicBtn}> $ {product.price} 🛒</button>
+            </div>)
     )
 }

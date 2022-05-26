@@ -4,7 +4,8 @@ import HomeScreen from './Screens/HomeScreen';
 
 import LoginAuth0 from './features/login/LoginAuth0';
 import NavBar from './components/NavBar/NavBar'
-import ProductDetail from './productDetail';
+import ProductDetail from './Components/ProductDetail/productDetail.jsx';
+
 
 function App() {
 
