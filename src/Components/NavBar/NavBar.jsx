@@ -4,6 +4,7 @@ import style from './NavBar.module.css';
 import logo from '../../assets/8Rookies.png';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import s from "../../Global.module.css"
 
 
 export default function NavBar() {
@@ -22,9 +23,9 @@ export default function NavBar() {
                         <h4>Hola {user.given_name}</h4>
                     </div>
                 </Link>
-                : <Link to='/login'><h2>Login</h2> </Link>
+                : <Link to='/login' className={s.loginBtn}><>Login</> </Link>
             }
-            <h2>Link al carrito</h2>
+            <h2>🛒</h2>
         </nav>
     );
 }
