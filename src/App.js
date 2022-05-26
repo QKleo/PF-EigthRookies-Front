@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import LoginAuth0 from './Features/Login/LoginAuth0';
 import NavBar from './Components/NavBar/NavBar';
-import ProductDetail from './productDetail';
+import ProductDetail from './Components/ProductDetail/productDetail.jsx';
 
 function App() {
 

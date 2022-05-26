@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import './login.css';
+import s from "../../Global.module.css"
 
 const LoginAuth0 = () => {
 
@@ -14,14 +15,14 @@ const LoginAuth0 = () => {
             ? <div className="container-LoginAuth0">
                 <img src={user.picture} alt={user.name}/>
                 <h1>Hola {user.name}</h1>
-                <p>{user.email}</p>
-                <button className='register-btn' onClick={logout} >Salir</button>
+                <h4>{user.email}</h4>
+                <button className={s.basicBtn} onClick={logout} >Salir</button>
             </div>
             : <div className="container-LoginAuth0">
-                <div className="title-Auth0">
+                <h1>
                     Registrarme con Google o Facebook
-                </div>
-                <button className='register-btn' onClick={loginWithRedirect} >Registrarme</button>
+                </h1>
+                <button className={s.basicBtn} onClick={loginWithRedirect} >Registrarme</button>
             </div>
             }
         </div>
