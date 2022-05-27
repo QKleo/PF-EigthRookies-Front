@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import style from './SearchBox.module.css';
+import findProducts from './findProducts';
 
 export default function SearchBox() {
 
-    const navigate = useNavigate();
-
     const [input, setInput] = useState('');
 
-    const handlerSubmit = (e) => {
+    const handlerSubmit = async (e) => {
         e.preventDefault();
-        navigate(`/products/buscar?name=${input}`);
+        const result = await findProducts(input);
+        console.log(result)
         setInput('');
     };
 
