@@ -4,7 +4,7 @@ import a from "./product.module.css"
 
 function Product(props) {
   const { products } = props;
-console.log(props);
+
 
   return (
     <div className={a.contenedorrr}>

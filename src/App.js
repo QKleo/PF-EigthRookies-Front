@@ -1,15 +1,15 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom'
 import HomeScreen from './Screens/HomeScreen';
-
-import LoginAuth0 from './features/login/LoginAuth0';
-import NavBar from './components/NavBar/NavBar'
-import ProductDetail from './components/ProductDetail/productDetail';
-import Landing from './components/Landing/Landing';
+import LoginAuth0 from './Features/Login/LoginAuth0';
+import NavBar from './Components/NavBar/NavBar'
+import ProductDetail from './Components/ProductDetail/productDetail';
+import Landing from './Components/Landing/Landing';
+// import FilterCategories from './Components/Filters/Filters';
+import Category from './Components/Category/Category';
 
 
 function App() {
-
 
   return (
     <div className="App">
@@ -22,6 +22,8 @@ function App() {
         <Route path="/login" element={<LoginAuth0 />} />
         <Route path="products/:id" element={<ProductDetail />} />
         <Route path="/products" element={<HomeScreen/>}/>
+        <Route path="/category/:id" element={<Category/>}/>
+        
 
       </Routes>
     </>
