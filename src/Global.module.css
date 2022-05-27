@@ -133,3 +133,31 @@ h4{
     border: 1px solid #000000;
     border-radius: 25px;
 }
+
+.yaya{
+display: flex;
+justify-content: center;
+text-align: center;
+align-items: center;
+margin-bottom: 10rem;
+max-height: 20px;
+
+
+}
+
+.rere{
+    justify-content: flex-end;
+    
+    border: none;
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    padding: 8px 20px;
+    align-items: center;
+    color: var(--secondary-color);
+    margin-top: 220px;
+
+}

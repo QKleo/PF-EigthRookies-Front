@@ -1,0 +1,25 @@
+.grid{
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    justify-items: center;
+    margin: auto;
+
+}
+
+.lala{
+    align-items: center;
+    max-width: 200px;
+    max-height: 250px;
+    border: 1px black solid;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+}
+.filtros{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+
+}
