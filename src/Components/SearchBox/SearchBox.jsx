@@ -23,7 +23,7 @@ export default function SearchBox() {
                 onChange={(e) => setInput(e.target.value)}
                 value={input}
             />
-            <button type="submit">Buscar</button>
+            <button className={style.basicBtn} type="submit">Buscar</button>
         </form>
     );
 }
