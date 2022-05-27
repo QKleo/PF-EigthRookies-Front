@@ -100,7 +100,8 @@ h4{
 }
 
 .basicBtn{
-    border: none;
+    cursor: pointer;
+    border: 2px solid var(--tertiary-color);
     background: var(--tertiary-color);
     border-radius: 4px;
     font-family: var(--primary-font);
@@ -110,7 +111,32 @@ h4{
     font-size: var(--btn-font-size);
     line-height: 21px;
     color: var(--secondary-color);
+    transition-duration: 0.7s;
 }
+
+.basicBtn:hover {
+    color: var(--tertiary-color); 
+    background-color: var(--secondary-color);
+  }
+
+.loginBtn{
+    cursor: pointer;
+    border: 3px solid var(--tertiary-color);
+    border-radius: 15px;
+    padding: 1.5% 16px;
+    background: var(--primary-color);
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: 24px;
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 1s;
+}
+
+.loginBtn:hover {
+    transform: scale(1.15, 1.15);
+  }
 
 .productContainer{
     justify-content: center;
@@ -132,4 +158,32 @@ h4{
 .inputContainer{
     border: 1px solid #000000;
     border-radius: 25px;
+}
+
+.yaya{
+display: flex;
+justify-content: center;
+text-align: center;
+align-items: center;
+margin-bottom: 10rem;
+max-height: 20px;
+
+
+}
+
+.rere{
+    justify-content: flex-end;
+    
+    border: none;
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    padding: 8px 20px;
+    align-items: center;
+    color: var(--secondary-color);
+    margin-top: 220px;
+
 }
