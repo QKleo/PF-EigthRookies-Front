@@ -99,11 +99,13 @@ function HomeScreen() {
 
 
          {resultSearch.length
-           ? resultSearch.map((product) => {
-             <div className={s.lala} key={product.id} >
-               <Product products={product}></Product>
-             </div>;
-           })
+           ? <div className={s.grid}>
+             {resultSearch.map((product) => (
+               <div className={s.lala} key={product.id} >
+                 <Product products={product}></Product>
+               </div>
+             ))}
+           </div>
            : <div className={s.grid}>
              {products.map((product) => (
                <div className={s.lala} key={product.id} >

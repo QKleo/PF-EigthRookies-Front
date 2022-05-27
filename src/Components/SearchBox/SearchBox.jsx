@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import style from './SearchBox.module.css';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { findProduct } from '../../Redux/actions';
 
@@ -7,6 +8,7 @@ import { findProduct } from '../../Redux/actions';
 export default function SearchBox() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [input, setInput] = useState('');
 
@@ -14,6 +16,7 @@ export default function SearchBox() {
         e.preventDefault();
         dispatch(findProduct(input));
         setInput('');
+        navigate('/products');
     };
 
 
