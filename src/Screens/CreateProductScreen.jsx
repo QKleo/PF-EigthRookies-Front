@@ -28,14 +28,8 @@ const reducer = (state, action) => {
 };
 export default function CreateProductScreen() {
   const navigate = useNavigate();
-  const params = useParams(); // /product/:id
-  const { id: productId } = params;
 
-  // useContext no lo estoy usando por ahora, pues no estoy trayendo del store userInfor.token
-  // que necesitare cuando tenga protegida la ruta... por ahora me apareceran esos warnings
-  // const { state } = useContext(Store);
-  // const { userInfo } = state;
-  const [{ loading, error, loadingCreate, loadingUpload }, dispatch] =
+  const [{ loading, error, loadingCreate }, dispatch] =
     useReducer(reducer, {
       loading: true,
       error: "",
@@ -80,6 +74,10 @@ export default function CreateProductScreen() {
       dispatch({ type: "CREATE_FAIL" });
     }
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> cfc7288 (formulario creacion producto funcionando)
   return (
     <Container className="small-container">
       {/* <Helmet>
