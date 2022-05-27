@@ -1,4 +1,3 @@
-import './App.css';
 import {Routes, Route} from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen';
 import Landing from './components/Landing/Landing'
@@ -10,7 +9,7 @@ import CreateProductScreen from './screens/CreateProductScreen';
 function App() {
 
   return (
-    <div className="App">
+    <div>
    
       <NavBar />
       <Routes>
