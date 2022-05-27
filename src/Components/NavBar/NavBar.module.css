@@ -13,7 +13,13 @@
     cursor: pointer;
     height: 100px;
     width: 100px;
+    transition-duration: 1s;
 }
+
+.logo:hover {
+    transform: scale(1.15, 1.15);
+  }
+
 
 .login {
     display: flex;
