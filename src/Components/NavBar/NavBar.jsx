@@ -22,9 +22,9 @@ export default function NavBar() {
                         <h4>Hola {user.given_name}</h4>
                     </div>
                 </Link>
-                : <Link className={style.link} to='/login'><p>Iniciar sesión</p> </Link>
+                : <Link to='/login'><h2>Login</h2> </Link>
             }
-            <p>Link al carrito</p>
+            <h2>Link al carrito</h2>
         </nav>
     );
 }

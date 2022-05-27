@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+:root{
+    font-family: 'Poppins', sans-serif;
+    --primary-color:#094067;
+    --secondary-color:#FDFDFD;
+    --tertiary-color: #0090FF;
+    --fourth-color: #000000;
+
+    --primary-font: "Poppins";
+    --font-weight: 700;
+    
+    --h1-size: 32px;
+    --h2-size: 24px;
+    --h3-size: 16px;
+    
+    --btn-font-size: 18px;
+
+}
+
+a{
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.link{
+    color: black
+}
+
+h1{
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--h1-size);
+    line-height: 96px;
+    color: var(--primary-color);
+}
+
+h2{
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--h2-size);
+    line-height: 22px;
+    /* or 46% */
+    text-align: center;
+    letter-spacing: -0.41px;
+    color: var(--secondary-color)
+}
+
+h3{
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--h3-size);
+    line-height: 48px;
+/* identical to box height */
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+h4{
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: 400;
+    font-size: var(--h3-size);
+    line-height: 38px;
+    color: var(--primary-font);
+}
+
+.priceHome{
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: 800;
+    font-size: var(--h3-size);
+    line-height: 38px;
+    color: var(--fourth-color);
+}
+
+.description{
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--h3-size);
+    line-height: 161%;
+    color: var(--fourth-color);
+    margin-bottom: 20px;
+}
+
+.categories{
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: 700;
+    font-size: var(--h2-size);
+    line-height: 72px;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+.basicBtn{
+    border: none;
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    padding: 12px 28px;
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+}
+
+.productContainer{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.login{
+    display: flex;
+}
+
+.loginContainer{
+    width: 49vw;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.inputContainer{
+    border: 1px solid #000000;
+    border-radius: 25px;
+}
