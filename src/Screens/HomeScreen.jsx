@@ -1,4 +1,5 @@
-import { useEffect, useReducer} from 'react';
+import { useEffect, useReducer } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Product from '../Components/Product/Product.jsx';
 import React  from "react";
@@ -42,13 +43,15 @@ function HomeScreen() {
 
   }, []);
 
-  ;
-  
-  
+  const resultSearch = useSelector((state) => state.productResult);
+  console.log(resultSearch.length)
+
+
    return (
     <div>
       <FilterCategories/>
-      <div >
+      <div>
+{/* <<<<<<< HEAD
           <div className={s.grid}>
             {products.map((product) => (
               <div  className={s.lala} key={product.id} >
@@ -56,6 +59,26 @@ function HomeScreen() {
               </div>
             )).slice(0,7)}
           </div>
+======= */}
+
+
+         {resultSearch.length
+           ? <div className={s.grid}>
+             {resultSearch.map((product) => (
+               <div className={s.lala} key={product.id} >
+                 <Product products={product}></Product>
+               </div>
+             ))}
+           </div>
+           : <div className={s.grid}>
+             {products.map((product) => (
+               <div className={s.lala} key={product.id} >
+                 <Product products={product}></Product>
+               </div>
+             ))}
+           </div>
+         }
+
     
       </div>
     </div>

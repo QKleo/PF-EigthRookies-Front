@@ -1,0 +1,24 @@
+@import url('../../Global.module.css');
+
+
+.input {
+    margin: 2px;
+    height: 30px;
+    background-color: #b7e1ff;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.basicBtn{
+    margin: 2px;
+    padding: 5px;
+    width: 60px;
+    height: 30px;
+    border: none;
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    font-style: normal;
+    color: var(--secondary-color);
+    cursor: pointer;
+}

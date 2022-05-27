@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer} from "react";
-import { useNavigate, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import axios from "axios";
 import { getError } from "../../utils";
 import s from "../../Global.module.css"
@@ -20,7 +20,7 @@ const reducer = (state, action) => {
  
 
 export default function ProductDetail(){
-    const navigate = useNavigate;
+    // const navigate = useNavigate;
     let { id } = useParams();
     
     useEffect(() => {
