@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import style from './SearchBox.module.css';
-import findProducts from './findProducts';
+import { useDispatch } from 'react-redux';
+import { findProduct } from '../../Redux/actions';
+
 
 export default function SearchBox() {
 
+    const dispatch = useDispatch();
+
     const [input, setInput] = useState('');
 
-    const handlerSubmit = async (e) => {
+    const handlerSubmit = (e) => {
         e.preventDefault();
-        const result = await findProducts(input);
-        console.log(result)
+        dispatch(findProduct(input));
         setInput('');
     };
+
 
     return (
         <form onSubmit={handlerSubmit}>
