@@ -4,7 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import Landing from './components/Landing/Landing'
 import LoginAuth0 from './features/login/LoginAuth0';
 import NavBar from './components/NavBar/NavBar';
-import ProductDetail from './components/ProductDetail';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 import CreateProductScreen from './screens/CreateProductScreen';
 
 function App() {
