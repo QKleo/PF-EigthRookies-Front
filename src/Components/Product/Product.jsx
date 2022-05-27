@@ -8,7 +8,7 @@ console.log(props);
 
   return (
     <div className={a.contenedorrr}>
-      <div>
+      
       <Link to={`/products/${products.id}`} className={s.link}>
         <img src={products.image} alt={products.name} width="120px" height="120px" />
       </Link>
@@ -17,10 +17,10 @@ console.log(props);
           <h4 className={s.yaya}>{products.name}</h4>
         </Link>
 
-      </div>
-      <div>
+      
+      
       <button className={s.rere}>Add to 🛒</button>
-      </div>
+      
 
     </div>
   );

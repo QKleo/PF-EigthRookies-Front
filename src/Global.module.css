@@ -139,7 +139,6 @@ display: flex;
 justify-content: center;
 text-align: center;
 align-items: center;
-margin-bottom: 10rem;
 max-height: 20px;
 
 
@@ -158,6 +157,5 @@ max-height: 20px;
     padding: 8px 20px;
     align-items: center;
     color: var(--secondary-color);
-    margin-top: 220px;
 
 }
