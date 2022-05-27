@@ -24,9 +24,9 @@ const LoginAuth0 = () => {
             </div>
             : <div className="container-LoginAuth0">
                 <h1>
-                    Registrarme con Google o Facebook
+                    Login to your account or Sign in
                 </h1>
-                <button className={s.basicBtn} onClick={loginWithRedirect} >Registrarme</button>
+                <button className={s.basicBtn} onClick={loginWithRedirect} >Login / Sign in</button>
             </div>
             }
         </div>

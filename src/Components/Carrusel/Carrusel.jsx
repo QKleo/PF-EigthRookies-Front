@@ -10,7 +10,7 @@ export default function Carrusel () {
       <ItemsCarousel
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
-        numberOfCards={2}
+        numberOfCards={1}
         gutter={20}
         leftChevron={<button>{'<'}</button>}
         rightChevron={<button>{'>'}</button>}

@@ -1,9 +1,10 @@
 import { useEffect, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Product from '../components/Product/Product.jsx';
+import Product from '../Components/Product/Product.jsx';
 import React  from "react";
 import s from './home.module.css'
+import FilterCategories from '../Components/Filters/Filters.jsx';
 // import data from '../data';
 
 const reducer = (state, action) => {
@@ -11,7 +12,7 @@ const reducer = (state, action) => {
     case 'AXIOS_REQUEST':
       return { ...state, loading: true };
     case 'AXIOS_SUCCESS':
-      return { ...state, products: action.payload, loading: false };
+      return { ...state, products: action.payload , loading: false };
     case 'AXIOS_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
@@ -21,8 +22,8 @@ const reducer = (state, action) => {
 
 function HomeScreen() {
   const [{ products }, dispatch] = useReducer((reducer), {
-    products: [],
-   
+
+    products: []
   });
 
   // const [products, setProducts] = useState([]);
@@ -39,6 +40,7 @@ function HomeScreen() {
       // setProducts(result.data);
     };
     axiosData();
+
   }, []);
 
   const resultSearch = useSelector((state) => state.productResult);
@@ -47,55 +49,17 @@ function HomeScreen() {
 
    return (
     <div>
-
-        <h1>Products</h1>
-      <div className={s.filtros}>
-          <div>
-            <label>Precio: </label>
-            <select onChange={(e) => (e)}>
-              <option value="default" selected disabled>
-                Ordenamiento por precio
-              </option>
-              <option value="Ascendant population">Ascendente</option>
-              <option value="Descendant population">Descendente</option>
-            </select>
+      <FilterCategories/>
+      <div>
+{/* <<<<<<< HEAD
+          <div className={s.grid}>
+            {products.map((product) => (
+              <div  className={s.lala} key={product.id} >
+                <Product products={product}></Product>
+              </div>
+            )).slice(0,7)}
           </div>
-          <div>
-            <label>Alfabeticamente: </label>
-
-            <select onChange={(e) => (e)}>
-              <option value="default" selected disabled>
-                A-Z
-              </option>
-              <option value="Ascendant">Ascendente</option>
-              <option value="Descendant">Descendente</option>
-            </select>
-          </div>
-          <div>
-            <label>Productos: </label>
-
-            <select onChange={(e) => (e)}>
-              <option value="default" selected disabled>
-                Categoria
-              </option>
-              <option value="All">All</option>
-              <option value="CELLPHONES">Celulares</option>
-              <option value="NOTEBOOKS">Notebooks</option>
-              <option value="PC_DESKOPTS">Deskopts</option>
-              <option value="PRENDRIVES">Pendrives</option>
-              <option value="TABLETS">Tablets</option>
-              <option value="MOUSE_PC">Mouse</option>
-              <option value="COMPUTER_PROCCESOR">Procesadores</option>
-              <option value="MICROPHONES">Microfonos</option>
-              <option value="PC_KEYS">Teclados</option>
-              <option value="GRAPHIC_CARDS">Tarjetas Graficas</option>
-
-            </select>
-          </div>
-          </div>
-      
-
-      <div >
+======= */}
 
 
          {resultSearch.length
@@ -114,6 +78,7 @@ function HomeScreen() {
              ))}
            </div>
          }
+
     
       </div>
     </div>
