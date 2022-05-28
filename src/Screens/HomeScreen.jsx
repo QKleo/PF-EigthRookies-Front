@@ -1,10 +1,10 @@
 import { useEffect, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Product from '../Components/Product/Product.jsx';
-import React  from "react";
-import s from './home.module.css'
-import FilterCategories from '../Components/Filters/Filters.jsx';
+import Product from '../components/Product/Product.jsx';
+import React from "react";
+import s from './home.module.css';
+import FilterCategories from '../components/Filters/Filters.jsx';
 // import data from '../data';
 
 const reducer = (state, action) => {
@@ -12,7 +12,7 @@ const reducer = (state, action) => {
     case 'AXIOS_REQUEST':
       return { ...state, loading: true };
     case 'AXIOS_SUCCESS':
-      return { ...state, products: action.payload , loading: false };
+      return { ...state, products: action.payload, loading: false };
     case 'AXIOS_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
@@ -44,14 +44,14 @@ function HomeScreen() {
   }, []);
 
   const resultSearch = useSelector((state) => state.productResult);
-  console.log(resultSearch.length)
+  console.log(resultSearch.length);
 
 
-   return (
+  return (
     <div>
-      <FilterCategories/>
+      <FilterCategories />
       <div>
-{/* <<<<<<< HEAD
+        {/* <<<<<<< HEAD
           <div className={s.grid}>
             {products.map((product) => (
               <div  className={s.lala} key={product.id} >
@@ -62,24 +62,24 @@ function HomeScreen() {
 ======= */}
 
 
-         {resultSearch.length
-           ? <div className={s.grid}>
-             {resultSearch.map((product) => (
-               <div className={s.lala} key={product.id} >
-                 <Product products={product}></Product>
-               </div>
-             ))}
-           </div>
-           : <div className={s.grid}>
-             {products.map((product) => (
-               <div className={s.lala} key={product.id} >
-                 <Product products={product}></Product>
-               </div>
-             ))}
-           </div>
-         }
+        {resultSearch.length
+          ? <div className={s.grid}>
+            {resultSearch.map((product) => (
+              <div className={s.lala} key={product.id} >
+                <Product products={product}></Product>
+              </div>
+            ))}
+          </div>
+          : <div className={s.grid}>
+            {products.map((product) => (
+              <div className={s.lala} key={product.id} >
+                <Product products={product}></Product>
+              </div>
+            ))}
+          </div>
+        }
 
-    
+
       </div>
     </div>
   );
