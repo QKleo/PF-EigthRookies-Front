@@ -21,16 +21,18 @@ export default function SearchBox() {
 
 
     return (
-        <form onSubmit={handlerSubmit}>
+        <div className={style.inputSearch}>
+            <form onSubmit={handlerSubmit}>
             <input
-                className={style.input}
-                type="text"
-                autoComplete='on'
-                placeholder='Buscar producto...'
                 onChange={(e) => setInput(e.target.value)}
                 value={input}
-            />
-            <button className={style.basicBtn} type="submit">Buscar</button>
+                autoComplete='off'
+                placeholder='	Buscar...'
+                id="search"
+                type="search"
+                required />
+            <span className={style.caret}></span>
         </form>
+        </div>
     );
 }
