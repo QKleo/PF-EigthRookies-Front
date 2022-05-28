@@ -6,7 +6,7 @@ import LoginAuth0 from './features/login/LoginAuth0';
 import NavBar from './components/NavBar/NavBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import CreateProductScreen from './screens/CreateProductScreen';
-import Category from './Components/Category/Category';
+import Category from './components/Category/Category';
 
 
 function App() {

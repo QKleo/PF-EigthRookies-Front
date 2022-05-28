@@ -4,7 +4,7 @@
 :root{
     font-family: 'Poppins', sans-serif;
     --primary-color:#094067;
-    --secondary-color:#FDFDFD;
+    --secondary-color:#c0e1f8;
     --tertiary-color: #0090FF;
     --fourth-color: #000000;
 
@@ -16,6 +16,7 @@
     --h3-size: 16px;
     
     --btn-font-size: 18px;
+    --dur: 1s;
 
 }
 
