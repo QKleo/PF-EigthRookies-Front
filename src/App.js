@@ -1,27 +1,31 @@
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
-import LoginAuth0 from './Features/Login/LoginAuth0';
-import { useAuth0 } from '@auth0/auth0-react';
+import {Routes, Route} from 'react-router-dom'
+
+import HomeScreen from './Screens/HomeScreen';
+import Landing from './Components/Landing/Landing'
+import LoginAuth0 from './features/login/LoginAuth0';
+import NavBar from './Components/NavBar/NavBar';
+import ProductDetail from './Components/ProductDetail/productDetail';
+import CreateProductScreen from './Screens/CreateProductScreen';
+import Category from './Components/Category/Category';
+
 
 function App() {
 
-  const {isAuthenticated, user, logout} = useAuth0()
-
   return (
-    <div className="App">
-      {
-        isAuthenticated
-        ? <div>
-                <img src={user.picture} alt={user.name}/>
-                <h1>Hola {user.name}</h1>
-                <p>{user.email}</p>
-                <button onClick={logout} >Salir</button>
-            </div>
-        : <h1>Bienvenido a "The Rookies"</h1>
-      }
+    <div>
+   
+      <NavBar />
       <Routes>
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<LoginAuth0 />} />
+        <Route path="products/:id" element={<ProductDetail />} />
+        <Route path="/products" element={<HomeScreen/>}/>
+        <Route path="/category/:id" element={<Category/>}/>
+        
+
+        <Route path="/admin/products" element={<CreateProductScreen />} />
       </Routes>
+    
     </div>
   );
 }
