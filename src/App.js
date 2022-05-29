@@ -4,7 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import Landing from './Components/Landing/Landing'
 import LoginAuth0 from './Features/Login/LoginAuth0';
 import NavBar from './Components/NavBar/NavBar';
-import ProductDetail from './Components/ProductDetail/ProductDetail.jsx';
+import ProductDetail from './Components/ProductDetail/ProductDetail';
 import CreateProductScreen from './screens/CreateProductScreen';
 import Category from './Components/Category/Category';
 
