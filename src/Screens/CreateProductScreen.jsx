@@ -5,9 +5,10 @@ import axios from "axios";
 import { getError } from "../utils";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import LoadingBox from "../Components/LoadingBox";
-import MessageBox from "../Components/MessageBox";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 import Button from "react-bootstrap/Button";
+import s from "./createProductScreen.module.css"
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -76,83 +77,96 @@ export default function CreateProductScreen() {
       {/* <Helmet>
         <title>Edit Product ${productId}</title>
       </Helmet> */}
-      <h1>Create Product</h1>
+      <div className={s.display}>
+            <img src="https://www.edesk.com/wp-content/uploads/2021/03/find-trending-products-sell-ecommerce.png" 
+            alt="" className={s.imgContainer}/>
+      
 
-      <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Name</Form.Label>
+      <Form onSubmit={submitHandler} className={s.form}>
+      <h1 className={s.formh1}>Create Product</h1>
+        <Form.Group className={s.inputContainer} controlId="name">
+          <Form.Label className={s.formh2}>Name</Form.Label>
           <Form.Control
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="description">
-          <Form.Label>Description</Form.Label>
+        <Form.Group className={s.inputContainer} controlId="description">
+          <Form.Label className={s.formh2}>Description</Form.Label>
           <Form.Control
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Price</Form.Label>
+        <Form.Group className={s.inputContainer} controlId="name">
+          <Form.Label className={s.formh2}>Price</Form.Label>
           <Form.Control
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="image">
-          <Form.Label>Image File</Form.Label>
+        <Form.Group className={s.inputContainer} controlId="image">
+          <Form.Label className={s.formh2}>Image File</Form.Label>
           <Form.Control
             value={image}
             onChange={(e) => setImage(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="image2">
-          <Form.Label>Image2 File</Form.Label>
+        <Form.Group className={s.inputContainer} controlId="image2">
+          <Form.Label className={s.formh2}>Image2 File</Form.Label>
           <Form.Control
             value={image2}
             onChange={(e) => setImage2(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="image3">
-          <Form.Label>Image3 File</Form.Label>
+        <Form.Group className={s.inputContainer} controlId="image3">
+          <Form.Label className={s.formh2}>Image3 File</Form.Label>
           <Form.Control
             value={image3}
             onChange={(e) => setImage3(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="image4">
-          <Form.Label>Image4 File</Form.Label>
+        <Form.Group className={s.inputContainer} controlId="image4">
+          <Form.Label className={s.formh2}>Image4 File</Form.Label>
           <Form.Control
             value={image4}
             onChange={(e) => setImage4(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="category">
-          <Form.Label>Category</Form.Label>
+        <Form.Group className={s.inputContainer} controlId="category">
+          <Form.Label className={s.formh2}>Category</Form.Label>
           <Form.Control
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
+            className={s.input}
           />
         </Form.Group>
 
-        <div className="mb-3">
-          <Button disabled={loadingCreate} type="submit">
+        <div className={s.buttonContainer}>
+          <Button disabled={loadingCreate} type="submit" className={s.button}>
             Create
           </Button>
           {loadingCreate && <LoadingBox></LoadingBox>}
         </div>
       </Form>
+      </div>
     </Container>
   );
 }

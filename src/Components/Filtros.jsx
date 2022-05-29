@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { filtrarPorPrecio, filtroPorCategory, vaciarProductResultAux, vaciarRespuesta } from "../Redux/actions"
+import { filtrarPorPrecio, filtroPorCategory, vaciarProductResultAux, vaciarRespuesta } from "../redux/actions"
 
 export default function Filtros(props){
     const dispatch=useDispatch()

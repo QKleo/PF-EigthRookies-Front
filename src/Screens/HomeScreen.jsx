@@ -1,16 +1,16 @@
-
+import React  from "react";
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Product from '../Components/Product/Product.jsx';
-import React  from "react";
+import Product from '../components/Product/Product.jsx';
+
 import s from './home.module.css'
 // import data from '../data';
-import PaginadoAux from '../Components/PaginadoAux.jsx';
-import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../Redux/actions"
+import PaginadoAux from '../components/PaginadoAux.jsx';
+import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../redux/actions"
 import { useDispatch } from 'react-redux';
-import Filtros from '../Components/Filtros';
-import Ordenar from '../Components/Ordenar.jsx';
+import Filtros from '../components/Filtros';
+import Ordenar from '../components/Ordenar.jsx';
 
 
   export default function HomeScreen(){
