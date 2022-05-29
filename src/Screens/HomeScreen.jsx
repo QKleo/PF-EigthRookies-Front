@@ -1,10 +1,10 @@
 import { useEffect, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Product from '../Components/Product/Product.jsx';
+import Product from '../components/Product/Product.jsx';
 import React  from "react";
 import s from './home.module.css'
-import FilterCategories from '../Components/Filters/Filters.jsx';
+import FilterCategories from '../components/Filters/Filters.jsx';
 // import data from '../data';
 
 const reducer = (state, action) => {

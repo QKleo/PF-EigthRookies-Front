@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import style from './SearchBox.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { findProduct } from '../../Redux/actions';
+import { findProduct } from '../../redux/actions';
 
 
 export default function SearchBox() {
