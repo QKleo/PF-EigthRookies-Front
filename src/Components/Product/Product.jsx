@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import s from "../../../src/Global.module.css";
 import a from "./product.module.css";
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+
 
 export default function Product(props) {
   const { products } = props;
@@ -34,7 +36,7 @@ export default function Product(props) {
     
               </Link>
               <h4 >{products.name}</h4>
-                  <button >Add to 🛒</button>
+                  <button className={s.basicBtn} >Add to <AiOutlineShoppingCart style={{ color: 'white', fontSize: '20px', marginTop:'7px'}} /></button>
               </div>
 
 

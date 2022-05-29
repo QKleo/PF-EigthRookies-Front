@@ -17,7 +17,7 @@ export default function PaginadoAux(props){
 
     return( 
         <div >
-            <div style={{display:'flex',flexDirection:'row' }}>
+            <div style={{display:'flex',flexDirection:'row', marginTop:"100px", marginBottom:"70px", marginLeft:"150px" }}>
             <button onClick={()=>props.setpaginado(props.paginado-1)}>←</button>
                 <div  style={{ justifyContent:'center' ,width:'60%',marginLeft:'10%',marginRight:'10%'}}>            
                 <ItemsCarousel  requestToChangeActive={setActiveItemIndex}
@@ -39,7 +39,7 @@ export default function PaginadoAux(props){
             <button onClick={()=>props.setpaginado(props.paginado+1)}>→</button>
             </div>
         <div >
-           Pag. {props.paginado+1}    
+           {/* Pag. {props.paginado+1}     */}
         </div>    
         </div>
 

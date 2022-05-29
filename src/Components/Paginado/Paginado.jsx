@@ -9,7 +9,7 @@ export default function Paginado({ productsPerPage, allProducts, paginate }) {
   }
 
   return (
-    <nav>
+    <div className={styles.contenedor}>
       <ul className={styles.paginado}>
         {pageNumb &&
           pageNumb.map((number) => (
@@ -23,6 +23,6 @@ export default function Paginado({ productsPerPage, allProducts, paginate }) {
             </li>
           ))}
       </ul>
-    </nav>
+    </div>
   );
 }

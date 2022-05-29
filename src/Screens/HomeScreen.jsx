@@ -2,12 +2,12 @@
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Product from '../components/Product/Product.jsx';
+import Product from '../Components/Product/Product.jsx';
 import React  from "react";
 import s from './home.module.css'
-import FilterCategories from '../components/Filters/Filters.jsx';
+import FilterCategories from '../Components/Filters/Filters.jsx';
 // import data from '../data';
-import PaginadoAux from '../components/PaginadoAux.jsx';
+import PaginadoAux from '../Components/PaginadoAux.jsx';
 import { obtenerTodosProducts } from "../Redux/actions"
 import { useDispatch } from 'react-redux';
 
@@ -62,7 +62,7 @@ import { useDispatch } from 'react-redux';
       {/* <FilterCategories/> */}
       <div>
 
-      
+      <h1>Products</h1>
 
          {/* {resultSearch.length
            ? <div className={s.grid}>

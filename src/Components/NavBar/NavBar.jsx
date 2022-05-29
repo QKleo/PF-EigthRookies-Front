@@ -4,6 +4,7 @@ import style from './NavBar.module.css';
 import logo from '../../assets/8Rookies.png';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 
 export default function NavBar() {
@@ -15,9 +16,17 @@ export default function NavBar() {
     <nav className={style.container}>
       <Link to={'/'}><img className={style.logo} src={logo} alt="The rookies" /></Link>
       <SearchBox />
+      <Link className={style.link} to="/">
+          <h3>Home</h3>
+        </Link>
+
+        <Link className={style.link} to="/products">
+          <h3>Products</h3>
+        </Link>
       {isAuthenticated ? (
         <div className={style.containerAuth}>
           <>
+     
             <Link className={style.link} to="/login">
               <div className={style.login}>
                 <img
@@ -34,11 +43,12 @@ export default function NavBar() {
           </>
         </div>
       ) : (
+        
         <Link className={style.link} to="/login">
-          <p>Login</p>
+          <h3>Login</h3>
         </Link>
       )}
-      <p>Link al carrito</p>
+      <i ><AiOutlineShoppingCart style={{ fontSize: '50px'}}/></i>
     </nav>
   );
 }
