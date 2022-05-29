@@ -5,27 +5,30 @@ import axios from 'axios';
 import Product from '../Components/Product/Product.jsx';
 import React  from "react";
 import s from './home.module.css'
-import FilterCategories from '../Components/Filters/Filters.jsx';
 // import data from '../data';
 import PaginadoAux from '../Components/PaginadoAux.jsx';
-import { obtenerTodosProducts } from "../Redux/actions"
+import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../Redux/actions"
 import { useDispatch } from 'react-redux';
+import Filtros from '../Components/Filtros';
+import Ordenar from '../Components/Ordenar.jsx';
 
 
   export default function HomeScreen(){
     const Allproduct=useSelector((state)=>state.Allproduct)
     const Products=useSelector((state)=>state. productResult)
     const ProductAux=useSelector((state)=>state.productResultAux)
+    const Respuesta=useSelector((state)=>state.Respuesta)
     const dispatch=useDispatch()
     let maxi
     let elementosMostrar=12
     let ProductMostrar=[]
     const[paginado,setpaginado]=useState(0)
-    useEffect(()=>{traer();return setpaginado(0)},[Allproduct.length])
+    useEffect(()=>{traer();return setpaginado(0)},[Products.length])
     
 
     function traer(){
         dispatch(obtenerTodosProducts())
+        dispatch(obtenerTodosCategory())
 
     }
  
@@ -60,9 +63,15 @@ import { useDispatch } from 'react-redux';
    return (
     <div>
       {/* <FilterCategories/> */}
+      <Filtros arrObj={Products}  arrObjAux={ProductAux}/>
+      <Ordenar arrObj={Products} arrObjAux={ProductAux}/>
+      {Respuesta.length>0&&<span>{Respuesta[0].msg}
+                            <button onClick={()=>dispatch(vaciarRespuesta())}>
+                            x</button>
+                          </span>}
       <div>
 
-      <h1>Products</h1>
+      
 
          {/* {resultSearch.length
            ? <div className={s.grid}>
