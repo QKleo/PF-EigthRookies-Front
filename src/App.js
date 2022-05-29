@@ -2,9 +2,9 @@ import {Routes, Route} from 'react-router-dom'
 
 import HomeScreen from './screens/HomeScreen';
 import Landing from './components/Landing/Landing'
-import LoginAuth0 from './features/login/LoginAuth0';
+import LoginAuth0 from './features/Login/LoginAuth0';
 import NavBar from './components/NavBar/NavBar';
-import ProductDetail from './components/ProductDetail/ProductDetail';
+import ProductDetail from './components/ProductDetail/productDetail';
 import CreateProductScreen from './screens/CreateProductScreen';
 import Category from './components/Category/Category';
 
