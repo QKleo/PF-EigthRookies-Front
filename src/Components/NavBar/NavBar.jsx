@@ -39,7 +39,7 @@ export default function NavBar() {
             </Link>
           </>
           <>
-            <Link className={style.link} to="/admin/products">Crear Productos</Link>
+            <Link className={style.link} to="/admin/products">Crear</Link>
           </>
         </div>
       ) : (
