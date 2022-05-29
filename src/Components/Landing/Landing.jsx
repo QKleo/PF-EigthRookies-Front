@@ -56,7 +56,7 @@ function Landing () {
               <div  key={product.slug} >
                 <Product className={s.lala} key={product.slug} products={product}></Product>
               </div>
-            )).slice(300, 304)}
+            )).slice(700, 708)}
         </div>
      </div>
     
