@@ -23,7 +23,7 @@ import Ordenar from '../Components/Ordenar.jsx';
     let elementosMostrar=12
     let ProductMostrar=[]
     const[paginado,setpaginado]=useState(0)
-    useEffect(()=>{traer();return setpaginado(0)},[Products.length])
+    useEffect(()=>{traer();return setpaginado(0)},[Allproduct.length])
     
 
     function traer(){
