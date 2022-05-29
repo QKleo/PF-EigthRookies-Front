@@ -4,7 +4,7 @@
 :root{
     font-family: 'Poppins', sans-serif;
     --primary-color:#094067;
-    --secondary-color:#FDFDFD;
+    --secondary-color:#c0e1f8;
     --tertiary-color: #0090FF;
     --fourth-color: #000000;
 
@@ -16,6 +16,7 @@
     --h3-size: 16px;
     
     --btn-font-size: 18px;
+    --dur: 1s;
 
 }
 
@@ -117,7 +118,7 @@ h4{
 
 .basicBtn:hover {
     color: var(--tertiary-color); 
-    background-color: var(--secondary-color);
+    background-color: black;
   }
 
 .loginBtn{
@@ -166,7 +167,6 @@ display: flex;
 justify-content: center;
 text-align: center;
 align-items: center;
-margin-bottom: 10rem;
 max-height: 20px;
 
 
@@ -185,6 +185,6 @@ max-height: 20px;
     padding: 8px 20px;
     align-items: center;
     color: var(--secondary-color);
-    margin-top: 220px;
+
 
 }

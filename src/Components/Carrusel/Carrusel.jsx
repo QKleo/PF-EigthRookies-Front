@@ -4,7 +4,7 @@ import s from './carrusel.module.css'
 
 export default function Carrusel () {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const chevronWidth = 40;
+  const chevronWidth = 60;
   return (
     <div style={{ padding: `0 ${chevronWidth}px` }}>
       <ItemsCarousel
@@ -12,8 +12,8 @@ export default function Carrusel () {
         activeItemIndex={activeItemIndex}
         numberOfCards={1}
         gutter={20}
-        leftChevron={<button>{'<'}</button>}
-        rightChevron={<button>{'>'}</button>}
+        leftChevron={<button className={s.butcar}>{'<'}</button>}
+        rightChevron={<button className={s.butcar}>{'>'}</button>}
         outsideChevron
         chevronWidth={chevronWidth}
       >

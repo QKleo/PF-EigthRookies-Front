@@ -1,8 +1,10 @@
 .cardcarrusel{
-
+    
     height: 350px;
-    background-image: url(../../assets//Oferta1.JPG);
+    background-image: url(../../assets/OfertaV1.JPG);
     background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 
 
 }
@@ -10,19 +12,33 @@
 .cardcarruse2{
 
     height: 350px;
-    background-image: url(../../assets/Oferta2.JPG);
-    background-repeat: no-repeat;
 
+    background-image: url(../../assets/OfertaV2.JPG);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 .cardcarruse3{
 
     height: 350px;
     background-image: url(../../assets/Oferta3.JPG);
     background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 .cardcarruse4{
 
     height: 350px;
     background-image: url(../../assets/Oferta5.JPG);
     background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.butcar{
+    border-radius: 10px;
+  
+
+
+
 }
