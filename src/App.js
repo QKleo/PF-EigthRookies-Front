@@ -7,7 +7,7 @@ import NavBar from './Components/NavBar/NavBar';
 import ProductDetail from './Components/ProductDetail/productDetail';
 import CreateProductScreen from './Screens/CreateProductScreen';
 import Category from './Components/Category/Category';
-
+import Carrito from './Components/Carrito';
 
 function App() {
 
@@ -24,6 +24,7 @@ function App() {
         
 
         <Route path="/admin/products" element={<CreateProductScreen />} />
+        <Route exact path='/products/carrito'element={<Carrito/>}/>
       </Routes>
     
     </div>

@@ -2,9 +2,14 @@ import { Link } from 'react-router-dom';
 import s from "../../../src/Global.module.css";
 import a from "./product.module.css";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { agregarProductoCarrito } from '../../Redux/actions';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 export default function Product(props) {
+  const dispatch=useDispatch()
+  const Carrito=useSelector(state=>state.Carrito)
   const { products } = props;
 
   return (
@@ -36,7 +41,9 @@ export default function Product(props) {
     
               </Link>
               <h4 >{products.name}</h4>
-                  <button className={s.basicBtn} >Add to <AiOutlineShoppingCart style={{ color: 'white', fontSize: '20px', marginTop:'7px'}} /></button>
+                  <button className={s.basicBtn} onClick={()=>
+                    dispatch(agregarProductoCarrito(products))}>
+                    Add to <AiOutlineShoppingCart style={{ color: 'white', fontSize: '20px', marginTop:'7px'}} /></button>
               </div>
 
 

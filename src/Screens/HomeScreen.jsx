@@ -11,13 +11,14 @@ import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../
 import { useDispatch } from 'react-redux';
 import Filtros from '../Components/Filtros';
 import Ordenar from '../Components/Ordenar.jsx';
-
+import { Link } from 'react-router-dom';
 
   export default function HomeScreen(){
     const Allproduct=useSelector((state)=>state.Allproduct)
     const Products=useSelector((state)=>state. productResult)
     const ProductAux=useSelector((state)=>state.productResultAux)
     const Respuesta=useSelector((state)=>state.Respuesta)
+    const Carrito=useSelector((state=>state.Carrito))
     const dispatch=useDispatch()
     let maxi
     let elementosMostrar=12
@@ -31,6 +32,7 @@ import Ordenar from '../Components/Ordenar.jsx';
         dispatch(obtenerTodosCategory())
 
     }
+    
  
   // const [products, setProducts] = useState([]);
   
@@ -91,12 +93,13 @@ import Ordenar from '../Components/Ordenar.jsx';
            </div>
          }
 
-    
+      {Carrito.length}
       </div>
       <div style={{textAlign:'center'}}>
       <PaginadoAux   setpaginado={setpaginado} paginado={paginado} max={maxi} 
                      elementosMostrar={elementosMostrar}    />
       </div>
+      <Link to='/products/carrito'><button >carrito</button></Link>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export const FILTRAR_POR_PRECIO='FILTRAR_POR_PRECIO';
 export const NO_HAY_MATCH='NO_HAY_MATCH';
 export const VACIAR_RESPUESTA='VACIAR_RESPUESTA';
 export const ORDENAR='ORDENAR';
-
+export const AGREGARCARRITO='AGREGARCARRITO';
 
 const URL = 'http://localhost:3001';
 
@@ -144,4 +144,15 @@ export function ordenar(arrObj,arrObjAux,atributo,bandera){
 
     })
  }
+}
+export function agregarProductoCarrito(obj){
+    
+    return(dispatch)=>{
+        //carritoState.push(obj)
+        return dispatch({
+            type:AGREGARCARRITO,
+            payload:obj
+        })
+
+    }
 }
