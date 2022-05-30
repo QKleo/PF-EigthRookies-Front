@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ordenarBublee from '../components/herramientas/ordenarNumeros';
+import ordenarBublee from '../Components/herramientas/ordenarNumeros';
 
 export const SEARCH_PRODUCT = 'SEARCH PRODUCT';
 export const TODOS_PRODUCT='TODOS_PRODUCT';
@@ -10,7 +10,8 @@ export const FILTRAR_POR_PRECIO='FILTRAR_POR_PRECIO';
 export const NO_HAY_MATCH='NO_HAY_MATCH';
 export const VACIAR_RESPUESTA='VACIAR_RESPUESTA';
 export const ORDENAR='ORDENAR';
-
+export const AGREGARCARRITO='AGREGARCARRITO';
+export const ELIMINARDECARRITO='ELIMINARDECARRITO';
 
 const URL = 'http://localhost:3001';
 
@@ -144,4 +145,27 @@ export function ordenar(arrObj,arrObjAux,atributo,bandera){
 
     })
  }
+}
+export function agregarProductoCarrito(obj){
+    
+    return(dispatch)=>{
+        obj.EstoyEnElcarro=true
+        //carritoState.push(obj)
+        return dispatch({
+            type:AGREGARCARRITO,
+            payload:obj
+        })
+
+    }
+}
+export function eliminarProductoCarrito(obj,arrObj){
+    return(dispatch)=>{
+    obj.EstoyEnElcarro=false   
+    arrObj=arrObj.filter(e=>e.id!==obj.id)
+    return dispatch({
+        type:ELIMINARDECARRITO,
+        payload:arrObj
+    })
+
+    }
 }

@@ -39,7 +39,7 @@ export default function PaginadoAux(props){
             <button onClick={()=>props.setpaginado(props.paginado+1)}>→</button>
             </div>
         <div >
-           {/* Pag. {props.paginado+1}     */}
+           Pag. {props.paginado+1}    
         </div>    
         </div>
 

@@ -2,28 +2,29 @@ import React  from "react";
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Product from '../components/Product/Product.jsx';
+import Product from '../Components/Product/Product.jsx';
 
 import s from './home.module.css'
 // import data from '../data';
-import PaginadoAux from '../components/PaginadoAux.jsx';
-import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../redux/actions"
+import PaginadoAux from '../Components/PaginadoAux.jsx';
+import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../Redux/actions"
 import { useDispatch } from 'react-redux';
-import Filtros from '../components/Filtros';
-import Ordenar from '../components/Ordenar.jsx';
-
+import Filtros from '../Components/Filtros';
+import Ordenar from '../Components/Ordenar.jsx';
+import { Link } from 'react-router-dom';
 
   export default function HomeScreen(){
     const Allproduct=useSelector((state)=>state.Allproduct)
     const Products=useSelector((state)=>state. productResult)
     const ProductAux=useSelector((state)=>state.productResultAux)
     const Respuesta=useSelector((state)=>state.Respuesta)
+    const Carrito=useSelector((state=>state.Carrito))
     const dispatch=useDispatch()
     let maxi
     let elementosMostrar=12
     let ProductMostrar=[]
     const[paginado,setpaginado]=useState(0)
-    useEffect(()=>{traer();return setpaginado(0)},[Products.length])
+    useEffect(()=>{traer();return setpaginado(0)},[Allproduct.length])
     
 
     function traer(){
@@ -31,6 +32,7 @@ import Ordenar from '../components/Ordenar.jsx';
         dispatch(obtenerTodosCategory())
 
     }
+    
  
   // const [products, setProducts] = useState([]);
   
@@ -91,12 +93,13 @@ import Ordenar from '../components/Ordenar.jsx';
            </div>
          }
 
-    
+      {Carrito.length}
       </div>
       <div style={{textAlign:'center'}}>
       <PaginadoAux   setpaginado={setpaginado} paginado={paginado} max={maxi} 
                      elementosMostrar={elementosMostrar}    />
       </div>
+      {/* <Link to='/products/carrito'><button >carrito</button></Link> */}
     </div>
   );
 }
