@@ -13,6 +13,8 @@ import Footer from './components/Footer/Footer'
 
 function App() {
 
+  
+
   return (
     <div>
    
@@ -22,7 +24,7 @@ function App() {
         <Route path="/login" element={<LoginAuth0 />} />
         <Route path="products/:id" element={<ProductDetail />} />
         <Route path="/products" element={<HomeScreen/>}/>
-        <Route path="/category/:id" element={<Category/>}/>
+        <Route path={`/search`} element={<Category/>}/>
         
 
         <Route path="/admin/products" element={<CreateProductScreen />} />

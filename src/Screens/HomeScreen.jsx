@@ -1,7 +1,7 @@
 import React  from "react";
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
+
 import Product from '../components/Product/Product.jsx';
 
 import s from './home.module.css'
@@ -11,7 +11,7 @@ import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../
 import { useDispatch } from 'react-redux';
 import Filtros from '../components/Filtros';
 import Ordenar from '../components/Ordenar.jsx';
-import { Link } from 'react-router-dom';
+
 
   export default function HomeScreen(){
     const Allproduct=useSelector((state)=>state.Allproduct)
@@ -39,7 +39,7 @@ import { Link } from 'react-router-dom';
 
   let end=paginado*elementosMostrar+elementosMostrar
 
-  const resultSearch = useSelector((state) => state.productResult);
+  // const resultSearch = useSelector((state) => state.productResult);
   
   if (ProductAux.length===0 && Products.length>0){
       maxi=Math.floor(Products.length/elementosMostrar)
