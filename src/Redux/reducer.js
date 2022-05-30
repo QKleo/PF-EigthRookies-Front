@@ -1,9 +1,10 @@
 
 
 import {
-    FILTRO_POR_CATEGORY,
+    FILTRO_POR_CATEGORYAUX,
     SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO
-    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR    } from "./actions";
+    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO,
+    FILTRO_POR_CATEGORY ,ACTUALIZAR   } from "./actions";
 
 const initialState = {
     productResult: [],
@@ -11,6 +12,7 @@ const initialState = {
     Allproduct:[],
     Category:[],
     Respuesta:[],
+    Carrito:[]
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -34,7 +36,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 Category:payload
             }
-        case FILTRO_POR_CATEGORY:
+        case FILTRO_POR_CATEGORYAUX:
             return{
                 ...state,
                 productResultAux:payload
@@ -66,11 +68,37 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         
         case ORDENAR:
-            console.log(payload)
+           // console.log(payload)
             return{
                 ...state,
                 productResultAux:payload
-            }    
+            } 
+        case AGREGARCARRITO:
+            console.log(payload)
+            return{
+                ...state,
+                Carrito:[payload,...state['Carrito']]
+            }  
+        case ELIMINARDECARRITO:
+            return{
+                ...state,
+                Carrito:payload
+            }  
+        case FILTRO_POR_CATEGORY:
+            return{
+                ...state,
+                productResult:payload,
+            }
+        case ACTUALIZAR:
+
+            console.log('llega?') 
+            console.log(payload)   
+            return{
+                ...state,
+                productResultAux:'',
+                
+                productResult:payload
+            }      
 
 
         default: return state;

@@ -203,3 +203,23 @@ max-height: 20px;
     transition-duration: 0.7s;
 
 }
+
+.bntLand:hover{
+    background-color: black;
+
+
+}
+
+.agregarbtn{
+
+    color: white;
+    background: #37c79c;
+
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: none;
+    border: 0px;
+
+
+
+}
