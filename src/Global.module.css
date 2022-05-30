@@ -115,6 +115,7 @@ h4{
     transition-duration: 0.7s;
 }
 
+
 .basicBtn:hover {
     color: var(--tertiary-color); 
     background-color: black;
@@ -185,5 +186,20 @@ max-height: 20px;
     align-items: center;
     color: var(--secondary-color);
 
+
+}
+
+.btnLand{
+
+    border: 2px solid var(--tertiary-color);
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
 
 }

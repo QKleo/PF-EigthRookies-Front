@@ -1,9 +1,9 @@
-
+import React  from "react";
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Product from '../Components/Product/Product.jsx';
-import React  from "react";
+
 import s from './home.module.css'
 // import data from '../data';
 import PaginadoAux from '../Components/PaginadoAux.jsx';
