@@ -64,8 +64,9 @@ import { Link } from 'react-router-dom';
 
    return (
     <div>
+      {Allproduct.length}
       {/* <FilterCategories/> */}
-      <Filtros arrObj={Products}  arrObjAux={ProductAux}/>
+      <Filtros arrObj={Products}  arrObjAux={ProductAux} Allproduct={Allproduct}/>
       <Ordenar arrObj={Products} arrObjAux={ProductAux}/>
       {Respuesta.length>0&&<span>{Respuesta[0].msg}
                             <button onClick={()=>dispatch(vaciarRespuesta())}>
