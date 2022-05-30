@@ -48,7 +48,9 @@ export default function NavBar() {
           <h3>Login</h3>
         </Link>
       )}
+       <Link to='/products/carrito'><button >
       <i ><AiOutlineShoppingCart style={{ fontSize: '50px'}}/></i>
+      </button></Link>
     </nav>
   );
 }

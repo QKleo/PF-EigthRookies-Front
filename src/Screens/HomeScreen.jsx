@@ -99,7 +99,7 @@ import { Link } from 'react-router-dom';
       <PaginadoAux   setpaginado={setpaginado} paginado={paginado} max={maxi} 
                      elementosMostrar={elementosMostrar}    />
       </div>
-      <Link to='/products/carrito'><button >carrito</button></Link>
+      {/* <Link to='/products/carrito'><button >carrito</button></Link> */}
     </div>
   );
 }

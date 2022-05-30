@@ -3,7 +3,7 @@
 import {
     FILTRO_POR_CATEGORY,
     SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO
-    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO    } from "./actions";
+    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO    } from "./actions";
 
 const initialState = {
     productResult: [],
@@ -77,7 +77,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return{
                 ...state,
                 Carrito:[payload,...state['Carrito']]
-            }   
+            }  
+        case ELIMINARDECARRITO:
+            return{
+                ...state,
+                Carrito:payload
+            }    
 
 
         default: return state;

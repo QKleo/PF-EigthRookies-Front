@@ -5,6 +5,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { agregarProductoCarrito } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { eliminarProductoCarrito } from "../../Redux/actions";
 
 
 export default function Product(props) {
@@ -69,6 +70,9 @@ export default function Product(props) {
               style={{ color: "white", fontSize: "20px", marginTop: "7px" }}
             />
           </button>
+         {products.EstoyEnElcarro&&<button onClick={()=>{
+           dispatch( eliminarProductoCarrito(products,Carrito) )
+         }}>X</button>}
         </div>
       </div>
   //  </div>
