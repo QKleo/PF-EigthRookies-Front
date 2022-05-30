@@ -26,6 +26,9 @@ export default function NavBar() {
       {isAuthenticated ? (
         <div className={style.containerAuth}>
           <>
+          <>
+            <Link className={style.link} to="/admin/products">Agregar Producto</Link>
+          </>
      
             <Link className={style.link} to="/login">
               <div className={style.login}>
@@ -37,9 +40,6 @@ export default function NavBar() {
                 <h4>Hola {user.given_name}</h4>
               </div>
             </Link>
-          </>
-          <>
-            <Link className={style.link} to="/admin/products">Crear</Link>
           </>
         </div>
       ) : (

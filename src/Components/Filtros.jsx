@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { filtrarPorPrecio, filtroPorCategory, vaciarProductResultAux, vaciarRespuesta } from "../redux/actions"
+import f from './filtros.module.css'
 
 export default function Filtros(props){
     const dispatch=useDispatch()
@@ -30,9 +31,9 @@ export default function Filtros(props){
     }
 
     return(
-        <div>
+        <div className={f.filtrosbox}>
             
-            <select name="category" id="" onChange={(e)=>{handleOnChange(e)}}>
+            <select className={f.selectest}  name="category" id="" onChange={(e)=>{handleOnChange(e)}}>
                 <option value={'todos'}>VER TODOS LOS PRODUCTOS</option>
             {todasLasCategorias.length>0&&todasLasCategorias.map((e,i)=>{
                 <option value={'todos'}>ver todos</option>
@@ -41,7 +42,7 @@ export default function Filtros(props){
             </select>
             <input type="number" name="precio" placeholder="precio"
                       onChange={(e)=>handleOnChange(e)}  />
-            <button onClick={(e)=>{handleOnClick(e)}}>buscar</button>        
+            <button className={f.buttonS} onClick={(e)=>{handleOnClick(e)}}>buscar</button>        
         </div>
     )
 }

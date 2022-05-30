@@ -7,7 +7,7 @@ import NavBar from './components/NavBar/NavBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import CreateProductScreen from './screens/CreateProductScreen';
 import Category from './components/Category/Category';
-
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -25,6 +25,7 @@ function App() {
 
         <Route path="/admin/products" element={<CreateProductScreen />} />
       </Routes>
+      <Footer/>
     
     </div>
   );

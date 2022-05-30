@@ -1,5 +1,6 @@
 import ItemsCarousel from 'react-items-carousel';
 import { useState } from 'react';
+import p from './paginado.module.css'
 
 export default function PaginadoAux(props){
     let aux=[]
@@ -17,30 +18,30 @@ export default function PaginadoAux(props){
 
     return( 
         <div >
-            <div style={{display:'flex',flexDirection:'row', marginTop:"100px", marginBottom:"70px", marginLeft:"150px" }}>
-            <button onClick={()=>props.setpaginado(props.paginado-1)}>←</button>
-                <div  style={{ justifyContent:'center' ,width:'60%',marginLeft:'10%',marginRight:'10%'}}>            
+            <div className={p.paginadobox}>
+            <button className={p.buttonpag} onClick={()=>props.setpaginado(props.paginado-1)}>←</button>
+                <div  style={{ justifyContent:'center' ,width:'60%',marginLeft:'15px',marginRight:'15px'}}>            
                 <ItemsCarousel  requestToChangeActive={setActiveItemIndex}
                     activeItemIndex={activeItemIndex}
                     numberOfCards={10}
                     gutter={1}
-                    leftChevron={<button>{'<'}</button>}
-                    rightChevron={<button>{'>'}</button>}
+                    leftChevron={<button  className={p.buttonpag} >{'<'}</button>}
+                    rightChevron={<button  className={p.buttonpag} >{'>'}</button>}
                     outsideChevron
                     chevronWidth={chevronWidth}>
 
                 {aux.map(e=>{
-                    return <button key={e}  onClick={()=>props.setpaginado(e-1)}
-                    style={{background:e===props.paginado+1&&'blue'}}>{e}</button>
+                    return <button className={p.buttonpag}  key={e}  onClick={()=>props.setpaginado(e-1)}
+                    style={{background:e===props.paginado+1&&'CadetBlue'}}>{e}</button>
                 })}
            
                 </ItemsCarousel>
                 </div>   
-            <button onClick={()=>props.setpaginado(props.paginado+1)}>→</button>
+            <button className={p.buttonpag} onClick={()=>props.setpaginado(props.paginado+1)}>→</button>
             </div>
-        <div >
-           {/* Pag. {props.paginado+1}     */}
-        </div>    
+        <button className={p.currentp}>
+           Pagina {props.paginado+1}    
+        </button>    
         </div>
 
     )
