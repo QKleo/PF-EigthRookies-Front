@@ -4,7 +4,7 @@ import ordenarBublee from '../Components/herramientas/ordenarNumeros';
 export const SEARCH_PRODUCT = 'SEARCH PRODUCT';
 export const TODOS_PRODUCT='TODOS_PRODUCT';
 export const TODOS_CATEGORY='TODOS_CATEGORY';
-export const FILTRO_POR_CATEGORY='FILTRO_POR_CATEGORY';
+export const FILTRO_POR_CATEGORYAUX='FILTRO_POR_CATEGORYAUX';
 export const VACIAR_AUXILIARP='VACIAR_AUXILIARP';
 export const FILTRAR_POR_PRECIO='FILTRAR_POR_PRECIO';
 export const NO_HAY_MATCH='NO_HAY_MATCH';
@@ -12,6 +12,8 @@ export const VACIAR_RESPUESTA='VACIAR_RESPUESTA';
 export const ORDENAR='ORDENAR';
 export const AGREGARCARRITO='AGREGARCARRITO';
 export const ELIMINARDECARRITO='ELIMINARDECARRITO';
+export const FILTRO_POR_CATEGORY='FILTRO_POR_CATEGORY'
+export const ACTUALIZAR='ACTUALIZAR'
 
 const URL = 'http://localhost:3001';
 
@@ -61,12 +63,18 @@ export function filtroPorCategory(arrObj,arrObjAux,value){
         if(arrObj.length>0&&value){
             r=arrObj.filter(e=>e.category.id*1===value*1)
         }
-
-
+        
+        if(arrObjAux>0){
         return dispatch({
-            type:FILTRO_POR_CATEGORY,
+            type:FILTRO_POR_CATEGORYAUX,
             payload:r
         })
+        }else{
+            return dispatch({
+                type:FILTRO_POR_CATEGORY,
+                payload:r
+            })
+        }
     }
 }
 
@@ -167,5 +175,14 @@ export function eliminarProductoCarrito(obj,arrObj){
         payload:arrObj
     })
 
+    }
+}
+export function actualizar(arrObj){
+    return(dispatch)=>{
+        
+        return dispatch({
+            type:ACTUALIZAR,
+            payload:arrObj
+        })
     }
 }

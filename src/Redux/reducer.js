@@ -1,9 +1,10 @@
 
 
 import {
-    FILTRO_POR_CATEGORY,
+    FILTRO_POR_CATEGORYAUX,
     SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO
-    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO    } from "./actions";
+    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO,
+    FILTRO_POR_CATEGORY ,ACTUALIZAR   } from "./actions";
 
 const initialState = {
     productResult: [],
@@ -35,7 +36,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 Category:payload
             }
-        case FILTRO_POR_CATEGORY:
+        case FILTRO_POR_CATEGORYAUX:
             return{
                 ...state,
                 productResultAux:payload
@@ -82,7 +83,22 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return{
                 ...state,
                 Carrito:payload
-            }    
+            }  
+        case FILTRO_POR_CATEGORY:
+            return{
+                ...state,
+                productResult:payload,
+            }
+        case ACTUALIZAR:
+
+            console.log('llega?') 
+            console.log(payload)   
+            return{
+                ...state,
+                productResultAux:'',
+                
+                productResult:payload
+            }      
 
 
         default: return state;
