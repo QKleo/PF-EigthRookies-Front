@@ -11,7 +11,7 @@ const LoginAuth0 = () => {
         <div className={s.login}>
         <div className={s.loginContainer}>
         <img src="https://hotmart.com/media/2019/09/670x419-O-que-e-Landing-Page-e-como-criar-uma.webp" 
-        width="650px" height="500px" alt=""/>
+        width="750px" height="800px" alt=""/>
         </div>
         <div className={s.loginContainer}>
             {

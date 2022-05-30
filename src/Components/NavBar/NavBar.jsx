@@ -26,6 +26,9 @@ export default function NavBar() {
       {isAuthenticated ? (
         <div className={style.containerAuth}>
           <>
+          <>
+            <Link className={style.link} to="/admin/products">Agregar Producto</Link>
+          </>
      
             <Link className={style.link} to="/login">
               <div className={style.login}>
@@ -38,9 +41,6 @@ export default function NavBar() {
               </div>
             </Link>
           </>
-          <>
-            <Link className={style.link} to="/admin/products">Crear</Link>
-          </>
         </div>
       ) : (
         
@@ -48,9 +48,9 @@ export default function NavBar() {
           <h3>Login</h3>
         </Link>
       )}
-       <Link to='/products/carrito'><button >
-      <i ><AiOutlineShoppingCart style={{ fontSize: '50px'}}/></i>
-      </button></Link>
+       <Link to='/products/carrito'>
+      <i ><AiOutlineShoppingCart style={{ fontSize: '50px', color: 'white'}}/></i>
+      </Link>
     </nav>
   );
 }

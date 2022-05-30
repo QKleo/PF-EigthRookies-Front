@@ -2,15 +2,15 @@ import React  from "react";
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Product from '../Components/Product/Product.jsx';
+import Product from '../components/Product/Product.jsx';
 
 import s from './home.module.css'
 // import data from '../data';
-import PaginadoAux from '../Components/PaginadoAux.jsx';
-import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../Redux/actions"
+import PaginadoAux from '../components/PaginadoAux.jsx';
+import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../redux/actions"
 import { useDispatch } from 'react-redux';
-import Filtros from '../Components/Filtros';
-import Ordenar from '../Components/Ordenar.jsx';
+import Filtros from '../components/Filtros';
+import Ordenar from '../components/Ordenar.jsx';
 import { Link } from 'react-router-dom';
 
   export default function HomeScreen(){
@@ -64,7 +64,7 @@ import { Link } from 'react-router-dom';
 
    return (
     <div>
-      {Allproduct.length}
+      {/* {Allproduct.length} */}
       {/* <FilterCategories/> */}
       <Filtros arrObj={Products}  arrObjAux={ProductAux} Allproduct={Allproduct}/>
       <Ordenar arrObj={Products} arrObjAux={ProductAux}/>
@@ -94,7 +94,7 @@ import { Link } from 'react-router-dom';
            </div>
          }
 
-      {Carrito.length}
+      {/* {Carrito.length} */}
       </div>
       <div style={{textAlign:'center'}}>
       <PaginadoAux   setpaginado={setpaginado} paginado={paginado} max={maxi} 

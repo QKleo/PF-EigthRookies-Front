@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import Product from '../Components/Product/Product.jsx';
-import s from '../Screens/home.module.css'
+import Product from '../components/Product/Product.jsx';
+import s from '../screens/home.module.css'
 
 export default function Carrito(){
     const Carrito=useSelector((state)=>state.Carrito)
@@ -11,10 +11,10 @@ export default function Carrito(){
     
 
     return(
-        <div>
-            <Link to='/products'><button>volver</button></Link>
+        <div className={s.boxcarrito}>
+            <Link to='/products'><button className={s.btnvolver}>Volver</button></Link>
 
-        <h4>{Carrito.length}</h4>
+        {/* <h4>{Carrito.length}</h4> */}
 
         {<div className={s.grid}>
              {Carrito.length>0&&Carrito.map((product,i) => (

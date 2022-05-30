@@ -1,0 +1,27 @@
+.filtrosbox{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+
+}
+
+.buttonor{
+
+    color: var(--primary-color);
+    background: #c0e1f8;
+
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: none;
+    border: 0px;
+
+}
+
+.buttonor:hover{
+    background-color: rgb(134, 197, 199);
+
+
+}

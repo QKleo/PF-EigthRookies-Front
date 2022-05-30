@@ -1,0 +1,57 @@
+.filtrosbox{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+
+.buttonS{
+    cursor: pointer;
+    border: 2px solid var(--tertiary-color);
+    background: var(--tertiary-color);
+    border-radius: 50px;
+    font-family: var(--primary-font);
+    padding: 12px 28px;
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
+
+}
+
+
+.buttonF{
+
+    color: var(--primary-color);
+    background: #4ae7b8;
+    margin-right: 5px;
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: none;
+    border: 0px;
+
+
+}
+    
+input {
+
+        background: #FFFFFF;
+        border-radius: 50px;
+        padding: 12.5px 50px 12.5px 10px;
+        border: 1px solid black;
+        margin-right: 5px;
+    
+    
+    }
+
+.selectest{
+    border-radius: 20px;
+    padding: 1rem;
+    margin-right: 5px;
+
+}

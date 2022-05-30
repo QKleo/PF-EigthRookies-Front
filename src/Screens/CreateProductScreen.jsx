@@ -5,8 +5,8 @@ import axios from "axios";
 import { getError } from "../utils";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import LoadingBox from "../Components/LoadingBox";
-import MessageBox from "../Components/MessageBox";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 import Button from "react-bootstrap/Button";
 import s from "./createProductScreen.module.css"
 

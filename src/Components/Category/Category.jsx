@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getError } from "../../utils";
 import FilterCategories from "../Filters/Filters";
 import Product from "../Product/Product";
-import s from '../../Screens/home.module.css'
+import s from '../../screens/home.module.css'
 
 
 const reducer = (state, action) => {

@@ -1,14 +1,14 @@
 import {Routes, Route} from 'react-router-dom'
 
-import HomeScreen from './Screens/HomeScreen';
-import Landing from './Components/Landing/Landing'
+import HomeScreen from './screens/HomeScreen';
+import Landing from './components/Landing/Landing'
 import LoginAuth0 from './features/login/LoginAuth0';
-
-import NavBar from './Components/NavBar/NavBar';
-import ProductDetail from './Components/ProductDetail/productDetail';
-import CreateProductScreen from './Screens/CreateProductScreen';
-import Category from './Components/Category/Category';
-import Carrito from './Components/Carrito';
+import NavBar from './components/NavBar/NavBar';
+import ProductDetail from './components/ProductDetail/ProductDetail';
+import CreateProductScreen from './screens/CreateProductScreen';
+import Category from './components/Category/Category';
+import Carrito from './components/Carrito';
+import Footer from './components/Footer/Footer'
 
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
         <Route path="/admin/products" element={<CreateProductScreen />} />
         <Route exact path='/products/carrito'element={<Carrito/>}/>
       </Routes>
+      <Footer/>
     
     </div>
   );
