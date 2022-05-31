@@ -58,7 +58,7 @@ export default function Product(props) {
          }}>Agregado!</button>}
         </div>
       </div>
-  //  </div>
+    </div>
   )
 }
 //export default Product;
