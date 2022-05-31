@@ -14,7 +14,7 @@ const reducer = (state, action) => {
     case 'AXIOS_SUCCESS':
       return {
         ...state,
-        products: action.payload.products[0].products,
+        products: action.payload.products,
         page: action.payload.page,
         pages: action.payload.pages,
         countProducts: action.payload.countProducts,
@@ -57,7 +57,7 @@ export default function ProductScreen() {
             // `http://localhost:3001/paginado/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
           );
           dispatch({ type: 'AXIOS_SUCCESS', payload: data });
-          console.log("soy products" , data)
+          
         } catch (err) {
           dispatch({
             type: 'AXIOS_FAIL',
@@ -142,6 +142,7 @@ export default function ProductScreen() {
             </div>
 
           </div>
+          {console.log("soy products" , products)}
         </>
   );
 
