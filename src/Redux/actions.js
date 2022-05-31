@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ordenarBublee from '../components/herramientas/ordenarNumeros';
+import ordenarBublee from '../Components/Ordenamiento/ordenarNumeros';
 
 export const SEARCH_PRODUCT = 'SEARCH PRODUCT';
 export const TODOS_PRODUCT='TODOS_PRODUCT';

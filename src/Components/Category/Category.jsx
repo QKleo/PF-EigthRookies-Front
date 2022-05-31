@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getError } from "../../utils";
+import { getError } from "../Herramientas/utils";
 import Product from "../Product/Product";
-import s from '../../screens/home.module.css'
+import s from '../Home/home.module.css'
 
 
 

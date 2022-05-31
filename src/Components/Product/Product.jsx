@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import s from "../../../src/Global.module.css";
-import a from "./product.module.css";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { agregarProductoCarrito } from '../../redux/actions';
+import { agregarProductoCarrito, eliminarProductoCarrito } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { eliminarProductoCarrito } from "../../redux/actions";
 
 
 export default function Product(props) {
@@ -61,4 +59,4 @@ export default function Product(props) {
     </div>
   )
 }
-//export default Product;
+

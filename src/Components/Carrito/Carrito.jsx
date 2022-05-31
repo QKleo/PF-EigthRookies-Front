@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import Product from '../components/Product/Product.jsx';
-import s from '../screens/home.module.css'
+import Product from '../Product/Product';
+import s from '../Home/home.module.css'
 
 export default function Carrito(){
     const Carrito=useSelector((state)=>state.Carrito)

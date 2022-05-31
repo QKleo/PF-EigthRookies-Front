@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import f from './filtros.module.css'
 import { filtrarPorPrecio, filtroPorCategory, vaciarProductResultAux, 
-    obtenerTodosProducts,vaciarRespuesta,actualizar } from "../redux/actions"
+    obtenerTodosProducts,vaciarRespuesta,actualizar } from "../../Redux/actions"
 
 export default function Filtros(props){
     const objaux={}

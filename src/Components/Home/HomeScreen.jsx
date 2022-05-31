@@ -2,15 +2,15 @@ import React  from "react";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Product from '../components/Product/Product.jsx';
+import Product from '../Product/Product';
 
 import s from './home.module.css'
 // import data from '../data';
-import PaginadoAux from '../components/PaginadoAux.jsx';
-import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../redux/actions"
+import PaginadoAux from '../Paginado/PaginadoAux';
+import { obtenerTodosCategory, obtenerTodosProducts, vaciarRespuesta } from "../../Redux/actions"
 import { useDispatch } from 'react-redux';
-import Filtros from '../components/Filtros';
-import Ordenar from '../components/Ordenar.jsx';
+import Filtros from '../Filtros/Filtros';
+import Ordenar from '../Ordenamiento/Ordenar';
 
 
   export default function HomeScreen(){

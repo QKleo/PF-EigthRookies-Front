@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer} from "react";
 import { useParams} from "react-router-dom";
 import axios from "axios";
-import { getError } from "../../utils";
+import { getError } from "../Herramientas/utils";
 import s from "../../Global.module.css"
 
 const reducer = (state, action) => {
