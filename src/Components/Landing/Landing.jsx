@@ -50,15 +50,13 @@ function Landing () {
     <h1>Bienvenido a The Rookies!</h1>
     <Carrusel/>
     
-    <div className={s.g}>
-       <div className={s.grid} >
-        {products.map((product) => (
-              <div  key={product.slug} >
-                <Product className={s.lala} key={product.slug} products={product}></Product>
-              </div>
-            )).slice(700, 708)}
-        </div>
-     </div>
+    <div className={s.grid}>
+              {products?.map((product) => (
+               
+                  <Product products={product} key={product.id}/>
+              
+              )).slice(700, 708)}
+            </div>
     
     
     
