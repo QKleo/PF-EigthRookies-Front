@@ -59,9 +59,9 @@ export default function ProductDetail(){
             </>   
             ) :
             (<div className={s.productContainer}>
-            <h1>{product.name}</h1>
+            <h1>{product.name.replace(/[#-]/g, " ")}</h1>
             <img src={product.image} width="100px" height="100px" alt=""/>
-            <div className={s.categories}>{product.category.name}</div>
+            <div className={s.categories}>{product.category.name.replace(/[#_]/g, " ")}</div>
             <div className={s.description}>{product.description}</div>
             <button className={s.basicBtn}> $ {product.price} 🛒</button>
             </div>)

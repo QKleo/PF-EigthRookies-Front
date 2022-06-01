@@ -46,7 +46,7 @@ color: var(--tertiary-color);
 form input {
 
     background: #FFFFFF;
-    border-radius: 50px;
+    border-radius: 6px;
     padding: 12.5px 50px 12.5px 10px;
     border: none;
 

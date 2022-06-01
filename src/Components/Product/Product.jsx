@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import s from "../../../src/Global.module.css";
+import a from "./product.module.css";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { agregarProductoCarrito, eliminarProductoCarrito } from '../../Redux/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { agregarProductoCarrito, eliminarProductoCarrito } from '../../Redux/actions';
 
 
 export default function Product(props) {
@@ -13,8 +14,8 @@ export default function Product(props) {
 
   return (
    
-    <div style={{ border: "2px solid black", borderRadius: "20px" }}>
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className={a.cardContainer}>
+
       <div style={{ marginTop: "20px", alignItems:'center'}}>
         <Link to={`/products/${products.id}`}>
           <img
@@ -30,7 +31,7 @@ export default function Product(props) {
 
         <Link to={`/products/${products.id}`}>
           <h4 style={{ textAlign: "center", color: "black" }}>
-            {products.name}
+            {products.name.replace(/[#-]/g, " ")}
           </h4>
         </Link>
 
@@ -42,7 +43,7 @@ export default function Product(props) {
             alignItems: "center",
           }}
         >
-          <h4 style={{ fontSize: "20px" }}>${products.price}</h4>
+          <h4 className={a.price}>${products.price}</h4>
           <button className={s.btnLand} onClick={()=>
                     dispatch(agregarProductoCarrito(products))}>
                      <AiOutlineShoppingCart style={{ color: 'white', fontSize: '20px', marginTop:'7px'}} /></button>
@@ -56,7 +57,6 @@ export default function Product(props) {
          }}>Agregado!</button>}
         </div>
       </div>
-    </div>
+   
   )
 }
-

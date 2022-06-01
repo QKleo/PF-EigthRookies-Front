@@ -20,7 +20,7 @@ export default function NavBar() {
           <h3>Home</h3>
         </Link>
 
-        <Link className={style.link} to="/products">
+        <Link className={style.link} to="/search">
           <h3>Products</h3>
         </Link>
       {isAuthenticated ? (
