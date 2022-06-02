@@ -1,5 +1,8 @@
 import axios from 'axios';
 import ordenarBublee from '../Components/Ordenamiento/ordenarNumeros';
+import { getError } from "../Components/Herramientas/utils";
+
+
 
 export const SEARCH_PRODUCT = 'SEARCH PRODUCT';
 export const TODOS_PRODUCT='TODOS_PRODUCT';
@@ -154,18 +157,18 @@ export function ordenar(arrObj,arrObjAux,atributo,bandera){
     })
  }
 }
-export function agregarProductoCarrito(obj){
+// export function agregarProductoCarrito(obj){
     
-    return(dispatch)=>{
-        obj.EstoyEnElcarro=true
-        //carritoState.push(obj)
-        return dispatch({
-            type:AGREGARCARRITO,
-            payload:obj
-        })
+//     return(dispatch)=>{
+//         obj.EstoyEnElcarro=true
+//         //carritoState.push(obj)
+//         return dispatch({
+//             type:AGREGARCARRITO,
+//             payload:obj
+//         })
 
-    }
-}
+//     }
+// }
 export function eliminarProductoCarrito(obj,arrObj){
     return(dispatch)=>{
     obj.EstoyEnElcarro=false   
@@ -186,3 +189,35 @@ export function actualizar(arrObj){
         })
     }
 }
+
+export const axiosDataId = (id) => async (dispatch) => {
+    dispatch({ type: 'AXIOS_REQUEST' })
+    try {
+      const response = await axios.get(`http://localhost:3001/products/${id}`);
+      return dispatch({ type: 'AXIOS_SUCCESS', payload: response.data });
+    } catch (err) {
+      return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
+    }
+  };
+
+  export const fetchData = (page, category, order, price) => async (dispatch) => {
+    dispatch({ type: 'AXIOS_REQUEST' })
+    try {
+      const response = await axios.get(
+    `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}`);
+    
+      return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
+    } catch (err) {
+      return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
+    }
+  };
+
+  export const axiosCategories = () => async (dispatch) => {
+    dispatch({ type: 'AXIOS_REQUEST' })
+    try {
+      const response = await axios.get(`http://localhost:3001/category`);
+      return dispatch({ type: 'FETCH_CATEGORIES', payload: response.data });
+    } catch (err) {
+      return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
+    }
+  };

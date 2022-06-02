@@ -29,7 +29,7 @@ function App() {
          <Route path={`/search`} element={<Category/>}/>
         
 
-        <Route path="/admin/products" element={<CreateProductScreen />} />
+        {/* <Route path="/admin/products" element={<CreateProductScreen />} /> */}
         <Route exact path='/products/carrito'element={<Carrito/>}/>
       </Routes>
       <Footer/>
