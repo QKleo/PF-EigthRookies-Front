@@ -4,7 +4,7 @@ import {
     FILTRO_POR_CATEGORYAUX,
     SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO
     ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO,
-    FILTRO_POR_CATEGORY ,ACTUALIZAR,CREATEPRODUCT,UPDATEPRODUCT   } from "./actions";
+    FILTRO_POR_CATEGORY ,ACTUALIZAR,CREATEPRODUCT,UPDATEPRODUCT, CREARCATEGORY   } from "./actions";
 
 const initialState = {
     productResult: [],
@@ -105,6 +105,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
                     Respuesta:payload
                 }
             case UPDATEPRODUCT:
+                return{
+                    ...state,
+                    Respuesta:payload
+                }
+            case CREARCATEGORY:
                 return{
                     ...state,
                     Respuesta:payload

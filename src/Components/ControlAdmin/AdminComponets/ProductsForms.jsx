@@ -40,14 +40,15 @@ export default function ProductsForms(){
     function handleOnChange(e){
         e.preventDefault(e)
         const{name,value}=e.target
-        name==='name'&&setformState({...formState,['name']:value})
+        name==='name'&&setformState({...formState,['name']:validarCadena(value,25)?value:formState.name})
         name==='description'&&setformState({...formState,['description']:value})
        
         name==='image'&&setformState({...formState,['image']:value})
         name==='image2'&&setformState({...formState,['image2']:value})
         name==='image3'&&setformState({...formState,['image3']:value})
         name==='image4'&&setformState({...formState,['image4']:value})
-        name==='price'&&setformState({...formState,['price']:value})
+        name==='price'&&setformState({...formState,['price']:validarNumero(value,7)?value:
+        formState[name].length>0?formState[name].slice(1):''})
         name==='range_price'&&setformState({...formState,['range_price']:value})
         name==='category'&&setformState({...formState,['category']:value})
         if(name==='nameSelect'){
@@ -92,6 +93,33 @@ export default function ProductsForms(){
             productId:'',
         })
     }
+
+    function validarNumero(str,len){
+        if(str.length>len){return false}
+        if(str*1>1000000){return false}
+        return parseInt(str*1)&&true
+    }
+
+    function validarCadena(str,len){
+   
+    
+         if(str.length>len){return false}
+           
+            str=str.split('-').join('')
+            str=str.split('/').join('')
+            let primero=/\W/.test(str)
+           // let segundo=/\d/.test(str)
+            return !primero //&& !segundo 
+      
+    }
+
+
+
+
+
+
+
+
     function handleOnClick(e){
         e.preventDefault(e)
         if(formState.name&&formState.description&&

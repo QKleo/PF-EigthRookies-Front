@@ -16,6 +16,7 @@ export const FILTRO_POR_CATEGORY='FILTRO_POR_CATEGORY'
 export const ACTUALIZAR='ACTUALIZAR'
 export const CREATEPRODUCT='CREATEPRODUCT'
 export const UPDATEPRODUCT='UPDATEPRODUCT'
+export const CREARCATEGORY='CREARCATEGORY'
 
 const URL = 'http://localhost:3001';
 
@@ -211,4 +212,17 @@ export function upDateProduct(id,body){
             })
         })
     }
+}
+export function crearCategory(body){
+    return(dispatch)=>{
+        axios.post(`${URL}/crearcategory`,body)
+        .then(()=>{
+            return dispatch({
+                type:CREARCATEGORY,
+                payload:['category',body.name,'creada']
+            })
+
+        })
+        .catch((err)=>console.log(err))
+    } 
 }
