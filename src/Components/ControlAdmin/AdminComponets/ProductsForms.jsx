@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux" 
-import { createProduct,upDateProduct,obtenerTodosProducts,obtenerTodosCategory } from "../../../Redux/actions"
+import { createProduct,upDateProduct,obtenerTodosProducts,obtenerTodosCategory,vaciarRespuesta } from "../../../Redux/actions"
 
 
 
@@ -29,10 +29,13 @@ export default function ProductsForms(){
     })
     const Allproduct=useSelector(state=>state.Allproduct)
     const Category=useSelector(state=>state.Category)
-    useEffect(()=>{traer()},[Allproduct.length,Category.length])
+    const Respuesta=useSelector(state=>state.Respuesta)
+   // useEffect(()=>{traer()},[Allproduct.length,Category.length])
+    useEffect(()=>{traer()},[Respuesta.length])
     function traer(){
         dispatch(obtenerTodosProducts())
         dispatch(obtenerTodosCategory())
+        dispatch(vaciarRespuesta)
     }
     function handleOnChange(e){
         e.preventDefault(e)
@@ -97,11 +100,13 @@ export default function ProductsForms(){
                 if(formState.new){
                         dispatch(createProduct(formState))
                         cleanState()
+                       // dispatch(obtenerTodosProducts())
                     }
                 if(formState.UpDate){
                         dispatch(upDateProduct(formState.productId,formState))
-                        dispatch(obtenerTodosProducts())
                         cleanState()
+                        dispatch(obtenerTodosProducts())
+                        
                 
                 }
 
@@ -117,7 +122,7 @@ export default function ProductsForms(){
         <div>
            
             {/* {Names.length&&'algo'}*/}
-            <h4>{namesMostra.length&&namesMostra.length}'estoy'</h4> 
+            <h4>cantidad de products:{namesMostra.length&&namesMostra.length}</h4> 
           
             <button onClick={()=>setformState({['new']:true,['UpDate']:false})}>New</button>
             <button onClick={()=>setformState({['UpDate']:true,['new']:false})}>UpDate</button>
@@ -131,6 +136,7 @@ export default function ProductsForms(){
 
                     {formState.UpDate&&
                         <select name="nameSelect" id=""onChange={(e)=>handleOnChange(e) }>
+                            <option>Productos</option>
                            {namesMostra.length>0&&namesMostra.map((e,i)=>{
                             obj={id:e.id,name:e.name,description:e.description,image:e.image,
                             image2:e.image2,image3:e.image3,image4:e.image4,price:e.price,

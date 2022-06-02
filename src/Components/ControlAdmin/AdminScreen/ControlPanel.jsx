@@ -32,24 +32,22 @@ export default function ControlPanel(){
     return(
         <div>
             <h4>Control Panel</h4>
-            {Allproduct.length}
-            {Category.length}
+           
              <div>   
                     <div>
                         
                         <button onClick={()=>{
                             setlocalState({['product']:!localState.product})
-                        }  }>.</button>
+                        }  }>Product Menu</button>
                         <button onClick={()=>{
                             setlocalState({['category']:!localState.category})
-                        }  }>.</button>
+                        }  }>Category menu</button>
                       
                        
                      {/* <h1> {localState.valida?'true':'false'}</h1> */}
                     </div>
                     <div>
-                    {localState.product&&<ProductsForm Allproduct={Allproduct}
-                    Category={Category}/>}
+                    {localState.product&&<ProductsForm/>}
                     {localState.category&&'form category'}    
                     </div>
                 
