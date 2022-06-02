@@ -4,9 +4,9 @@ import Product from '../Product/Product';
 import s from '../Home/home.module.css'
 
 export default function Carrito(){
-    const Carrito=useSelector((state)=>state.Carrito)
+    const Carrito=useSelector((state)=>state.cart)
     
-        
+        console.log("soyCartItem", Carrito)
 
     
 

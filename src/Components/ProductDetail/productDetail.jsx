@@ -1,69 +1,55 @@
-import React, { useEffect, useReducer} from "react";
-import { useParams} from "react-router-dom";
-import axios from "axios";
-import { getError } from "../Herramientas/utils";
-import s from "../../Global.module.css"
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import s from "../../Global.module.css";
+import { addToCart, clearCart, removeFromCart } from "../../Redux/actionsCarrito";
+import { axiosDataId } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
-const reducer = (state, action) => {
-    switch (action.type) {
-      case 'AXIOS_REQUEST':
-        return { ...state, loading: true };
-      case 'AXIOS_SUCCESS':
-        return { ...state,loading: false, product: action.payload };
-      case 'AXIOS_FAIL':
-        return { ...state, loading: false, error: action.payload };
-      default:
-        return state;
-    }
+export default function ProductDetail() {
+  const loading = useSelector((state) => state.loading);
+  const error = useSelector((state) => state.error);
+  const product = useSelector((state) => state.product);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(axiosDataId(id));
+  }, [id, dispatch]);
+
+  const updateCartHandler = (product) => {
+    // checkeo el stock y luego
+    dispatch(addToCart(product));
   };
 
- 
-
-export default function ProductDetail(){
-    // const navigate = useNavigate;
-    let { id } = useParams();
-    
-    useEffect(() => {
-        const axiosData = async () => {
-          dispatch({ type: 'AXIOS_REQUEST' });
-          try {
-            const response = await axios.get(`http://localhost:3001/products/${id}`);
-            console.log(response.data)
-            dispatch({ type: 'AXIOS_SUCCESS', payload: response.data });
-          } catch (err) {
-            dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
-          }
-        };
-        axiosData();
-      }, [id]);
-    
-    
-    const [{ product , loading, error } , dispatch] = 
-        useReducer(reducer, {
-            product: [] ,
-            loading: true,
-            error: ""
-        })
-
-    
-
-    return (
-            loading? (
-            <>
-                <p> Calling to the rookies...</p>
-            </>    
-            ) :
-            error? (
-            <>
-                <p> {error}</p>
-            </>   
-            ) :
-            (<div className={s.productContainer}>
-            <h1>{product.name.replace(/[#-]/g, " ")}</h1>
-            <img src={product.image} width="100px" height="100px" alt=""/>
-            <div className={s.categories}>{product.category.name.replace(/[#_]/g, " ")}</div>
-            <div className={s.description}>{product.description}</div>
-            <button className={s.basicBtn}> $ {product.price} 🛒</button>
-            </div>)
-    )
+  return loading ? (
+    <>
+      <p> Calling to the rookies...</p>
+    </>
+  ) : error ? (
+    <>
+      <p> {error}</p>
+    </>
+  ) : (
+    <div className={s.productContainer}>
+      <h1>{product?.name.replace(/[#-]/g, " ")}</h1>
+      <img src={product.image} width="100px" height="100px" alt="" />
+      <div className={s.categories}>
+        {product?.category.name.replace(/[#_]/g, " ")}
+      </div>
+      <div className={s.description}>{product.description}</div>
+      <button className={s.basicBtn} onClick={() => updateCartHandler(product)}>
+        {" "}
+        $ {product.price} 🛒
+      </button>
+      <button className={s.basicBtn} onClick={() => dispatch(removeFromCart(product))}>
+        {" "}
+        Remove from Cart 🛒
+      </button>
+      <button className={s.basicBtn} onClick={() => dispatch(clearCart())}>
+        {" "}
+        Clear Cart 🛒
+      </button>
+      
+    </div>
+  );
 }
