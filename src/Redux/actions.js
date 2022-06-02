@@ -14,6 +14,8 @@ export const AGREGARCARRITO='AGREGARCARRITO';
 export const ELIMINARDECARRITO='ELIMINARDECARRITO';
 export const FILTRO_POR_CATEGORY='FILTRO_POR_CATEGORY'
 export const ACTUALIZAR='ACTUALIZAR'
+export const CREATEPRODUCT='CREATEPRODUCT'
+export const UPDATEPRODUCT='UPDATEPRODUCT'
 
 const URL = 'http://localhost:3001';
 
@@ -183,6 +185,30 @@ export function actualizar(arrObj){
         return dispatch({
             type:ACTUALIZAR,
             payload:arrObj
+        })
+    }
+}
+export function createProduct(body){
+    return(dispatch)=>{
+    axios.post(`${URL}/createProduct`,body)  
+    .then(()=>{    
+        return dispatch({
+            type:CREATEPRODUCT,
+            payload:['creando',body.name]
+        })
+    })
+    .catch((err)=>console.log(err))   
+}
+}
+export function upDateProduct(id,body){
+    return(dispatch)=>{
+        console.log(id,'voy',body,'yendo')
+        axios.put(`${URL}/updateproduct/${id}`,body)
+        .then(()=>{
+            return dispatch({
+                type:UPDATEPRODUCT,
+                payload:['actualizando',body.id]
+            })
         })
     }
 }
