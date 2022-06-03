@@ -1,4 +1,4 @@
-import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART} from "./actionsCarrito"
+import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER} from "./actionsCarrito"
 
 import {
     FILTRO_POR_CATEGORYAUX,
@@ -19,6 +19,7 @@ const initialState = {
     product: [] ,
     loading: true,
     error: "",
+    postOrder: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -145,6 +146,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 categories: payload,
                 loading: false,
+            }
+        case POST_ORDER:
+    
+            return {
+            ...state,
+            postOrder: payload
             }
         default: return state;
     }
