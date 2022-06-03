@@ -17,6 +17,9 @@ export const AGREGARCARRITO='AGREGARCARRITO';
 export const ELIMINARDECARRITO='ELIMINARDECARRITO';
 export const FILTRO_POR_CATEGORY='FILTRO_POR_CATEGORY'
 export const ACTUALIZAR='ACTUALIZAR'
+export const CREATEPRODUCT='CREATEPRODUCT'
+export const UPDATEPRODUCT='UPDATEPRODUCT'
+export const CREARCATEGORY='CREARCATEGORY'
 
 const URL = 'http://localhost:3001';
 
@@ -157,18 +160,7 @@ export function ordenar(arrObj,arrObjAux,atributo,bandera){
     })
  }
 }
-// export function agregarProductoCarrito(obj){
-    
-//     return(dispatch)=>{
-//         obj.EstoyEnElcarro=true
-//         //carritoState.push(obj)
-//         return dispatch({
-//             type:AGREGARCARRITO,
-//             payload:obj
-//         })
 
-//     }
-// }
 export function eliminarProductoCarrito(obj,arrObj){
     return(dispatch)=>{
     obj.EstoyEnElcarro=false   
@@ -188,6 +180,44 @@ export function actualizar(arrObj){
             payload:arrObj
         })
     }
+}
+
+export function createProduct(body){
+    return(dispatch)=>{
+    axios.post(`${URL}/createProduct`,body)  
+    .then(()=>{    
+        return dispatch({
+            type:CREATEPRODUCT,
+            payload:['creando',body.name]
+        })
+    })
+    .catch((err)=>console.log(err))   
+}
+}
+export function upDateProduct(id,body){
+    return(dispatch)=>{
+        console.log(id,'voy',body,'yendo')
+        axios.put(`${URL}/updateproduct/${id}`,body)
+        .then(()=>{
+            return dispatch({
+                type:UPDATEPRODUCT,
+                payload:['actualizando',body.id]
+            })
+        })
+    }
+}
+export function crearCategory(body){
+    return(dispatch)=>{
+        axios.post(`${URL}/crearcategory`,body)
+        .then(()=>{
+            return dispatch({
+                type:CREARCATEGORY,
+                payload:['category',body.name,'creada']
+            })
+
+        })
+        .catch((err)=>console.log(err))
+    } 
 }
 
 export const axiosDataId = (id) => async (dispatch) => {
@@ -221,3 +251,4 @@ export const axiosDataId = (id) => async (dispatch) => {
       return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
   };
+
