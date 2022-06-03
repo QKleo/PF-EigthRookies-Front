@@ -1,10 +1,12 @@
-
+import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART} from "./actionsCarrito"
 
 import {
     FILTRO_POR_CATEGORYAUX,
-    SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO
-    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO,
+    SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO,
     FILTRO_POR_CATEGORY ,ACTUALIZAR,CREATEPRODUCT,UPDATEPRODUCT, CREARCATEGORY   } from "./actions";
+
+import { Action } from "history";
+
 
 const initialState = {
     productResult: [],
@@ -12,7 +14,12 @@ const initialState = {
     Allproduct:[],
     Category:[],
     Respuesta:[],
-    Carrito:[]
+    cart: localStorage.getItem('cartItems')
+    ? JSON.parse(localStorage.getItem('cartItems'))
+    : [],
+    product: [] ,
+    loading: true,
+    error: "",
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -74,16 +81,36 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 productResultAux:payload
             } 
         case AGREGARCARRITO:
-            console.log(payload)
-            return{
-                ...state,
-                Carrito:[payload,...state['Carrito']]
-            }  
-        case ELIMINARDECARRITO:
-            return{
-                ...state,
-                Carrito:payload
-            }  
+            
+            const newItem = payload;
+            const itemInCart = state.cart.find((p) => p.id === newItem.id)
+            const cartItems = itemInCart
+                ? state.cart.map((item) => item.id === newItem.id
+                    ? {...item , quantity: item.quantity + 1}
+                    : item)
+                :  [...state.cart ,{...newItem, quantity: 1}]
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            console.log("soy add 1", state.cart)
+            return { 
+                ...state, 
+                cart: cartItems
+            };
+        case REMOVE_FROM_CART:
+            const productToDelete = state.cart.find((p) => p.id === payload.id)
+            const cartProducts = productToDelete?.quantity > 1 
+            ? state.cart.map((item) => item.id === productToDelete.id
+                ? {...item , quantity: item.quantity - 1}
+                : item)
+            :  state.cart.filter((p) => p.id !== payload.id)
+            localStorage.setItem('cartItems', JSON.stringify(cartProducts));
+
+            console.log("soy remove 1", state.cart)
+            return { 
+                ...state, 
+                cart: cartProducts
+            }
+        case CLEAR_CART:
+            return { ...state, cart: [] }
         case FILTRO_POR_CATEGORY:
             return{
                 ...state,
@@ -116,6 +143,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 }         
 
 
+
+         
         default: return state;
     }
 }

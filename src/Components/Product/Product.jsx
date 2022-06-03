@@ -4,7 +4,8 @@ import a from "./product.module.css";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { agregarProductoCarrito, eliminarProductoCarrito } from '../../Redux/actions';
+import { eliminarProductoCarrito} from '../../Redux/actions';
+import { addToCart, clearCart, removeFromCart } from "../../Redux/actionsCarrito";
 
 
 export default function Product(props) {
@@ -12,6 +13,11 @@ export default function Product(props) {
   const Carrito=useSelector(state=>state.Carrito)
   const { products } = props;
 
+  
+  const updateCartHandler = (product) => {      
+    // checkeo el stock y luego
+    dispatch(addToCart(product))
+    }
   return (
    
     <div className={a.cardContainer}>
@@ -44,14 +50,21 @@ export default function Product(props) {
           }}
         >
           <h4 className={a.price}>${products.price}</h4>
-          <button className={s.btnLand} onClick={()=>
-                    dispatch(agregarProductoCarrito(products))}>
+          <button className={s.btnLand} onClick={()=> updateCartHandler(products)}>
                      <AiOutlineShoppingCart style={{ color: 'white', fontSize: '20px', marginTop:'7px'}} /></button>
           {/* <button className={s.btnLand}>
             <AiOutlineShoppingCart
               style={{ color: "white", fontSize: "20px", marginTop: "7px" }}
             />
           </button> */}
+          <button onClick={() => dispatch(removeFromCart(products))}>
+          {" "}
+          Remove from Cart 🛒
+          </button>
+          <button  onClick={() => dispatch(clearCart())}>
+          {" "}
+          Clear Cart 🛒
+          </button>
          {products.EstoyEnElcarro&&<button className={s.agregarbtn} onClick={()=>{
            dispatch( eliminarProductoCarrito(products,Carrito) )
          }}>Agregado!</button>}
