@@ -15,6 +15,7 @@ export default function ProductScreen() {
   const error = useSelector(state => state.error)
   const products = useSelector(state => state.products)
   const categories = useSelector(state => state.categories)
+  const cart = useSelector((state) => state.cart)
   
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';

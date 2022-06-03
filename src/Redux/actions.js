@@ -223,8 +223,10 @@ export function crearCategory(body){
 export const axiosDataId = (id) => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' })
     try {
-      const response = await axios.get(`http://localhost:3001/products/${id}`);
-      return dispatch({ type: 'AXIOS_SUCCESS', payload: response.data });
+      const {data} = await axios.get(`http://localhost:3001/products/${id}`);
+      data.name = data.name.replace(/[#-]/g, " ")
+      data.category = data.category.name.replace(/[#_]/g, " ")
+      return dispatch({ type: 'AXIOS_SUCCESS', payload: data });
     } catch (err) {
       return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }

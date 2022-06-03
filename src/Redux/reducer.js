@@ -1,8 +1,9 @@
-import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART} from "./actionsCarrito"
+import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER} from "./actionsCarrito"
 
 import {
     FILTRO_POR_CATEGORYAUX,
-    SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,AGREGARCARRITO,ELIMINARDECARRITO,
+    SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO 
+    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,ELIMINARDECARRITO,
     FILTRO_POR_CATEGORY ,ACTUALIZAR,CREATEPRODUCT,UPDATEPRODUCT, CREARCATEGORY   } from "./actions";
 
 import { Action } from "history";
@@ -20,6 +21,7 @@ const initialState = {
     product: [] ,
     loading: true,
     error: "",
+    postOrder: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -125,25 +127,50 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 productResultAux:'',
                 
                 productResult:payload
-            }   
-            case CREATEPRODUCT:
-                return{
-                    ...state,
-                    Respuesta:payload
-                }
-            case UPDATEPRODUCT:
-                return{
-                    ...state,
-                    Respuesta:payload
-                }
-            case CREARCATEGORY:
-                return{
-                    ...state,
-                    Respuesta:payload
-                }         
-
-
-
+            }      
+        case 'AXIOS_REQUEST':
+            return { ...state, loading: true };
+        case 'AXIOS_SUCCESS':
+            return { ...state,loading: false, product: payload };
+        case 'AXIOS_FAIL':
+            return { ...state, loading: false, error: payload };
+        case 'FETCH_SUCCESS':
+            return {
+                ...state,
+                products: payload.products,
+                page: payload.page,
+                pages: payload.pages,
+                countProducts: payload.countProducts,
+                loading: false,
+            };
+        case "FETCH_CATEGORIES":
+            return {
+                ...state,
+                categories: payload,
+                loading: false,
+            }
+        case POST_ORDER:
+    
+            return {
+            ...state,
+            postOrder: payload
+            }
+               
+        case CREATEPRODUCT:
+            return{
+                ...state,
+                Respuesta:payload
+            }
+        case UPDATEPRODUCT:
+            return{
+                ...state,
+                Respuesta:payload
+            }
+        case CREARCATEGORY:
+            return{
+                ...state,
+                Respuesta:payload
+            }         
          
         default: return state;
     }
