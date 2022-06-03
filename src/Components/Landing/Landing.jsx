@@ -1,5 +1,5 @@
 import React from 'react';
-import Product  from '../Product/Product.jsx'
+import CardDiscount from './CardDiscount';
 import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
 import axios from 'axios';
@@ -52,7 +52,15 @@ function Landing () {
     <div className={s.grid}>
               {products?.map((product) => (
                
-                  <Product products={product} key={product.id}/>
+                <div key={product.id}>
+                  <CardDiscount
+                    id={product.id}
+                    image={product.image}
+                    name={product.name}
+                    price={product.price}
+                    discount={'20%'}
+                  />
+                </div>
               
               )).slice(700, 708)}
             </div>

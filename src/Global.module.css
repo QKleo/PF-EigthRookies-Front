@@ -24,6 +24,7 @@ body {
     margin: 0px;
     padding: 0px;
 }
+
 a{
     color: var(--secondary-color);
     text-decoration: none;
