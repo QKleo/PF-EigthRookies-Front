@@ -1,10 +1,9 @@
-import React from 'react'
-import Carrusel from '../Carrusel/Carrusel'
-import Product  from '../Product/Product.jsx'
+import React from 'react';
+import CardDiscount from './CardDiscount';
 import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
 import axios from 'axios';
-
+import EmblaCarousel from "../Carrusel/EmblaCarousel";
 
 
 const reducer = (state, action) => {
@@ -31,13 +30,12 @@ function Landing () {
       } catch (err) {
         dispatch({ type: 'AXIOS_FAIL', payload: err.message });
       }
-
-      // setProducts(result.data);
     };
     axiosData();
   }, []);
 
-  ;
+  const SLIDE_COUNT = 5;
+  const slides = Array.from(Array(SLIDE_COUNT).keys());
 
   const [{ products }, dispatch] = useReducer((reducer), {
     products: [],
@@ -46,14 +44,23 @@ function Landing () {
     
   return (
     <div>
-    
-    <h1>Bienvenido a The Rookies!</h1>
-    <Carrusel/>
+
+      <EmblaCarousel slides={slides} />  
+
+      <h1>Bienvenido a The Rookies!</h1>
     
     <div className={s.grid}>
               {products?.map((product) => (
                
-                  <Product products={product} key={product.id}/>
+                <div key={product.id}>
+                  <CardDiscount
+                    id={product.id}
+                    image={product.image}
+                    name={product.name}
+                    price={product.price}
+                    discount={'20%'}
+                  />
+                </div>
               
               )).slice(700, 708)}
             </div>
