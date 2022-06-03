@@ -4,8 +4,6 @@ import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
 import axios from 'axios';
 import EmblaCarousel from "../Carrusel/EmblaCarousel";
-import "../Carrusel/base.css";
-import "../Carrusel/reset.css";
 
 
 const reducer = (state, action) => {
@@ -46,8 +44,8 @@ function Landing () {
     
   return (
     <div>
-    
-      <EmblaCarousel slides={slides} />
+
+      <EmblaCarousel slides={slides} />  
 
       <h1>Bienvenido a The Rookies!</h1>
     
