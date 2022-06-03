@@ -15,10 +15,10 @@ import Ordenar from '../Ordenamiento/Ordenar';
 
   export default function HomeScreen(){
     const Allproduct=useSelector((state)=>state.Allproduct)
-    const Products=useSelector((state)=>state. productResult)
+    const Products=useSelector((state)=>state.productResult)
     const ProductAux=useSelector((state)=>state.productResultAux)
     const Respuesta=useSelector((state)=>state.Respuesta)
-    const Carrito=useSelector((state=>state.Carrito))
+    // const Carrito=useSelector((state=>state.Carrito))
     const dispatch=useDispatch()
     let maxi
     let elementosMostrar=12
