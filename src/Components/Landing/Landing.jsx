@@ -6,6 +6,7 @@ import axios from 'axios';
 import EmblaCarousel from "../Carrusel/EmblaCarousel";
 
 
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'AXIOS_REQUEST':
