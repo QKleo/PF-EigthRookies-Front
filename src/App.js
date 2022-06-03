@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom'
 import React from 'react';
 
-
+import ControlPanel from './Components/ControlAdmin/AdminScreen/ControlPanel';
 import HomeScreen from './Components/Home/HomeScreen';
 import Landing from './Components/Landing/Landing'
 import LoginAuth0 from './Components/Login/LoginAuth0';
@@ -29,7 +29,9 @@ function App() {
          <Route path={`/search`} element={<Category/>}/>
         
 
-        {/* <Route path="/admin/products" element={<CreateProductScreen />} /> */}
+        <Route exact path='/admin/controlpanel'element={<ControlPanel/>}/>
+
+
         <Route exact path='/products/carrito'element={<Carrito/>}/>
       </Routes>
       <Footer/>

@@ -2,10 +2,12 @@ import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER} from "./actions
 
 import {
     FILTRO_POR_CATEGORYAUX,
-    SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO
-    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,
-    FILTRO_POR_CATEGORY ,ACTUALIZAR   } from "./actions";
+    SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO 
+    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,ELIMINARDECARRITO,
+    FILTRO_POR_CATEGORY ,ACTUALIZAR,CREATEPRODUCT,UPDATEPRODUCT, CREARCATEGORY   } from "./actions";
+
 import { Action } from "history";
+
 
 const initialState = {
     productResult: [],
@@ -153,6 +155,23 @@ export default function rootReducer(state = initialState, { type, payload }) {
             ...state,
             postOrder: payload
             }
+               
+        case CREATEPRODUCT:
+            return{
+                ...state,
+                Respuesta:payload
+            }
+        case UPDATEPRODUCT:
+            return{
+                ...state,
+                Respuesta:payload
+            }
+        case CREARCATEGORY:
+            return{
+                ...state,
+                Respuesta:payload
+            }         
+         
         default: return state;
     }
 }

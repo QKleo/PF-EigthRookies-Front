@@ -278,3 +278,19 @@ max-height: 20px;
 
 
 }
+
+.sacarBtn{
+    
+    border: 2px solid red;
+    background: red;
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
+    cursor:pointer
+}
+

@@ -2,14 +2,17 @@ import React, {useMemo} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./login.css";
 import s from "../../Global.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getError } from "../Herramientas/utils";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { postOrder } from "../../Redux/actionsCarrito";
 
 
 
 export default function LoginAuth0(){
-
+const navigate = useNavigate()
+const dispatch = useDispatch()
 
 
 const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
