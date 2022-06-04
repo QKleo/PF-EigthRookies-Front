@@ -55,3 +55,9 @@ transform: rotate(360deg);
     border-radius: 99%;
 }
 
+.btnLogin {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: var(--secondary-color);
+}

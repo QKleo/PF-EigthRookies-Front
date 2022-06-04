@@ -4,7 +4,9 @@ import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
 import axios from 'axios';
 import EmblaCarousel from "../Carrusel/EmblaCarousel";
-
+import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { findOrCreateUser } from '../../Redux/actions'
 
 
 const reducer = (state, action) => {
@@ -20,8 +22,13 @@ const reducer = (state, action) => {
   }
 };
 
+function Landing() {
 
-function Landing () {
+  const crear = useDispatch();
+  const userActive = useSelector((state) => state.userActive);
+  const carrito = useSelector((state) => state.cart);
+  const { isAuthenticated, user } = useAuth0()
+
   useEffect(() => {
     const axiosData = async () => {
       dispatch({ type: 'AXIOS_REQUEST' });
@@ -33,16 +40,29 @@ function Landing () {
       }
     };
     axiosData();
-  }, []);
+
+    if (isAuthenticated && !userActive.length) {
+      console.log('envie el post');
+      crear(findOrCreateUser({
+        email: user.email,
+        first_name: user.given_name || user.nickname,
+        last_name: user.family_name || undefined,
+        image: user.picture,
+        idRol: 1,
+        shoppingCar: carrito
+      }));
+    }
+
+  }, [isAuthenticated, userActive]);
+
+
+  const [{ products }, dispatch] = useReducer((reducer), {
+    products: [],
+  });
 
   const SLIDE_COUNT = 5;
   const slides = Array.from(Array(SLIDE_COUNT).keys());
 
-  const [{ products }, dispatch] = useReducer((reducer), {
-    products: [],
-   
-  });
-    
   return (
     <div>
 
@@ -63,11 +83,9 @@ function Landing () {
                   />
                 </div>
               
-              )).slice(675, 687)}
-            </div>
-    
-    
-    
+              )).slice(700, 712)}
+      </div>
+
     </div>
   )
 }

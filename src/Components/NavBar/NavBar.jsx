@@ -9,7 +9,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 export default function NavBar() {
 
-  const { isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
 
   return (
@@ -44,9 +44,8 @@ export default function NavBar() {
         </div>
       ) : (
         
-        <Link className={style.link} to="/login">
-          <h3>Login</h3>
-        </Link>
+          <button className={style.btnLogin} onClick={loginWithRedirect}><h3>Login</h3></button>
+
       )}
        <Link to='/products/carrito'>
       <i ><AiOutlineShoppingCart style={{ fontSize: '50px', color: 'white'}}/></i>

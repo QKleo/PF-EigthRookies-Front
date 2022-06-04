@@ -3,7 +3,7 @@ import ordenarBublee from '../Components/Ordenamiento/ordenarNumeros';
 import { getError } from "../Components/Herramientas/utils";
 
 
-
+export const FIND_OR_CREATE_USER = 'FIND_OR_CREATE_USER';
 export const SEARCH_PRODUCT = 'SEARCH PRODUCT';
 export const TODOS_PRODUCT = 'TODOS_PRODUCT';
 export const TODOS_CATEGORY = 'TODOS_CATEGORY';
@@ -23,6 +23,17 @@ export const CREARCATEGORY = 'CREARCATEGORY';
 
 const URL = 'http://localhost:3001';
 
+export function findOrCreateUser(user) {
+    return async function (dispatch) {
+        const res = await axios.post(`${URL}/admin/register`, user);
+        const userDB = res.data;
+        dispatch({
+            type: FIND_OR_CREATE_USER,
+            payload: [userDB]
+        });
+    };
+}
+
 export function findProduct(name) {
     return async function (dispatch) {
         const res = await axios.get(`${URL}/products/search?name=${name}`);
@@ -33,6 +44,7 @@ export function findProduct(name) {
         });
     };
 }
+
 export function obtenerTodosProducts() {
     return (dispatch) => {
         axios.get(`${URL}/products`)
