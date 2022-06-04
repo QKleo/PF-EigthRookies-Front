@@ -4,6 +4,7 @@ import s from "../../Global.module.css";
 import { addToCart, clearCart, removeFromCart } from "../../Redux/actionsCarrito";
 import { axiosDataId } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { messageSuccess } from "../Herramientas/MessageBox";
 
 export default function ProductDetail() {
   const loading = useSelector((state) => state.loading);
@@ -19,6 +20,7 @@ export default function ProductDetail() {
   const updateCartHandler = (product) => {
     // checkeo el stock y luego
     dispatch(addToCart(product));
+    messageSuccess("Product added to cart")
   };
 
   return loading ? (
