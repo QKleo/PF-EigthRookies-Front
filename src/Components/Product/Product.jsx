@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import s from "../../../src/Global.module.css";
 import a from "./product.module.css";
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from "../../Redux/actionsCarrito";
+// import { addToCart, removeFromCart } from "../../Redux/actionsCarrito";
 import { messageSuccess } from "../Herramientas/MessageBox";
 
 
@@ -28,6 +28,8 @@ export default function Product(props) {
     dispatch(addToCart(products))
     messageSuccess("Product added to cart")
     }
+  
+
     
   return (
     <div className={a.cardContainer}>

@@ -4,7 +4,6 @@ import Product  from '../Product/Product.jsx'
 import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
 import axios from 'axios';
-import Cart from '../Cart/Cart';
 
 
 
@@ -47,9 +46,6 @@ function Landing () {
     
   return (
     <div>
-      <Cart      
-      />
-    
     <h1>Bienvenido a The Rookies!</h1>
     <Carrusel/>
     

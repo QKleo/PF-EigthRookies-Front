@@ -303,3 +303,34 @@ max-height: 20px;
     padding: 5px 10px;
 }
 
+.imgproducts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+
+}
+
+.leftproducts{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+}
+
+
+.iconheart{
+    color: red;
+    background-color: #0090FF;
+
+}
+
+.iconheart2 { 
+    padding: 30px; 
+    background: rgb(164, 228, 16); 
+    color: rgb(93, 95, 230); 
+  } 
+ 
