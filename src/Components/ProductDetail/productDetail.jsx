@@ -55,7 +55,7 @@ export default function ProductDetail() {
             src={product.image}
             width="66"
             height="60"
-            alt="products"
+            
           />
           <img
             style={{ border: "2px solid black", borderRadius: "10px" }}
