@@ -52,3 +52,29 @@
 
 
 }
+
+.vaciarCarrito{
+
+
+    cursor: pointer;
+    border: 2px solid red;
+    background: red;
+    border-radius: 50px;
+    font-family: var(--primary-font);
+    padding: 12px 28px;
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
+    align-items: center;
+    margin-left: 45%;
+    margin-top: 20px;
+}
+
+.buttonContainer{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
