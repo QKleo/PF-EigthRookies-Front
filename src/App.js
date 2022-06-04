@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom'
 import React from 'react';
 
-
+import ControlPanel from './Components/ControlAdmin/AdminScreen/ControlPanel';
 import HomeScreen from './Components/Home/HomeScreen';
 import Landing from './Components/Landing/Landing'
 import LoginAuth0 from './Components/Login/LoginAuth0';
@@ -11,6 +11,8 @@ import CreateProductScreen from './Components/Home/CreateProductScreen';
 import Category from './Components/Category/Category';
 import Carrito from './Components/Carrito/Carrito';
 import Footer from './Components/Footer/Footer'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -29,9 +31,12 @@ function App() {
          <Route path={`/search`} element={<Category/>}/>
         
 
-        {/* <Route path="/admin/products" element={<CreateProductScreen />} /> */}
+        <Route exact path='/admin/controlpanel'element={<ControlPanel/>}/>
+
+
         <Route exact path='/products/carrito'element={<Carrito/>}/>
       </Routes>
+      <ToastContainer />
       <Footer/>
     
     </div>

@@ -55,3 +55,19 @@ transform: rotate(360deg);
     border-radius: 99%;
 }
 
+.containerCart{
+    display: flex;
+}
+
+.numberProducts{
+    background-color: red;
+    border-radius: 116px;
+    color: white;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: smaller;
+}
