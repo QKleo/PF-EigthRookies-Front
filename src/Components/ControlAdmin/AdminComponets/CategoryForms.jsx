@@ -10,6 +10,7 @@ export default function CategoryForm(){
     const[formState,setformState]=useState({
         name:'',
     })
+    //algo
     function handleOnChange(e){
         e.preventDefault(e)
         const{name,value}=e.target

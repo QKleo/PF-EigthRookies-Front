@@ -26,16 +26,16 @@
     cursor: pointer;
     height: 100px;
     width: 100px;
-    transition:all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
-.logo:hover{
-border-radius:50%;
--webkit-border-radius:50%;
-box-shadow: 0px 0px 5px 5px var(--primary-color);
--webkit-box-shadow: 0px 0px 5px 5px var(--secondary-color);
-transform: rotate(360deg);
--webkit-transform: rotate(360deg);
+.logo:hover {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    box-shadow: 0px 0px 5px 5px var(--primary-color);
+    -webkit-box-shadow: 0px 0px 5px 5px var(--secondary-color);
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
 }
 
 .login {
@@ -60,4 +60,21 @@ transform: rotate(360deg);
     border: none;
     background-color: transparent;
     color: var(--secondary-color);
+}
+
+.containerCart {
+    display: flex;
+}
+
+.numberProducts {
+    background-color: red;
+    border-radius: 116px;
+    color: white;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: smaller;
 }

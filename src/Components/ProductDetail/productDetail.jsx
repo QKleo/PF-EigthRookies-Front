@@ -31,25 +31,16 @@ export default function ProductDetail() {
     </>
   ) : (
     <div className={s.productContainer}>
-      <h1>{product?.name.replace(/[#-]/g, " ")}</h1>
+      <h1>{product?.name}</h1>
       <img src={product.image} width="100px" height="100px" alt="" />
       <div className={s.categories}>
-        {product?.category.name.replace(/[#_]/g, " ")}
+        {product?.category}
       </div>
       <div className={s.description}>{product.description}</div>
       <button className={s.basicBtn} onClick={() => updateCartHandler(product)}>
         {" "}
         $ {product.price} 🛒
       </button>
-      <button className={s.basicBtn} onClick={() => dispatch(removeFromCart(product))}>
-        {" "}
-        Remove from Cart 🛒
-      </button>
-      <button className={s.basicBtn} onClick={() => dispatch(clearCart())}>
-        {" "}
-        Clear Cart 🛒
-      </button>
-      
     </div>
   );
 }

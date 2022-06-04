@@ -1,4 +1,4 @@
-import { AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART } from "./actionsCarrito";
+import { AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER } from "./actionsCarrito";
 
 import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
@@ -6,6 +6,7 @@ import {
     NO_HAY_MATCH, VACIAR_RESPUESTA, ORDENAR, ELIMINARDECARRITO,
     FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY
 } from "./actions";
+
 
 const initialState = {
     userActive: [],
@@ -20,6 +21,7 @@ const initialState = {
     product: [],
     loading: true,
     error: "",
+    postOrder: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -132,22 +134,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
                 productResult: payload
             };
-        case CREATEPRODUCT:
-            return {
-                ...state,
-                Respuesta: payload
-            };
-        case UPDATEPRODUCT:
-            return {
-                ...state,
-                Respuesta: payload
-            };
-        case CREARCATEGORY:
-            return {
-                ...state,
-                Respuesta: payload
-            };
-
         case 'AXIOS_REQUEST':
             return { ...state, loading: true };
 
@@ -172,6 +158,29 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 categories: payload,
                 loading: false,
             };
+        case POST_ORDER:
+
+            return {
+                ...state,
+                postOrder: payload
+            };
+
+        case CREATEPRODUCT:
+            return {
+                ...state,
+                Respuesta: payload
+            };
+        case UPDATEPRODUCT:
+            return {
+                ...state,
+                Respuesta: payload
+            };
+        case CREARCATEGORY:
+            return {
+                ...state,
+                Respuesta: payload
+            };
+
         default: return state;
     }
 }

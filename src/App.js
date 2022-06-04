@@ -26,9 +26,10 @@ function App() {
         <Route path="/products" element={<HomeScreen />} />
         <Route path={`/search`} element={<Category />} />
 
+
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />
 
-        {/* <Route path="/admin/products" element={<CreateProductScreen />} /> */}
+
         <Route exact path='/products/carrito' element={<Carrito />} />
       </Routes>
       <Footer />
