@@ -259,13 +259,29 @@ input {
     line-height: 21px;
     color: var(--secondary-color);
     transition-duration: 0.7s;
+<<<<<<< HEAD
     cursor: pointer
 }
 
 .bntLand:hover {
+=======
+
+
+}
+
+.btnLand:hover{
+>>>>>>> origin/developer
     background-color: black;
+    cursor:pointer;
+}
 
-
+.cartLogo{
+    font-size: 20px;
+     color: white;
+    margin-top: 7px;
+}
+.cartLogo:hover{
+    color: var(--tertiary-color); 
 }
 
 .agregarbtn {
@@ -294,5 +310,10 @@ input {
     line-height: 21px;
     color: var(--secondary-color);
     transition-duration: 0.7s;
+<<<<<<< HEAD
     cursor: pointer
+=======
+    cursor:pointer;
+    padding: 5px 10px;
+>>>>>>> origin/developer
 }

@@ -11,6 +11,8 @@ import CreateProductScreen from './Components/Home/CreateProductScreen';
 import Category from './Components/Category/Category';
 import Carrito from './Components/Carrito/Carrito';
 import Footer from './Components/Footer/Footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
 
         <Route exact path='/products/carrito' element={<Carrito />} />
       </Routes>
+      <ToastContainer />
       <Footer />
 
     </div>
