@@ -255,14 +255,22 @@ max-height: 20px;
     line-height: 21px;
     color: var(--secondary-color);
     transition-duration: 0.7s;
-    cursor:pointer
+
 
 }
 
-.bntLand:hover{
+.btnLand:hover{
     background-color: black;
+    cursor:pointer;
+}
 
-
+.cartLogo{
+    font-size: 20px;
+     color: white;
+    margin-top: 7px;
+}
+.cartLogo:hover{
+    color: var(--tertiary-color); 
 }
 
 .agregarbtn{
@@ -291,6 +299,7 @@ max-height: 20px;
     line-height: 21px;
     color: var(--secondary-color);
     transition-duration: 0.7s;
-    cursor:pointer
+    cursor:pointer;
+    padding: 5px 10px;
 }
 

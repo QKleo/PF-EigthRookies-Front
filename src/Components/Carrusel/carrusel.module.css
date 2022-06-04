@@ -36,9 +36,19 @@
 }
 
 .butcar{
-    border-radius: 10px;
+    border: none;
+    border-radius: 4px;
+    height: 100px;
+    width: 40px;
+    color: #094067;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   
+}
 
-
-
+.butcar:hover{
+    cursor: pointer;
+  
 }

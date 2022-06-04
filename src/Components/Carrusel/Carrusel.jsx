@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { icons } from 'react-icons';
 import ItemsCarousel from 'react-items-carousel';
 import s from './carrusel.module.css'
+import {FcNext, FcPrevious} from "react-icons/fc"
 
 export default function Carrusel () {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
@@ -12,8 +14,8 @@ export default function Carrusel () {
         activeItemIndex={activeItemIndex}
         numberOfCards={1}
         gutter={20}
-        leftChevron={<button className={s.butcar}>{'<'}</button>}
-        rightChevron={<button className={s.butcar}>{'>'}</button>}
+        leftChevron={<button className={s.butcar}><FcPrevious/></button>}
+        rightChevron={<button className={s.butcar}><FcNext/></button>}
         outsideChevron
         chevronWidth={chevronWidth}
       >
