@@ -184,16 +184,6 @@ export function eliminarProductoCarrito(obj, arrObj) {
 
     };
 }
-export function actualizar(arrObj) {
-    return (dispatch) => {
-
-        return dispatch({
-            type: ELIMINARDECARRITO,
-            payload: arrObj
-        });
-
-    };
-}
 
 export function actualizar(arrObj) {
     return (dispatch) => {
@@ -245,43 +235,6 @@ export function crearCategory(body) {
     };
 }
 
-export function createProduct(body) {
-    return (dispatch) => {
-        axios.post(`${URL}/createProduct`, body)
-            .then(() => {
-                return dispatch({
-                    type: CREATEPRODUCT,
-                    payload: ['creando', body.name]
-                });
-            })
-            .catch((err) => console.log(err));
-    };
-}
-export function upDateProduct(id, body) {
-    return (dispatch) => {
-        console.log(id, 'voy', body, 'yendo');
-        axios.put(`${URL}/updateproduct/${id}`, body)
-            .then(() => {
-                return dispatch({
-                    type: UPDATEPRODUCT,
-                    payload: ['actualizando', body.id]
-                });
-            });
-    };
-}
-export function crearCategory(body) {
-    return (dispatch) => {
-        axios.post(`${URL}/crearcategory`, body)
-            .then(() => {
-                return dispatch({
-                    type: CREARCATEGORY,
-                    payload: ['category', body.name, 'creada']
-                });
-
-            })
-            .catch((err) => console.log(err));
-    };
-}
 
 export const axiosDataId = (id) => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' });
