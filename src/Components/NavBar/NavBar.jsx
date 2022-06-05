@@ -29,7 +29,7 @@ export default function NavBar() {
         <div className={style.containerAuth}>
           <>
           <>
-            <Link className={style.link} to="/admin/products">Agregar Producto</Link>
+              <Link className={style.link} to="/admin/controlpanel">Control Panel</Link>
           </>
      
             <Link className={style.link} to="/login">
