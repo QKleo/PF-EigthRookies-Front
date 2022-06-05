@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 export default function NavBar() {
   const cart = useSelector((state) => state.cart)
 
-  const { isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
 
   return (
@@ -29,7 +29,7 @@ export default function NavBar() {
         <div className={style.containerAuth}>
           <>
           <>
-            <Link className={style.link} to="/admin/products">Agregar Producto</Link>
+              <Link className={style.link} to="/admin/controlpanel">Control Panel</Link>
           </>
      
             <Link className={style.link} to="/login">
@@ -46,9 +46,8 @@ export default function NavBar() {
         </div>
       ) : (
         
-        <Link className={style.link} to="/login">
-          <h3>Login</h3>
-        </Link>
+          <button className={style.btnLogin} onClick={loginWithRedirect}><h3>Login</h3></button>
+
       )}
        <Link to='/products/carrito' className={style.containerCart}>
       <i ><AiOutlineShoppingCart style={{ fontSize: '50px', color: 'white', marginTop: "10px"}}/></i>

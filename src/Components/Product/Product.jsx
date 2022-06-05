@@ -1,11 +1,12 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import s from "../../../src/Global.module.css";
 import a from "./product.module.css";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from "../../Redux/actionsCarrito";
-import { useEffect } from "react";
+import { messageSuccess } from "../Herramientas/MessageBox";
+
 
 
 
@@ -16,10 +17,12 @@ export default function Product(props) {
   const { products } = props;
 
 
-  const updateCartHandler = (product) => {      
+  const updateCartHandler = (products) => {      
     // checkeo el stock y luego
-    dispatch(addToCart(product))
+    dispatch(addToCart(products))
+    messageSuccess("Product added to cart")
     }
+    
   return (
    
     <div className={a.cardContainer}>
@@ -52,8 +55,8 @@ export default function Product(props) {
           }}
         >
           <h4 className={a.price}>${products.price}</h4>
-          <button className={s.btnLand} onClick={()=> updateCartHandler(products)}>
-            <AiOutlineShoppingCart style={{ color: 'white', fontSize: '20px', marginTop:'7px'}} />
+          <button className={s.btnLand} onClick={() => updateCartHandler(products)}>
+            <AiOutlineShoppingCart className={s.cartLogo} />
           </button>
           
           {products.quantity >= 1 && 
@@ -64,6 +67,8 @@ export default function Product(props) {
           </button>
           </>
           }
+
+        
           
           
         </div>
