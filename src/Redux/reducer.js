@@ -1,24 +1,24 @@
-import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER} from "./actionsCarrito"
+import { AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER } from "./actionsCarrito";
 
 import {
-    FILTRO_POR_CATEGORYAUX,
-    SEARCH_PRODUCT,TODOS_CATEGORY,TODOS_PRODUCT, VACIAR_AUXILIARP,FILTRAR_POR_PRECIO 
-    ,NO_HAY_MATCH,VACIAR_RESPUESTA, ORDENAR,ELIMINARDECARRITO,
-    FILTRO_POR_CATEGORY ,ACTUALIZAR,CREATEPRODUCT,UPDATEPRODUCT, CREARCATEGORY   } from "./actions";
-
-import { Action } from "history";
+    FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
+    SEARCH_PRODUCT, TODOS_CATEGORY, TODOS_PRODUCT, VACIAR_AUXILIARP, FILTRAR_POR_PRECIO,
+    NO_HAY_MATCH, VACIAR_RESPUESTA, ORDENAR, ELIMINARDECARRITO,
+    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY
+} from "./actions";
 
 
 const initialState = {
+    userActive: [],
     productResult: [],
-    productResultAux:[],
-    Allproduct:[],
-    Category:[],
-    Respuesta:[],
+    productResultAux: [],
+    Allproduct: [],
+    Category: [],
+    Respuesta: [],
     cart: localStorage.getItem('cartItems')
-    ? JSON.parse(localStorage.getItem('cartItems'))
-    : [],
-    product: [] ,
+        ? JSON.parse(localStorage.getItem('cartItems'))
+        : [],
+    product: [],
     loading: true,
     error: "",
     postOrder: [],
@@ -27,113 +27,122 @@ const initialState = {
 export default function rootReducer(state = initialState, { type, payload }) {
 
     switch (type) {
+        case FIND_OR_CREATE_USER:
+            return {
+                ...state,
+                userActive: payload,
+            };
+
         case SEARCH_PRODUCT:
             return {
                 ...state,
-                productResultAux:payload,
+                productResultAux: payload,
             };
         case TODOS_PRODUCT:
-           // console.log('voy',payload)
-            return{
+            // console.log('voy',payload)
+            return {
                 ...state,
-                Allproduct:payload,
-               // productResultAux:payload,
-                productResult:payload,
-            }
+                Allproduct: payload,
+                // productResultAux:payload,
+                productResult: payload,
+            };
         case TODOS_CATEGORY:
-            return{
+            return {
                 ...state,
-                Category:payload
-            }
+                Category: payload
+            };
         case FILTRO_POR_CATEGORYAUX:
-            return{
+            return {
                 ...state,
-                productResultAux:payload
-            }
+                productResultAux: payload
+            };
         case VACIAR_AUXILIARP:
-            return{
+            return {
                 ...state,
-                productResultAux:payload
+                productResultAux: payload
 
-            }
+            };
         case FILTRAR_POR_PRECIO:
-            console.log(payload)
-           
-            return{
-                ...state,
-                productResultAux:payload
-            }
-        case NO_HAY_MATCH:
-            return{
-                ...state,
-                productResultAux:'',
-                Respuesta:payload,
+            console.log(payload);
 
-            }
+            return {
+                ...state,
+                productResultAux: payload
+            };
+        case NO_HAY_MATCH:
+            return {
+                ...state,
+                productResultAux: '',
+                Respuesta: payload,
+
+            };
         case VACIAR_RESPUESTA:
-            return{
+            return {
                 ...state,
-                Respuesta:''
-            }
-        
+                Respuesta: ''
+            };
+
         case ORDENAR:
-           // console.log(payload)
-            return{
+            // console.log(payload)
+            return {
                 ...state,
-                productResultAux:payload
-            } 
+                productResultAux: payload
+            };
         case AGREGARCARRITO:
-            
+
             const newItem = payload;
-            const itemInCart = state.cart.find((p) => p.id === newItem.id)
+            const itemInCart = state.cart.find((p) => p.id === newItem.id);
             const cartItems = itemInCart
                 ? state.cart.map((item) => item.id === newItem.id
-                    ? {...item , quantity: item.quantity + 1}
+                    ? { ...item, quantity: item.quantity + 1 }
                     : item)
-                :  [...state.cart ,{...newItem, quantity: 1}]
+                : [...state.cart, { ...newItem, quantity: 1 }];
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            console.log("soy add 1", state.cart)
-            return { 
-                ...state, 
+            console.log("soy add 1", state.cart);
+            return {
+                ...state,
                 cart: cartItems
             };
         case REMOVE_FROM_CART:
-            const productToDelete = state.cart.find((p) => p.id === payload.id)
-            const cartProducts = productToDelete?.quantity > 1 
-            ? state.cart.map((item) => item.id === productToDelete.id
-                ? {...item , quantity: item.quantity - 1}
-                : item)
-            :  state.cart.filter((p) => p.id !== payload.id)
+            const productToDelete = state.cart.find((p) => p.id === payload.id);
+            const cartProducts = productToDelete?.quantity > 1
+                ? state.cart.map((item) => item.id === productToDelete.id
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item)
+                : state.cart.filter((p) => p.id !== payload.id);
             localStorage.setItem('cartItems', JSON.stringify(cartProducts));
 
-            console.log("soy remove 1", state.cart)
-            return { 
-                ...state, 
-                cart: cartProducts
-            }
-        case CLEAR_CART:
-            return { ...state, cart: [] }
-        case FILTRO_POR_CATEGORY:
-            return{
+            console.log("soy remove 1", state.cart);
+            return {
                 ...state,
-                productResult:payload,
-            }
+                cart: cartProducts
+            };
+        case CLEAR_CART:
+            return { ...state, cart: [] };
+        case FILTRO_POR_CATEGORY:
+            return {
+                ...state,
+                productResult: payload,
+            };
         case ACTUALIZAR:
 
-            console.log('llega?') 
-            console.log(payload)   
-            return{
+            console.log('llega?');
+            console.log(payload);
+            return {
                 ...state,
-                productResultAux:'',
-                
-                productResult:payload
-            }      
+                productResultAux: '',
+
+                productResult: payload
+            };
         case 'AXIOS_REQUEST':
             return { ...state, loading: true };
+
         case 'AXIOS_SUCCESS':
-            return { ...state,loading: false, product: payload };
+            return { ...state, loading: false, product: payload };
+
         case 'AXIOS_FAIL':
             return { ...state, loading: false, error: payload };
+
         case 'FETCH_SUCCESS':
             return {
                 ...state,
@@ -148,30 +157,30 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 categories: payload,
                 loading: false,
-            }
+            };
         case POST_ORDER:
-    
+
             return {
-            ...state,
-            postOrder: payload
-            }
-               
+                ...state,
+                postOrder: payload
+            };
+
         case CREATEPRODUCT:
-            return{
+            return {
                 ...state,
-                Respuesta:payload
-            }
+                Respuesta: payload
+            };
         case UPDATEPRODUCT:
-            return{
+            return {
                 ...state,
-                Respuesta:payload
-            }
+                Respuesta: payload
+            };
         case CREARCATEGORY:
-            return{
+            return {
                 ...state,
-                Respuesta:payload
-            }         
-         
+                Respuesta: payload
+            };
+
         default: return state;
     }
 }
