@@ -32,7 +32,7 @@ export default function ProductDetail() {
   ) : (
     <div className={s.productContainer}>
       <h1>{product?.name}</h1>
-      <img src={product.image} width="100px" height="100px" alt="" />
+      <img src={product.image} width="300px" height="300px" alt="" />
       <div className={s.categories}>
         {product?.category}
       </div>

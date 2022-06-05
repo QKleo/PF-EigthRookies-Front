@@ -20,13 +20,13 @@ const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
 const cart=useSelector((state)=>state.cart)
 
 
-useMemo(() => {
-    if(cart){
-    dispatch(postOrder(cart))}
-    localStorage.removeItem("cartItems");
-    navigate("/");
-    }
-)
+// useMemo(() => {
+//     if(cart){
+//     dispatch(postOrder(cart))}
+//     localStorage.removeItem("cartItems");
+//     navigate("/");
+//     }
+// )
   return (
     <div className={s.login}>
       <div className={s.loginContainer}>

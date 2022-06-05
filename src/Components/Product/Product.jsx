@@ -29,8 +29,8 @@ export default function Product(props) {
           <img
             src={products.image}
             alt={products.name}
-            width="200px"
-            height="200px"
+            width="300px"
+            height="300px"
           />
         </Link>
       </div>
