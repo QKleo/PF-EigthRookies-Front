@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Dispatch } from "react";
 import { useDispatch } from "react-redux";
 import { crearCategory } from "../../../Redux/actions";
+import { messageSuccess } from "../../Herramientas/MessageBox";
+import s from "./createProductScreen.module.css"
 
 export default function CategoryForm(){
 
@@ -18,9 +20,10 @@ export default function CategoryForm(){
     }
     function handleOnClick(e){
         e.preventDefault(e)
+        if(formState.name.length > 0){
         dispatch(crearCategory(formState))
-
-        setformState({['name']:''})
+        messageSuccess("Category added")
+        setformState({['name']:''})}
 
     }
     function validarCadena(str,len){
@@ -36,11 +39,16 @@ export default function CategoryForm(){
      
    }
     return(
-        <div>
+        <div className={s.display}>
             <form action=""autoComplete="off">
+                <div className={s.divInput}>
+                <label>Category name: </label>
                 <input type="text" name='name'onChange={(e)=>handleOnChange(e)}
                 value={formState.name}/>
-                <button onClick={(e)=>{handleOnClick(e)}}>enviar</button>
+                </div>
+                <div className={s.display}>
+                <button className={s.button2} onClick={(e)=>{handleOnClick(e)}}>Add category</button>
+                </div>
             </form>
 
         </div>

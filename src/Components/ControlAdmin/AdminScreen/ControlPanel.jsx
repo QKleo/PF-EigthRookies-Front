@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import ProductsForm from '../AdminComponets/ProductsForms'
 import CategoryForm from "../AdminComponets/CategoryForms"
 import { obtenerTodosProducts,obtenerTodosCategory } from "../../../Redux/actions"
+import s from "../AdminComponets/createProductScreen.module.css"
+
 export default function ControlPanel(){
     const Allproduct=useSelector((state)=>state.Allproduct)
     const Category=useSelector((state)=>state.Category)
@@ -30,42 +32,19 @@ export default function ControlPanel(){
     function handleOnClick(){}
 
     return(
-        <div>
-            <h4>Control Panel</h4>
-           
-             <div>   
-                    <div>
-                        
-                        <button onClick={()=>{
-                            setlocalState({['product']:!localState.product})
-                        }  }>Product Menu</button>
-                        <button onClick={()=>{
-                            setlocalState({['category']:!localState.category})
-                        }  }>Category menu</button>
-                      
-                       
-                     {/* <h1> {localState.valida?'true':'false'}</h1> */}
-                    </div>
-                    <div>
-                    {localState.product&&<ProductsForm/>}
-                    {localState.category&&<CategoryForm/>}    
-                    </div>
-                
+        <div className={s.fullSize}> 
+        <div className={s.divButtons}>
+            <button className={s.button} onClick={()=>{
+                    setlocalState({['product']:!localState.product})
+                }  }>Product Menu</button>
+            <button className={s.button} onClick={()=>{
+                    setlocalState({['category']:!localState.category})
+                }  }>Category menu</button>
+        </div>              
+            {localState.product&&<ProductsForm/>}
+            {localState.category&&<CategoryForm/>}    
 
-             </div>   
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div> 
+        
+        </div>   
     )
 }
