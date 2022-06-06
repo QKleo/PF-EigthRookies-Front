@@ -77,11 +77,11 @@ function Landing() {
                     image={product.image}
                     name={product.name}
                     price={product.price}
-                    discount={'20%'}
+                    discount={'40%'}
                   />
                 </div>
               
-              )).slice(700, 707)}
+              )).slice(700, 708)}
       </div>
 
     </div>

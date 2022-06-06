@@ -39,12 +39,12 @@ export default function ProductDetail() {
     </>
   ) : (
     <div className={s.productContainer}>
-      <h1>{product?.name}</h1>
+      <h1 style={{fontSize:"45px"}}>{product?.name}</h1>
 
       <div className={s.imgproducts}>
         <div className={s.leftproducts}>
           <img
-            style={{ border: "2px solid black", borderRadius: "10px" }}
+            style={{ border: "2px solid black", borderRadius: "10px"}}
             src={product.image}
             width="65"
             height="60"
@@ -71,7 +71,7 @@ export default function ProductDetail() {
           <img src={product.image} width="450px" height="400px" alt="" />
         </div>
       </div>
-      <div className={s.categories}>{product?.category}</div>
+      {/* <div className={s.categories}>{product?.category}</div> */}
       <div className={s.description}>{product.description}</div>
 
       <div

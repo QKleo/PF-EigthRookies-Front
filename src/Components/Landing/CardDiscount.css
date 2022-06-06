@@ -4,14 +4,12 @@
     border: none;
     border-radius: 20px;
     box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
-    width: 78%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem;
     position: relative;
     transition: 0.4s ease-out;
-    margin: 2px;
+    
 }
 
 .card-container {
@@ -21,9 +19,9 @@
 
 .top-left {
     position: absolute;
-    top: -12px;
-    left: 50px;
-    background-color: rgb(228, 108, 108);
+    top: 5px;
+    left: 90px;
+    background-color: rgb(69, 231, 20);
     border-radius: 15px 1px 15px 1px;
     padding: 2px 10px;
     width: 3rem;
@@ -60,14 +58,15 @@
 }
 
 .card img {
-    width: 80%;
-    height: 80%;
+    width: 50%;
+    height: 70%;
     -o-object-fit: cover;
     object-fit: contain;
     position: absolute;
     top: 1;
     left: 1;
     border-radius: 5px;
+    margin-bottom: 130px;
 }
 
 .card .info {
@@ -81,7 +80,7 @@
 }
 
 .card .info h1 {
-    font-size: 2rem;
+    font-size: 1rem;
     margin: 1% auto;
     color: white;
 }
@@ -91,6 +90,8 @@
     font-size: 20px;
     font-weight: 900;
     margin: 5% auto;
+    align-items: center;
+    text-align: center;
 }
 
 .card .info button {
@@ -103,9 +104,30 @@
     font-weight: bold;
     cursor: pointer;
     transition: 0.4s ease;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%;
 }
 
 .card .info button:hover {
     background: var(--primary-color);
     color: var(--secondary-color);
+}
+
+h1{
+align-items: center;
+justify-content: center;
+text-align: center;
+max-height: 70px;
+font-size: 20px;
+
+}
+
+small{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-left: 30%;
+    margin-top: 20px;
+
 }
