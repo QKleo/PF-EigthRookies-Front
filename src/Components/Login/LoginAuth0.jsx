@@ -2,13 +2,9 @@ import React, {useMemo} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./login.css";
 import s from "../../Global.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getError } from "../Herramientas/utils";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postOrder } from "../../Redux/actionsCarrito";
-
-
 
 export default function LoginAuth0(){
 const navigate = useNavigate()
@@ -17,16 +13,19 @@ const dispatch = useDispatch()
 
 const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
 
-const cart=useSelector((state)=>state.cart)
-
-
+console.log("soy user",user)
 useMemo(() => {
-    if(cart){
-    dispatch(postOrder(cart))}
-    localStorage.removeItem("cartItems");
-    navigate("/");
+  const cart = window.localStorage.getItem("cartItems");
+  if(cart){
+    var parsedCart = JSON.parse(cart);
+    parsedCart.map((el) => 
+      dispatch(postOrder(el))
+    );
+    localStorage.removeItem("cartItems")
     }
-)
+  navigate("/");
+  }
+,[user])
   return (
     <div className={s.login}>
       <div className={s.loginContainer}>

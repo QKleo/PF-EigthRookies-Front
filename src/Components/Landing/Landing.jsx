@@ -48,7 +48,7 @@ function Landing () {
   return (
     <div>
     
-    <h1>Bienvenido a The Rookies!</h1>
+    <h1>Welcome to The Rookies!</h1>
     <Carrusel/>
     
     <div className={s.grid}>

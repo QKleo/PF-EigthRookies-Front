@@ -232,11 +232,11 @@ export const axiosDataId = (id) => async (dispatch) => {
     }
   };
 
-  export const fetchData = (page, category, order, price) => async (dispatch) => {
+  export const fetchData = (page, category, order, price, query) => async (dispatch) => {
     dispatch({ type: 'AXIOS_REQUEST' })
     try {
       const response = await axios.get(
-    `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}`);
+    `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}&query=${query}`);
     
       return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
     } catch (err) {

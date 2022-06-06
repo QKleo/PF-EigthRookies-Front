@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
 import style from './SearchBox.module.css';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { findProduct } from '../../Redux/actions';
+import { BiSearchAlt2 } from 'react-icons/bi';
+
 
 
 export default function SearchBox() {
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [input, setInput] = useState('');
+    const [query, setQuery] = useState('');
+
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-        dispatch(findProduct(input));
-        setInput('');
-        navigate('/products');
+        navigate(query ? `/search?query=${query}` : '/search');
+        setQuery("")
     };
 
 
     return (
-        <div className={style.inputSearch}>
-            <form onSubmit={handlerSubmit}>
+        < >
+        <form onSubmit={handlerSubmit} className={style.searchDiv}>
             <input
-                onChange={(e) => setInput(e.target.value)}
-                value={input}
+                className={style.searchInput}
+                onChange={(e) => setQuery(e.target.value)}
+                value={query}
                 autoComplete='off'
-                placeholder='	Buscar...'
+                placeholder='Search product...'
                 id="search"
                 type="search"
                 required />
-            <span className={style.caret}></span>
+            <button className={style.buttonSearch}><BiSearchAlt2 className={style.buttonIcon}/></button>
         </form>
-        </div>
+
+        </>
     );
 }

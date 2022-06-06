@@ -4,6 +4,7 @@ import Product from "../Product/Product";
 import estilo from './category.module.css'
 import { fetchData, axiosCategories } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { getOrder } from "../../Redux/actionsCarrito";
 
 export default function ProductScreen() {
   const navigate = useNavigate()
@@ -21,28 +22,27 @@ export default function ProductScreen() {
   const category = sp.get('category') || 'all';
   const query = sp.get('query') || 'all';
   const price = sp.get('price') || '';
-  const rating = sp.get('rating') || 'all';
+  // const rating = sp.get('rating') || 'all';
   const order = sp.get('order') || 'ASC';
   const page = sp.get('page') || 1;
   
-
+  console.log("soy query desde el front", query)
     useEffect(() => {
-      dispatch(axiosCategories())
-      dispatch(fetchData(page, category, order, price));
-    }, [page, category, order, price, query, rating, dispatch]);
+      dispatch(axiosCategories());
+      dispatch(getOrder({ status: 'inCart' }))
+      dispatch(fetchData(page, category, order, price, query));
+    }, [page, category, order, price, query, dispatch]);
 
 
 
   const getFilterUrl = (e) => {
     const filterPage = e.page || page;
     const filterCategory = e.category || category;
-    // const filterQuery = e.query || query;
+    const filterQuery = e.query || query;
     // const filterRating = e.rating || rating;
     const filterPrice = e.price || price;
     const sortOrder = e.order || order;
-    return `/search?category=${filterCategory}&page=${filterPage}&order=${sortOrder}&price=${filterPrice}`
-    
-    // return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
+    return `/search?category=${filterCategory}&page=${filterPage}&order=${sortOrder}&price=${filterPrice}&query=${filterQuery}`
   };
 
 var ini=0;
