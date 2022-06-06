@@ -35,8 +35,10 @@ export function findOrCreateUser(user) {
 }
 
 export function findProduct(name) {
-    return async function (dispatch) {
-        const res = await axios.get(`${URL}/products/search?name=${name}`);
+    return async function (dispatch) 
+    
+    {   console.log(name);
+        const res = await axios.get(`${URL}/paginado?name=${name}`);
         const product = res.data;
         dispatch({
             type: SEARCH_PRODUCT,

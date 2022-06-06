@@ -14,7 +14,7 @@ const Footer = () => {
       <div className={f.lista}>
         <ul>
          <Link to="/"><li>Home</li></Link> 
-         <Link to="/products"><li>Products</li></Link> 
+         <Link to="/search"><li>Products</li></Link> 
          <Link to="/login"><li>Login</li></Link> 
         </ul>
           <ul> 

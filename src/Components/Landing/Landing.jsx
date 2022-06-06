@@ -8,7 +8,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { findOrCreateUser } from '../../Redux/actions'
 
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'AXIOS_REQUEST':
@@ -78,11 +77,11 @@ function Landing() {
                     image={product.image}
                     name={product.name}
                     price={product.price}
-                    discount={'20%'}
+                    discount={'40%'}
                   />
                 </div>
               
-              )).slice(700, 712)}
+              )).slice(700, 708)}
       </div>
 
     </div>

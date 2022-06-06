@@ -2,14 +2,20 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import s from "../../../src/Global.module.css";
 import a from "./product.module.css";
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from "../../Redux/actionsCarrito";
+// import { addToCart, removeFromCart } from "../../Redux/actionsCarrito";
 import { messageSuccess } from "../Herramientas/MessageBox";
 
 
 
 
+import {
+  addToCart,
+  clearCart,
+  removeFromCart,
+} from "../../Redux/actionsCarrito";
+import { useEffect, useState } from "react";
 
 export default function Product(props) {
  
@@ -20,14 +26,14 @@ export default function Product(props) {
   const updateCartHandler = (products) => {      
     // checkeo el stock y luego
     dispatch(addToCart(products))
-    messageSuccess("Product added to cart")
+    messageSuccess(`${products.name}  added to cart`)
     }
+  
+
     
   return (
-   
     <div className={a.cardContainer}>
-
-      <div style={{ marginTop: "20px", alignItems:'center'}}>
+         <div style={{ marginTop: "20px", alignItems: "center" }}>
         <Link to={`/products/${products.id}`}>
           <img
             src={products.image}
@@ -38,23 +44,21 @@ export default function Product(props) {
         </Link>
       </div>
 
-       
+      <Link to={`/products/${products.id}`}>
+        <h4 style={{ textAlign: "center", color: "black" }}>
+          {products.name.replace(/[#-]/g, " ")}
+        </h4>
+      </Link>
 
-        <Link to={`/products/${products.id}`}>
-          <h4 style={{ textAlign: "center", color: "black" }}>
-            {products.name.replace(/[#-]/g, " ")}
-          </h4>
-        </Link>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "15px",
-            alignItems: "center",
-          }}
-        >
-          <h4 className={a.price}>${products.price}</h4>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "15px",
+          alignItems: "center",
+        }}
+      >
+        <h4 className={a.price}>${products.price}</h4>
           <button className={s.btnLand} onClick={() => updateCartHandler(products)}>
             <AiOutlineShoppingCart className={s.cartLogo} />
           </button>
@@ -72,7 +76,7 @@ export default function Product(props) {
           
           
         </div>
-      </div>
-   
+      
+    </div>
   )
 }
