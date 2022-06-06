@@ -1,11 +1,10 @@
 .formbox{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: rgb(0, 0, 0);
     margin-top: 60px;
-    padding: 52px 165px;
-    position: relative;
-    align-items: flex-start;
+    padding-top: 55px;
+    padding-bottom: 55px;
     color: white;
 }
 

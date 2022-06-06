@@ -5,7 +5,7 @@ import f from './footer.module.css'
 
 const Footer = () => {
   return (
-    <div className={f.formbox}>
+      <div className={f.formbox}>
       <div className={f.iconsform}>
         <FaTwitter style={{ color: "white", fontSize: "40px"}}/>
         <FaInstagram style={{ color: "white", fontSize: "40px"}}/>
@@ -32,7 +32,7 @@ const Footer = () => {
 
 
       </form>
-    </div>
+      </div>
   );
 };
 
