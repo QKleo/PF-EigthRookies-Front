@@ -16,7 +16,7 @@ export default function SearchBox() {
         e.preventDefault();
         dispatch(findProduct(input));
         setInput('');
-        navigate('/products');
+        navigate('/paginado');
     };
 
 

@@ -26,7 +26,7 @@ export default function Product(props) {
   const updateCartHandler = (products) => {      
     // checkeo el stock y luego
     dispatch(addToCart(products))
-    messageSuccess("Product added to cart")
+    messageSuccess(`${products.name}  added to cart`)
     }
   
 

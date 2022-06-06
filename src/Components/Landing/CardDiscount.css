@@ -60,10 +60,10 @@
 }
 
 .card img {
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     -o-object-fit: cover;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     top: 1;
     left: 1;

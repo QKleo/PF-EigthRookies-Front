@@ -5,7 +5,7 @@ import './CardDiscount.css';
 function CardDiscount({ image, name, id, price, discount }) {
     return (
         <div className="card">
-            <img alt="" src={image} />
+            <img alt="" src={image}/>
             <div className="card-container">
 
                 <div className="top-left"> {discount} </div>
