@@ -65,10 +65,9 @@ function Landing() {
 
   return (
     <div>
+    <h1>Welcome to The Rookies!</h1>
 
       <EmblaCarousel slides={slides} />  
-
-      <h1>Bienvenido a The Rookies!</h1>
     
     <div className={s.grid}>
               {products?.map((product) => (

@@ -248,13 +248,13 @@ export const axiosDataId = (id) => async (dispatch) => {
     }
 };
 
-export const fetchData = (page, category, order, price) => async (dispatch) => {
-    dispatch({ type: 'AXIOS_REQUEST' });
+  export const fetchData = (page, category, order, price, query) => async (dispatch) => {
+    dispatch({ type: 'AXIOS_REQUEST' })
     try {
-        const response = await axios.get(
-            `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}`);
-
-        return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
+      const response = await axios.get(
+    `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}&query=${query}`);
+    
+      return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
