@@ -3,13 +3,13 @@
 .container {
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    width: 100%;
+    width: 100vw;
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    box-shadow: 0px 0px 15px 15px var(--secondary-color);
+    box-shadow: 0px 0px 20px 10px var(--secondary-color);
 }
 
 .containerAuth {
@@ -26,16 +26,16 @@
     cursor: pointer;
     height: 100px;
     width: 100px;
-    transition:all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
-.logo:hover{
-border-radius:50%;
--webkit-border-radius:50%;
-box-shadow: 0px 0px 5px 5px var(--primary-color);
--webkit-box-shadow: 0px 0px 5px 5px var(--secondary-color);
-transform: rotate(360deg);
--webkit-transform: rotate(360deg);
+.logo:hover {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    box-shadow: 0px 0px 5px 5px var(--primary-color);
+    -webkit-box-shadow: 0px 0px 5px 5px var(--secondary-color);
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
 }
 
 .login {
@@ -55,11 +55,18 @@ transform: rotate(360deg);
     border-radius: 99%;
 }
 
-.containerCart{
+.btnLogin {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: var(--secondary-color);
+}
+
+.containerCart {
     display: flex;
 }
 
-.numberProducts{
+.numberProducts {
     background-color: red;
     border-radius: 116px;
     color: white;
