@@ -6,6 +6,18 @@ export default function LoginAuth0() {
 
   const { user, logout } = useAuth0();
 
+  // useMemo(() => {
+  //   const cart = window.localStorage.getItem("cartItems");
+  //   if(cart){
+  //     var parsedCart = JSON.parse(cart);
+  //     parsedCart.map((el) => 
+  //       dispatch(postOrder(el))
+  //     );
+  //     localStorage.removeItem("cartItems")
+  //     }
+  //   navigate("/");
+  //   }
+  // ,[user])
   return (
     <div className='container-index'>
       <div className="container-LoginAuth0">
