@@ -1,0 +1,80 @@
+.grid{
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    justify-items: center;
+    margin: auto;
+    margin-top: 100px;
+
+}
+
+.lala{
+    align-items: center;
+    max-width: 200px;
+    max-height: 250px;
+    border: 1px black solid;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+}
+.filtros{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+
+}
+
+.btnvolver{
+
+
+    cursor: pointer;
+    border: 2px solid var(--tertiary-color);
+    background: var(--tertiary-color);
+    border-radius: 50px;
+    font-family: var(--primary-font);
+    padding: 12px 28px;
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
+    align-items: center;
+    margin-left: 45%;
+    margin-top: 20px;
+}
+
+.boxcarrito{
+    
+    align-items: center;
+
+
+
+}
+
+.vaciarCarrito{
+
+
+    cursor: pointer;
+    border: 2px solid red;
+    background: red;
+    border-radius: 50px;
+    font-family: var(--primary-font);
+    padding: 12px 28px;
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
+    align-items: center;
+    margin-left: 45%;
+    margin-top: 20px;
+}
+
+.buttonContainer{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}

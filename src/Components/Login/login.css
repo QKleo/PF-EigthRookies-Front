@@ -1,0 +1,48 @@
+@import url('../../Global.module.css');
+.container-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 88.7vh;
+  background-color: var(--secondary-color);
+}
+
+.container-LoginAuth0 {
+  margin: 20px;
+  margin-bottom: 0px;
+  background-color: #fff;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 700px;
+  height: max-content;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+.title-Auth0{
+  margin-bottom: 10px;
+  font-family: var(--primary-font);
+  font-size: 25px;
+  font-weight: 800;
+  position: relative;
+}
+
+.btnLogout {
+  cursor: pointer;
+  border: 1px solid rgb(235, 14, 14);
+  background: rgba(250, 202, 202, 0.904);
+  border-radius: 4px;
+  color: rgb(235, 14, 14);
+  font-family: var(--primary-font);
+  padding: 12px 28px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  font-size: var(--btn-font-size);
+  transition-duration: 0.7s;
+}
+
+.btnLogout:hover {
+  color: rgba(250, 202, 202, 0.904);
+  background-color: rgb(235, 14, 14);
+}

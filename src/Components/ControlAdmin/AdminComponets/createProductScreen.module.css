@@ -1,0 +1,86 @@
+.fullSize{
+  min-height:100vh;
+  width: 100vw;
+}
+
+.divButtons{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px
+}
+
+.display{
+    display: flex;
+    justify-content: center;
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.error{
+    color: red;
+    margin: 0px;
+    font-size: 13px;
+}
+
+.divInput{
+    display: flex;
+    justify-content: space-between;
+    width: 85vh;
+    padding: 1%;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+}
+
+.button{
+    cursor: pointer;
+    border: 2px solid var(--tertiary-color);
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    padding: 12px 28px;
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    line-height: 21px;
+    color: var(--secondary-color);
+    transition-duration: 0.7s;
+    margin: 10px;
+}
+
+.button:focus {
+    color: var(--tertiary-color); 
+    background-color: var(--secondary-color);
+  }
+
+.formSize{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(600px,1fr));
+    justify-items: center;
+    margin-top: 15.5px;
+}
+.button2{
+    cursor: pointer;
+    border: 2px solid var(--tertiary-color);
+    background: var(--tertiary-color);
+    border-radius: 4px;
+    padding: 12px 28px;
+    color: var(--secondary-color);
+    margin: 10px;
+}
+
+.button2:focus {
+    color: var(--tertiary-color); 
+    background-color: var(--secondary-color);
+  }

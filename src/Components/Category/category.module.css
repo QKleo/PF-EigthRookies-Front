@@ -1,0 +1,98 @@
+
+  .pagination {
+    color: #094067;
+    border-radius: 0.5rem;
+    border-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 1%;
+    margin: 1%;
+    box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
+  }
+
+  .seleccionado {
+    color: var(--secondary-color);
+    background: var(--primary-color);
+    border-radius: 0.5rem;
+    border-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.9%;
+    margin: 1%;
+    box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
+  }
+
+  .pagination:hover {
+    transform: scale(1.05, 1.05);
+  }
+    .pagination:focus{
+    color: var(--secondary-color);
+    background: var(--primary-color);
+   }
+
+  .display{
+    display: flex;
+    justify-content: center;
+    margin: 0.1%;
+    align-items: center;
+  }
+
+  .filter{
+    color: #094067;
+    background-color: transparent;
+    font-size: 95%;
+    border-radius: 10px;
+    border-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    width: 25%;
+    margin: 1%
+}
+.filter select:focus{
+    border: transparent !important;
+}
+
+.filterDiv{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2%;
+    margin-bottom: auto;
+}
+
+.search{
+  display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.buttonSearch{
+  color: white;
+  background: var(--tertiary-color);
+  border-radius: 6px;
+  padding: 8px;
+  margin: 13px;
+  font-size: larger;
+  box-shadow: none;
+  border: 0px;
+  cursor: pointer;
+}
+
+.deleteButton{
+  color: white;
+    background: rgba(255, 0, 0, 0.534);
+    border-radius: 3px;
+    font-size: larger;
+    box-shadow: none;
+    border: 0px;
+    cursor: pointer;
+}
+
+.grid{
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    justify-items: center;
+    margin: auto;
+    margin-top: 3%;
+
+}
