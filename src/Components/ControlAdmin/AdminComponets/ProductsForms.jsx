@@ -50,7 +50,7 @@ export default function ProductsForms(){
         name==='image3'&&setformState({...formState,['image3']:value})
         name==='image4'&&setformState({...formState,['image4']:value})
         name==='price'&&setformState({...formState,['price']:validarNumero(value,7)?value:
-        formState[name].length>0?formState[name].slice(1):''})
+        formState[name]?.length>0?formState[name].slice(1):''})
         name==='range_price'&&setformState({...formState,['range_price']:value})
         name==='category'&&setformState({...formState,['category']:value})
         if(name==='nameSelect'){
@@ -161,7 +161,7 @@ export default function ProductsForms(){
                 <div className={s.divInput}>
                 <label>Product name: </label>
                  <input type="text" name='name'placeholder={formState.UpDate?'Search':'Name'}
-                  value={formState.name} onChange={(e)=>handleOnChange(e) }/>
+                  value={formState.name || ''} onChange={(e)=>handleOnChange(e) }/>
                   
                   
                   
@@ -176,7 +176,7 @@ export default function ProductsForms(){
 
                             categoryName:e.category&&e.category.name}
 
-                               return <option value={obj.name}
+                               return <option value={obj.name || ''}
                                key={i}>{obj.name}</option>})}
                         </select>  
                     }    
@@ -185,7 +185,7 @@ export default function ProductsForms(){
                 <label>Product description: </label>
                     <input type="text"name='description' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.description:'description'}
-                    value={formState.description}
+                    value={formState.description || ''}
                     />
                     
                 </div>
@@ -193,42 +193,42 @@ export default function ProductsForms(){
                 <label>Product image: </label>
                     <input type="text"  name='image'onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image:'image'}
-                    value={formState.image}/>
+                    value={formState.image || ''}/>
                     
                 </div>
                 <div className={s.divInput}>
                 <label>Product image 2: </label>
                     <input type="text"  name='image2'onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image2:'image2'}
-                    value={formState.image2}/>
+                    value={formState.image2 || ''}/>
                     
                 </div>
                 <div className={s.divInput}>
                 <label>Product image 3: </label>
                     <input type="text"  name='image3'onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image3:'image3'}
-                    value={formState.image3}/>
+                    value={formState.image3 || ''}/>
                     
                  </div>
                 <div className={s.divInput}>
                 <label>Product image 4: </label>
                     <input type="text" name='image4' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image4:'image4'}
-                    value={formState.image4}/>
+                    value={formState.image4 || ''}/>
                    
                 </div>
                 <div className={s.divInput}>
                 <label>Product price: </label>
                     <input type="text" name='price' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.price:'price'}
-                    value={formState.price}/>
+                    value={formState.price || ''}/>
                     
                 </div>
                 <div className={s.divInput}>
                 <label>Product range price: </label>
                     <input type="text"name='range_price' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.range_price:'range_price'}
-                    value={formState.range_price}/>
+                    value={formState.range_price || ''}/>
                  
                 </div>
                 <div className={s.divInput}>

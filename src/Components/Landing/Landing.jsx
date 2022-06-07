@@ -41,7 +41,6 @@ function Landing() {
     axiosData();
 
     if (isAuthenticated && !userActive.length) {
-      console.log('envie el post');
       crear(findOrCreateUser({
         email: user.email,
         first_name: user.given_name || user.nickname,
