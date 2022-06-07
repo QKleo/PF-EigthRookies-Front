@@ -18,6 +18,7 @@ export default function ControlPanel(){
         upDateProduct:false,
         product:false,
         category:false,
+        users:false,
 
     })
     const dispatch=useDispatch()
@@ -40,6 +41,10 @@ export default function ControlPanel(){
             <button className={s.button} onClick={()=>{
                     setlocalState({['category']:!localState.category})
                 }  }>Category menu</button>
+
+            <button className={s.button} onClick={()=>{
+                    setlocalState({['users']:!localState.users})
+                }  }>Users menu</button>    
         </div>              
             {localState.product&&<ProductsForm/>}
             {localState.category&&<CategoryForm/>}    
