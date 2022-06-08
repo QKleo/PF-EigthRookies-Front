@@ -53,13 +53,8 @@ export default function ProductsForms(){
         name==='image3'&&setformState({...formState,['image3']:value})
         name==='image4'&&setformState({...formState,['image4']:value})
         name==='price'&&setformState({...formState,['price']:validarNumero(value,7)?value:
-<<<<<<< HEAD
-        formState[name]?.length>0?formState[name].slice(1):''})
-        name==='range_price'&&setformState({...formState,['range_price']:value})
-=======
         formState[name].length>0?formState[name].slice(1):''})
         name==='amount'&&setformState({...formState,['amount']:value})
->>>>>>> 81ea2ce70b26ef7a1ee8d9f81e37241c2a25d920
         name==='category'&&setformState({...formState,['category']:value})
         if(name==='nameSelect'){
             setformState({...formState,
@@ -170,16 +165,11 @@ export default function ProductsForms(){
 
                 <div className={s.divInput}>
                 <label>Product name: </label>
-<<<<<<< HEAD
-                 <input type="text" name='name'placeholder={formState.UpDate?'Search':'Name'}
-                  value={formState.name || ''} onChange={(e)=>handleOnChange(e) }/>
-=======
                  <input type="text" name='name'
                  disabled={formState.new?!formState.new:
                     formState.UpDate?!formState.UpDate:true}
                  placeholder={formState.UpDate?'Search':'Name'}
                   value={formState.name} onChange={(e)=>handleOnChange(e) }/>
->>>>>>> 81ea2ce70b26ef7a1ee8d9f81e37241c2a25d920
                   
                   
                   
@@ -264,12 +254,6 @@ export default function ProductsForms(){
                     
                 </div>
                 <div className={s.divInput}>
-<<<<<<< HEAD
-                <label>Product range price: </label>
-                    <input type="text"name='range_price' onChange={(e)=>handleOnChange(e) }
-                    placeholder={formState.UpDate?obj.range_price:'range_price'}
-                    value={formState.range_price || ''}/>
-=======
                 <label>Product Amount: </label>
                     <input type="text"name='amount' 
                     disabled={formState.new?!formState.new:
@@ -277,7 +261,6 @@ export default function ProductsForms(){
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.amount:'amount'}
                     value={formState.amount}/>
->>>>>>> 81ea2ce70b26ef7a1ee8d9f81e37241c2a25d920
                  
                 </div>
                 <div className={s.divInput}>
