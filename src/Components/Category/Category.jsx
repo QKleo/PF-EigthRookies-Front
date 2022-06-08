@@ -16,7 +16,6 @@ export default function ProductScreen() {
   const error = useSelector(state => state.error)
   const products = useSelector(state => state.products)
   const categories = useSelector(state => state.categories)
-  const cart = useSelector((state) => state.cart)
   
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';
@@ -26,13 +25,11 @@ export default function ProductScreen() {
   const order = sp.get('order') || 'ASC';
   const page = sp.get('page') || 1;
   
-  console.log("soy query desde el front", query)
+
     useEffect(() => {
       dispatch(axiosCategories());
-      dispatch(getOrder({ status: 'inCart' }))
       dispatch(fetchData(page, category, order, price, query));
-    }, [page, category, order, price, query, dispatch]);
-
+    }, [page, category, order, price, query]);
 
 
   const getFilterUrl = (e) => {
