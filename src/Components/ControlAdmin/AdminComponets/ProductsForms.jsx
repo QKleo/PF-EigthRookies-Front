@@ -42,6 +42,7 @@ export default function ProductsForms(){
     }
     function handleOnChange(e){
         e.preventDefault(e)
+
         const{name,value}=e.target
         setformState({...formState,['validar']:true})
         name==='name'&&setformState({...formState,['name']:validarCadena(value,25)?value:formState.name})
@@ -95,7 +96,8 @@ export default function ProductsForms(){
             amount:'',
             inputcategory:'',
             productId:'',
-            validar:true
+            validar:true,
+
         })
     }
 
@@ -163,8 +165,9 @@ export default function ProductsForms(){
 
                 <div className={s.divInput}>
                 <label>Product name: </label>
-                 <input type="text" name='name'disabled={formState.new?!formState.new:
-                 formState.UpDate?!formState.UpDate:true}
+                 <input type="text" name='name'
+                 disabled={formState.new?!formState.new:
+                    formState.UpDate?!formState.UpDate:true}
                  placeholder={formState.UpDate?'Search':'Name'}
                   value={formState.name} onChange={(e)=>handleOnChange(e) }/>
                   
@@ -173,9 +176,9 @@ export default function ProductsForms(){
 
                     {formState.UpDate&&
                         <select style={{margin: "30px"}}name="nameSelect" 
-                            disabled={formState.new?!formState.new:
+                        disabled={formState.new?!formState.new:
                             formState.UpDate?!formState.UpDate:true}
-                            id=""onChange={(e)=>handleOnChange(e) }>
+                        id=""onChange={(e)=>handleOnChange(e) }>
                             <option>Productos</option>
                            {namesMostra.length>0&&namesMostra.map((e,i)=>{
                             obj={id:e.id,name:e.name,description:e.description,image:e.image,
@@ -191,12 +194,12 @@ export default function ProductsForms(){
                 </div>
                 <div className={s.divInput}>
                 <label>Product description: </label>
-                    <input type="text"name='description'
-                        disabled={formState.new?!formState.new:
+                    <input type="text"name='description' 
+                    disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
-                        onChange={(e)=>handleOnChange(e) }
-                        placeholder={formState.UpDate?obj.description:'description'}
-                        value={formState.description}
+                    onChange={(e)=>handleOnChange(e) }
+                    placeholder={formState.UpDate?obj.description:'description'}
+                    value={formState.description}
                     />
                     
                 </div>
@@ -215,7 +218,6 @@ export default function ProductsForms(){
                     <input type="text"  name='image2'
                     disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
-                    
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image2:'image2'}
                     value={formState.image2}/>
@@ -236,7 +238,6 @@ export default function ProductsForms(){
                     <input type="text" name='image4' 
                     disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
-                    
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image4:'image4'}
                     value={formState.image4}/>
@@ -253,11 +254,10 @@ export default function ProductsForms(){
                     
                 </div>
                 <div className={s.divInput}>
-                <label>Product amount: </label>
+                <label>Product Amount: </label>
                     <input type="text"name='amount' 
                     disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
-                    
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.amount:'amount'}
                     value={formState.amount}/>
@@ -269,10 +269,8 @@ export default function ProductsForms(){
                 <div className={s.divInput}>
                 <label>Product category: </label>
                     <select name='category' 
-                    
                     disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
-                    
                     onChange={(e)=>handleOnChange(e) } >
                         {Category.map((e,i)=>{
                                 
