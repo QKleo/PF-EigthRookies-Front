@@ -45,7 +45,9 @@ function Landing() {
         email: user.email,
         first_name: user.given_name || user.nickname,
         last_name: user.family_name || undefined,
-        image: user.picture
+        image: user.picture,
+        shoppingCar: carrito
+
       }));
     }
 
