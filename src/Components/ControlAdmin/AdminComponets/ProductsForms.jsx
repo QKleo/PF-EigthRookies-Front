@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux" 
 import { createProduct,upDateProduct,obtenerTodosProducts,obtenerTodosCategory,vaciarRespuesta } from "../../../Redux/actions"
+import { messageSuccess } from "../../Herramientas/MessageBox"
+import s from "./createProductScreen.module.css"
 
 
 
@@ -35,7 +37,7 @@ export default function ProductsForms(){
     function traer(){
         dispatch(obtenerTodosProducts())
         dispatch(obtenerTodosCategory())
-        dispatch(vaciarRespuesta)
+        dispatch(vaciarRespuesta())
     }
     function handleOnChange(e){
         e.preventDefault(e)
@@ -128,11 +130,13 @@ export default function ProductsForms(){
                 if(formState.new){
                         dispatch(createProduct(formState))
                         cleanState()
+                        messageSuccess("Product added")
                        // dispatch(obtenerTodosProducts())
                     }
                 if(formState.UpDate){
                         dispatch(upDateProduct(formState.productId,formState))
                         cleanState()
+                        messageSuccess("Product updated")
                         dispatch(obtenerTodosProducts())
                         
                 
@@ -147,15 +151,15 @@ export default function ProductsForms(){
     }
 
     return(
-        <div>
-           
-            {/* {Names.length&&'algo'}*/}
-            <h4>cantidad de products:{namesMostra.length&&namesMostra.length}</h4> 
-          
-            <button onClick={()=>setformState({['new']:true,['UpDate']:false})}>New</button>
-            <button onClick={()=>setformState({['UpDate']:true,['new']:false})}>UpDate</button>
-            <form action="" autoComplete="off" >
-                <div>
+        <>
+            <div className={s.divButtons}>
+            <button className={s.button2} onClick={()=>setformState({['new']:true,['UpDate']:false})}>Add new</button>
+            <button className={s.button2} onClick={()=>setformState({['UpDate']:true,['new']:false})}>Update product</button>
+            </div>
+            <form action="" autoComplete="off" className={s.formSize}>
+
+                <div className={s.divInput}>
+                <label>Product name: </label>
                  <input type="text" name='name'placeholder={formState.UpDate?'Search':'Name'}
                   value={formState.name} onChange={(e)=>handleOnChange(e) }/>
                   
@@ -163,7 +167,7 @@ export default function ProductsForms(){
                   
 
                     {formState.UpDate&&
-                        <select name="nameSelect" id=""onChange={(e)=>handleOnChange(e) }>
+                        <select style={{margin: "30px"}}name="nameSelect" id=""onChange={(e)=>handleOnChange(e) }>
                             <option>Productos</option>
                            {namesMostra.length>0&&namesMostra.map((e,i)=>{
                             obj={id:e.id,name:e.name,description:e.description,image:e.image,
@@ -177,55 +181,61 @@ export default function ProductsForms(){
                         </select>  
                     }    
                 </div>
-              
-                <div>
+                <div className={s.divInput}>
+                <label>Product description: </label>
                     <input type="text"name='description' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.description:'description'}
                     value={formState.description}
                     />
                     
                 </div>
-                <div>
+                <div className={s.divInput}>
+                <label>Product image: </label>
                     <input type="text"  name='image'onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image:'image'}
                     value={formState.image}/>
                     
                 </div>
-                <div>
+                <div className={s.divInput}>
+                <label>Product image 2: </label>
                     <input type="text"  name='image2'onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image2:'image2'}
                     value={formState.image2}/>
                     
                 </div>
-                <div>
+                <div className={s.divInput}>
+                <label>Product image 3: </label>
                     <input type="text"  name='image3'onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image3:'image3'}
                     value={formState.image3}/>
                     
                  </div>
-                <div>
+                <div className={s.divInput}>
+                <label>Product image 4: </label>
                     <input type="text" name='image4' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image4:'image4'}
                     value={formState.image4}/>
                    
                 </div>
-                <div>
+                <div className={s.divInput}>
+                <label>Product price: </label>
                     <input type="text" name='price' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.price:'price'}
                     value={formState.price}/>
                     
                 </div>
-                <div>
+                <div className={s.divInput}>
+                <label>Product range price: </label>
                     <input type="text"name='range_price' onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.range_price:'range_price'}
                     value={formState.range_price}/>
                  
                 </div>
-                <div>
+                <div className={s.divInput}>
                     <label>{obj.categoryName}</label>
                 </div>
-                <div>
-                   
+                <div className={s.divInput}>
+                <label>Product category: </label>
                     <select name='category' onChange={(e)=>handleOnChange(e) } >
                         {Category.map((e,i)=>{
                                 
@@ -234,11 +244,14 @@ export default function ProductsForms(){
                 </div>
                         
             </form>
+        <div className={s.divButtons}>
+        {formState.new&&<button className={s.button2} onClick={(e)=>handleOnClick(e)}>Add product</button>}
+        {formState.UpDate&&<button onClick={(e)=>handleOnClick(e)} className={s.button2}>Update product</button>}
 
-
-                         
-        {formState.new&&<button onClick={(e)=>handleOnClick(e)}>Enviar</button>}
-        {formState.UpDate&&<button onClick={(e)=>handleOnClick(e)}>Actualizar</button>}
         </div>
+
+      
+        
+        </>
     )
 }

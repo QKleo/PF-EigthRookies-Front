@@ -27,6 +27,7 @@ export function findOrCreateUser(user) {
     return async function (dispatch) {
         const res = await axios.post(`${URL}/admin/register`, user);
         const userDB = res.data;
+        console.log(userDB)
         dispatch({
             type: FIND_OR_CREATE_USER,
             payload: [userDB]
@@ -35,8 +36,10 @@ export function findOrCreateUser(user) {
 }
 
 export function findProduct(name) {
-    return async function (dispatch) {
-        const res = await axios.get(`${URL}/products/search?name=${name}`);
+    return async function (dispatch) 
+    
+    {   console.log(name);
+        const res = await axios.get(`${URL}/paginado?name=${name}`);
         const product = res.data;
         dispatch({
             type: SEARCH_PRODUCT,
@@ -248,13 +251,13 @@ export const axiosDataId = (id) => async (dispatch) => {
     }
 };
 
-export const fetchData = (page, category, order, price) => async (dispatch) => {
-    dispatch({ type: 'AXIOS_REQUEST' });
+  export const fetchData = (page, category, order, price, query) => async (dispatch) => {
+    dispatch({ type: 'AXIOS_REQUEST' })
     try {
-        const response = await axios.get(
-            `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}`);
-
-        return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
+      const response = await axios.get(
+    `http://localhost:3001/paginado/search?page=${page}&category=${category}&order=${order}&price=${price}&query=${query}`);
+    
+      return dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }

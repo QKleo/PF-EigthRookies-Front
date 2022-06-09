@@ -48,7 +48,7 @@ const EmblaCarousel = ({ slides, options = { loop: false } }) => {
           {slides.map((index) => (
             <div className="embla__slide" key={index}>
               <div className="embla__slide__inner">
-                <img
+                <img 
                   className="embla__slide__img"
                   src={mediaByIndex(index)}
                   alt="A cool cat."

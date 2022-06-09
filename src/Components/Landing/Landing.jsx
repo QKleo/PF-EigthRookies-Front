@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardDiscount from './CardDiscount';
 import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
@@ -7,7 +7,6 @@ import EmblaCarousel from "../Carrusel/EmblaCarousel";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { findOrCreateUser } from '../../Redux/actions'
-
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -23,12 +22,14 @@ const reducer = (state, action) => {
 };
 
 function Landing() {
-
+  
   const crear = useDispatch();
   const userActive = useSelector((state) => state.userActive);
+  //console.log("ACA ESTOY",userActive)
   const carrito = useSelector((state) => state.cart);
   const { isAuthenticated, user } = useAuth0()
-
+  
+  //const [algo, setAlgo] = useState(true)
   useEffect(() => {
     const axiosData = async () => {
       dispatch({ type: 'AXIOS_REQUEST' });
@@ -48,12 +49,14 @@ function Landing() {
         first_name: user.given_name || user.nickname,
         last_name: user.family_name || undefined,
         image: user.picture,
-        idRol: 1,
         shoppingCar: carrito
       }));
     }
 
+
+
   }, [isAuthenticated, userActive]);
+
 
 
   const [{ products }, dispatch] = useReducer((reducer), {
@@ -63,12 +66,13 @@ function Landing() {
   const SLIDE_COUNT = 5;
   const slides = Array.from(Array(SLIDE_COUNT).keys());
 
+  //if(userActive[0].nameCreate.functions === "banned"){
+
   return (
     <div>
+    <h1>Welcome to The Rookies!</h1>
 
       <EmblaCarousel slides={slides} />  
-
-      <h1>Bienvenido a The Rookies!</h1>
     
     <div className={s.grid}>
               {products?.map((product) => (
@@ -79,15 +83,17 @@ function Landing() {
                     image={product.image}
                     name={product.name}
                     price={product.price}
-                    discount={'20%'}
+                    discount={'40%'}
                   />
                 </div>
               
-              )).slice(700, 712)}
+              )).slice(700, 708)}
       </div>
 
     </div>
   )
-}
+  
+  }  
+
 
 export default Landing
