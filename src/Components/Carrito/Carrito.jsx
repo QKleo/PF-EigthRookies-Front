@@ -1,16 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Product from "../Product/Product";
 import s from "../Home/home.module.css";
-import {clearCart, deleteOrder, getOrder, postOrder} from "../../Redux/actionsCarrito";
+import {clearCart, deleteOrder, getOrder, postAllOrders, postOrder} from "../../Redux/actionsCarrito";
 import { useEffect } from "react";
-import { messageSuccess } from "../Herramientas/MessageBox";
+import { messageError } from "../Herramientas/MessageBox";
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Carrito() {
+  const navigate = useNavigate
   const inCart = useSelector((state) => state.inCart);
+  const userInfo = useSelector((state) => state.userInfo);
+  const address = userInfo?.address || ""
   const dispatch = useDispatch()
-  const {isAuthenticated} = useAuth0();
+  const {isAuthenticated, loginWithRedirect} = useAuth0();
 
   if(isAuthenticated){
     var cart = inCart
@@ -22,8 +25,20 @@ export default function Carrito() {
 
   console.log(cart)
   const handleOnClick = () => {
-  messageSuccess("Order paid and sent!")
+    if (isAuthenticated) {
+      if (address && address.length) {
+        const ordersIds = cart.map((e) => e.orders[0].id);
+        dispatch(postAllOrders({ orderIds: ordersIds }));
+        setTimeout(() => {
+          navigate('/purchase');
+        }, 1000);
+      } else {
+      return messageError("Addres is required")
+      }
     }
+  return loginWithRedirect();
+  }
+
 
   const handleOnRemove = () => {
     if(isAuthenticated){
@@ -61,9 +76,15 @@ export default function Carrito() {
           <Product products={e} key={e.id}/>
       ))}
       </div>
+   
+        <h1 style={{display: "flex"}}>
+          Address: <input style={{width: "40vw"}}></input>
+        </h1>
       <button className={s.btnvolver} onClick={() => handleOnClick()}>
-      {"Pay & Order"}
+      {"Checkout"}
       </button>
+
+      
       </>
        : 
         <h2>Cart is empty</h2>

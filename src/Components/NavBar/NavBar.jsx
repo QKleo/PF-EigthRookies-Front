@@ -11,7 +11,6 @@ import { getOrder } from '../../Redux/actionsCarrito';
 
 export default function NavBar() {
   const inCart = useSelector((state) => state.inCart)
-  const dispatch = useDispatch()
 
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 

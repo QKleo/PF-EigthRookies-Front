@@ -6,6 +6,8 @@ export const CLEAR_CART="CLEAR_CART";
 export const POST_ORDER="POST_ORDER";
 export const GET_ORDERS="GET_ORDERS";
 export const DELETE_ORDER="DELETE_ORDER";
+export const PUT_ORDER="PUT_ORDER";
+export const POST_ALL_ORDERS="POST_ALL_ORDERS";
 
 export const addToCart = (product) => ({type:AGREGARCARRITO, payload: product})
 
@@ -50,4 +52,24 @@ export const deleteOrder = (order) => async (dispatch) => {
         type: DELETE_ORDER,
         payload: { status: order.status, data },
     });
+}
+
+export const putOrder = (order) => async (dispatch) => {
+    var {data} = await axios.put(`http://localhost:3001/order`, {
+        amount: order.amount,
+        productId: order.productId,
+        status: order.status
+      })
+    return dispatch({
+        type: PUT_ORDER,
+        payload: { status: order.status, data}
+    })
+}
+
+export const postAllOrders = (orderIds) => async (dispatch) => {
+    var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`)
+    return dispatch({
+        type: POST_ALL_ORDERS,
+        payload: data
+    })
 }
