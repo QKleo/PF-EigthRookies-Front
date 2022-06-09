@@ -174,7 +174,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case GET_ORDERS:
             if(
-                payload.status === "inWishList" || 
+                payload.status === "inWishList" ||
                 payload.status === "inCart" || 
                 payload.status === "finished" || 
                 payload.status === "pending"){
