@@ -6,9 +6,9 @@ import Landing from './Components/Landing/Landing';
 import LoginAuth0 from './Components/Login/LoginAuth0';
 import NavBar from './Components/NavBar/NavBar';
 import ProductDetail from './Components/ProductDetail/productDetail';
-import CreateProductScreen from './Components/Home/CreateProductScreen';
 import Category from './Components/Category/Category';
 import Carrito from './Components/Carrito/Carrito';
+import PurchasePage from './Components/PurchasePage/PurchasePage';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -47,6 +47,7 @@ function App() {
         <Route path="products/:id" element={<ProductDetail />} />
         <Route path="/products" element={<HomeScreen />} />
         <Route path={`/search`} element={<Category />} />
+        <Route path="/purchase" element={<PurchasePage />} />
 
 
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />

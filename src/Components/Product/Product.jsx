@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import s from "../../../src/Global.module.css";
 import a from "./product.module.css";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { messageSuccess } from "../Herramientas/MessageBox";
 import {
   addToCart,
   getOrder,
   postOrder,
   removeFromCart,
+  putOrder
 } from "../../Redux/actionsCarrito";
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -33,7 +34,11 @@ export default function Product(props) {
   const reduceHandler = async (products) => {      
     // checkeo el stock y luego
     if(isAuthenticated){
-      await dispatch(postOrder({...products, amount: -1, productId: products.id, status: "inCart"}))
+      await dispatch(putOrder({
+        amount: -1,
+        productId: products.id,
+        status: "inCart"})
+        )
       dispatch(getOrder({ status: 'inCart' }))
     } else {
       dispatch(removeFromCart(products))
