@@ -12,7 +12,7 @@ import { getOrder } from '../../Redux/actionsCarrito';
 export default function NavBar() {
 
   const inCart = useSelector((state) => state.inCart)
-
+  const userActive = useSelector((state) => state.useActive)
 
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
@@ -43,7 +43,7 @@ export default function NavBar() {
         <div className={style.containerAuth}>
           <>
           <>
-            {userActive.length>0&&userActive[0].user&&userActive[0].user.functions==='admin'?
+            {userActive.length>0&&userActive[0].user.functions==='admin'?
               <Link className={style.link} to="/admin/controlpanel">Control Panel</Link>
             :<Link className={style.link} to="/edit/profile">Edit your Profile</Link>
             
