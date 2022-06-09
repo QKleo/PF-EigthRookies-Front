@@ -4,14 +4,13 @@ import Product from "../Product/Product";
 import estilo from './category.module.css'
 import { fetchData, axiosCategories } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrder } from "../../Redux/actionsCarrito";
 
 export default function ProductScreen() {
   const navigate = useNavigate()
   const { search } = useLocation();
   const dispatch = useDispatch();
 
-  const loading = useSelector(state => state.loading)
+  // const loading = useSelector(state => state.loading)
   const pages = useSelector(state => state.pages)
   const error = useSelector(state => state.error)
   const products = useSelector(state => state.products)
@@ -29,11 +28,8 @@ export default function ProductScreen() {
     useEffect(() => {
       dispatch(axiosCategories());
       dispatch(fetchData(page, category, order, price, query));
-    }, [page, category, order, price, query]);
+    }, [page, category, order, price, query, dispatch]);
 
-    useEffect(() => {
-      dispatch(getOrder({ status: 'inCart' }))
-      }, []);
 
 
   const getFilterUrl = (e) => {
