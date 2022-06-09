@@ -31,6 +31,10 @@ export default function ProductScreen() {
       dispatch(fetchData(page, category, order, price, query));
     }, [page, category, order, price, query]);
 
+    useEffect(() => {
+      dispatch(getOrder({ status: 'inCart' }))
+      }, []);
+
 
   const getFilterUrl = (e) => {
     const filterPage = e.page || page;
