@@ -187,7 +187,7 @@ export default function ProductsForms(){
 
                             categoryName:e.category&&e.category.name}
 
-                               return <option value={obj.name}
+                               return <option value={obj.name || ''}
                                key={i}>{obj.name}</option>})}
                         </select>  
                     }    
@@ -199,7 +199,7 @@ export default function ProductsForms(){
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.description:'description'}
-                    value={formState.description}
+                    value={formState.description || ''}
                     />
                     
                 </div>
@@ -210,7 +210,7 @@ export default function ProductsForms(){
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image:'image'}
-                    value={formState.image}/>
+                    value={formState.image || ''}/>
                     
                 </div>
                 <div className={s.divInput}>
@@ -220,7 +220,7 @@ export default function ProductsForms(){
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image2:'image2'}
-                    value={formState.image2}/>
+                    value={formState.image2 || ''}/>
                     
                 </div>
                 <div className={s.divInput}>
@@ -230,7 +230,7 @@ export default function ProductsForms(){
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image3:'image3'}
-                    value={formState.image3}/>
+                    value={formState.image3 || ''}/>
                     
                  </div>
                 <div className={s.divInput}>
@@ -240,7 +240,7 @@ export default function ProductsForms(){
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.image4:'image4'}
-                    value={formState.image4}/>
+                    value={formState.image4 || ''}/>
                    
                 </div>
                 <div className={s.divInput}>
@@ -250,7 +250,7 @@ export default function ProductsForms(){
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.price:'price'}
-                    value={formState.price}/>
+                    value={formState.price || ''}/>
                     
                 </div>
                 <div className={s.divInput}>
