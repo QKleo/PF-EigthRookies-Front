@@ -15,7 +15,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Product(props) {
-  const {isAuthenticated} = useAuth0();
+  const {isAuthenticated, user} = useAuth0();
  
   const dispatch=useDispatch()
   const { products } = props;
@@ -23,8 +23,11 @@ export default function Product(props) {
   const updateCartHandler = async (products) => {      
     // checkeo el stock y luego
     if(isAuthenticated){
-      await dispatch(postOrder({...products, amount: products.quantity, productId: products.id, status: "inCart"}))
-      dispatch(getOrder({ status: 'inCart' }))
+      await dispatch(postOrder({...products, amount: products.quantity, email:user.email,  productId: products.id, status: "inCart"}))
+      console.log(user.email, "soy user email de actions");
+
+
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
     } else {
       dispatch(addToCart(products))
     }

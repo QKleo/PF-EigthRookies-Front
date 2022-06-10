@@ -9,7 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 export default function Carrito() {
   const navigate = useNavigate
   const inCart = useSelector((state) => state.inCart);
-  const userInfo = useSelector((state) => state.userInfo);
+  const userInfo = useSelector((state) => state.userActive);
   const address = userInfo?.address || ""
   const dispatch = useDispatch()
   const {isAuthenticated, loginWithRedirect} = useAuth0();
