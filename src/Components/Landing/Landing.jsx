@@ -26,8 +26,8 @@ function Landing() {
   const crear = useDispatch();
   const userActive = useSelector((state) => state.userActive);
   const carrito = useSelector((state) => state.cart);
-  const { isAuthenticated, user } = useAuth0()
-
+  let { isAuthenticated, user } = useAuth0()
+  let validar=true
   useEffect(() => {
     const axiosData = async () => {
       dispatch({ type: 'AXIOS_REQUEST' });
@@ -39,7 +39,8 @@ function Landing() {
       }
     };
     axiosData();
-
+    if(userActive[0]==='banned'){isAuthenticated=false}
+   
     if (isAuthenticated && !userActive.length) {
       crear(findOrCreateUser({
         email: user.email,
@@ -52,7 +53,7 @@ function Landing() {
       }));
     }
 
-  }, [isAuthenticated, userActive]);
+  }, [isAuthenticated, userActive.length]);
 
 
   const [{ products }, dispatch] = useReducer((reducer), {
@@ -66,6 +67,7 @@ function Landing() {
 
   return (
     <div>
+      { console.log(userActive)}
     <h1>Welcome to The Rookies!</h1>
 
       <EmblaCarousel slides={slides} />  
