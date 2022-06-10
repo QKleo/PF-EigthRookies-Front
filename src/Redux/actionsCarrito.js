@@ -39,7 +39,10 @@ export const postOrder = (order) => async (dispatch) => {
 }
 
 export const getOrder = (order) => async (dispatch) => {
-    var {data} = await axios.get(`http://localhost:3001/order?status=` + order.status);
+    // var objeto = {user: order.user}
+    
+
+    var {data} = await axios.get(`http://localhost:3001/order?status=${order.status}&user=${order.user}` );
     return dispatch({
         type: GET_ORDERS,
         payload: { status: order.status, data },
@@ -66,8 +69,8 @@ export const putOrder = (order) => async (dispatch) => {
     })
 }
 
-export const postAllOrders = (orderIds) => async (dispatch) => {
-    var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`, orderIds)
+export const postAllOrders = (order) => async (dispatch) => {
+    var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`, order)
     return dispatch({
         type: POST_ALL_ORDERS,
         payload: data

@@ -19,7 +19,7 @@ import { postOrder , getOrder} from './Redux/actionsCarrito';
 
 
 function App() {
-  const {isAuthenticated} = useAuth0();
+  const {isAuthenticated, user} = useAuth0();
   const dispatch = useDispatch();
   const inCart = useSelector((state) => state.inCart);
   
@@ -29,7 +29,7 @@ function App() {
     if(cart){
       var parsedCart = JSON.parse(cart);
       parsedCart.map((el) => 
-        dispatch(postOrder({...el, amount: el.quantity, productId: el.id, status: "inCart"}))
+        dispatch(postOrder({...el, amount: el.quantity, email:user.email, productId: el.id, status: "inCart"}))
        
       );
       localStorage.removeItem("cartItems")
@@ -40,11 +40,11 @@ function App() {
 
   useEffect(() => {
     if(isAuthenticated){
-      dispatch(getOrder({ status: 'inCart' }))
-      dispatch(getOrder({ status: 'pending' }))
+      dispatch(getOrder({ status: 'pending', user: user.email }))
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+
     }
   }, [dispatch,isAuthenticated]);
- 
 
   return (
     <div>

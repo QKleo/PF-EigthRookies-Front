@@ -9,7 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 export default function PurchasePage() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const {isAuthenticated} = useAuth0();
+    const {isAuthenticated, user} = useAuth0();
     const inPending = useSelector((state) => state.pending);
     const resPutOrder = useSelector((state) => state.resPutOrder);
     const resDelete = useSelector((state) => state.deleted);
@@ -17,7 +17,8 @@ export default function PurchasePage() {
   
     useEffect(() => {
         if(isAuthenticated){
-      dispatch(getOrder({ status: 'pending' }));
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+      dispatch(getOrder({ status: 'pending',  user: user.email }));
     }
     }, [resDelete, location.search, isAuthenticated]);
 

@@ -3,8 +3,8 @@ import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER, GET_ORDERS, DEL
 import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
     SEARCH_PRODUCT, TODOS_CATEGORY, TODOS_PRODUCT, VACIAR_AUXILIARP, FILTRAR_POR_PRECIO,
-    NO_HAY_MATCH, VACIAR_RESPUESTA, ORDENAR,
-    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY
+    NO_HAY_MATCH, VACIAR_RESPUESTA, ORDENAR, ELIMINARDECARRITO,
+    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER
 } from "./actions";
 
 
@@ -33,6 +33,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
     switch (type) {
         case FIND_OR_CREATE_USER:
+            console.log(payload)
             return {
                 ...state,
                 userActive: payload,
@@ -176,7 +177,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case GET_ORDERS:
             if(
-                payload.status === "inWishList" || 
+                payload.status === "inWishList" ||
                 payload.status === "inCart" || 
                 payload.status === "finished" || 
                 payload.status === "pending"){
@@ -220,6 +221,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 Respuesta: payload
             };
+        case CLEANUSER:
+            return{
+                ...state,
+                userActive:payload
+            }
 
         default: return state;
     }

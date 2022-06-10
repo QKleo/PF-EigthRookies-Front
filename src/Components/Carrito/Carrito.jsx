@@ -14,7 +14,7 @@ export default function Carrito() {
   // const address = userInfo?.address || "";
   const [address, setAddress] = useState('');
   const dispatch = useDispatch();
-  const {isAuthenticated, loginWithRedirect} = useAuth0();
+  const {isAuthenticated, loginWithRedirect, user} = useAuth0();
 
  
   function handleOnClick(e){
@@ -22,7 +22,7 @@ export default function Carrito() {
     if (isAuthenticated) {
       if (address && address.length) {
         const ordersIds = inCart.map((e) => e.orders[0].id);
-        dispatch(postAllOrders({ orderIds: ordersIds }));
+        dispatch(postAllOrders({ orderIds: ordersIds}));
         setTimeout(() => {
           return navigate(`/purchase`);
         }, 1000);

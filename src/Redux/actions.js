@@ -20,17 +20,31 @@ export const ACTUALIZAR = 'ACTUALIZAR';
 export const CREATEPRODUCT = 'CREATEPRODUCT';
 export const UPDATEPRODUCT = 'UPDATEPRODUCT';
 export const CREARCATEGORY = 'CREARCATEGORY';
+export const CLEANUSER='CLEANUSER';
 
 const URL = 'http://localhost:3001';
 
 export function findOrCreateUser(user) {
-    return async function (dispatch) {
-        const res = await axios.post(`${URL}/admin/register`, user);
-        const userDB = res.data;
-        dispatch({
-            type: FIND_OR_CREATE_USER,
-            payload: [userDB]
-        });
+    return (dispatch)=> {
+        axios.post(`${URL}/admin/register`, user)
+        .then((r)=>{
+            if(r.data[0]!=='banned'){
+                dispatch({
+                    type: FIND_OR_CREATE_USER,
+                    payload: [r.data]
+                })
+
+            }else(
+                dispatch({
+                    type:FIND_OR_CREATE_USER,
+                    payload:['banned']
+                })
+            )
+
+
+        })
+      
+       
     };
 }
 
@@ -270,4 +284,17 @@ export const axiosCategories = () => async (dispatch) => {
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
+
 };
+export function cleanUser(){
+    return(dispatch)=>{
+
+        return dispatch({
+            type:CLEANUSER,
+            payload:[]
+        })
+    }
+}
+
+
+
