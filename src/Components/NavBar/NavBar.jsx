@@ -38,7 +38,7 @@ export default function NavBar() {
     loginWithRedirect();
 
   };
-
+  //console.log(userActive)
   function cerrar(){
     if(userActive[0]==='banned'){
       logout()
