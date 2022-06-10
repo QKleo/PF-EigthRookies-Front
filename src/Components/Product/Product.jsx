@@ -24,12 +24,9 @@ export default function Product(props) {
     // checkeo el stock y luego
     if(isAuthenticated){
       await dispatch(postOrder({...products, amount: products.quantity, email:user.email,  productId: products.id, status: "inCart"}))
-      console.log(user.email, "soy user email de actions");
-
-
       dispatch(getOrder({ status: 'inCart', user: user.email }))
     } else {
-      dispatch(addToCart(products))
+      dispatch(addToCart(products)) // local storage
     }
     messageSuccess(`${products.name}  added to cart`)
   }
