@@ -94,8 +94,9 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 productResultAux: payload
             };
         case AGREGARCARRITO:
-
+            console.log(payload)
             const newItem = payload;
+            console.log(state.inCart)
             const itemInCart = state.inCart?.find((p) => p.id === newItem.id);
             const cartItems = itemInCart
                 ? state.inCart.map((item) => item.id === newItem.id

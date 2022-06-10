@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import s from "../../Global.module.css";
 import {
   addToCart,
-  clearCart,
-  removeFromCart,
 } from "../../Redux/actionsCarrito";
 import { axiosDataId } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,7 +53,7 @@ export default function ProductDetail() {
             src={product.image}
             width="66"
             height="60"
-            
+            alt={product.name}
           />
           <img
             style={{ border: "2px solid black", borderRadius: "10px" }}
