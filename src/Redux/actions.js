@@ -284,6 +284,7 @@ export const axiosCategories = () => async (dispatch) => {
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
+
 };
 export function cleanUser(){
     return(dispatch)=>{
@@ -294,4 +295,6 @@ export function cleanUser(){
         })
     }
 }
+
+
 

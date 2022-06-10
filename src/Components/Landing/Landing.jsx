@@ -42,14 +42,14 @@ function Landing() {
     if(userActive[0]==='banned'){isAuthenticated=false}
    
     if (isAuthenticated && !userActive.length) {
-      console.log('envie el post');
       crear(findOrCreateUser({
         email: user.email,
         first_name: user.given_name || user.nickname,
         last_name: user.family_name || undefined,
         image: user.picture,
-        //functions:,
+        
         shoppingCar: carrito
+
       }));
     }
 

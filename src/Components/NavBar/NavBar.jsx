@@ -1,28 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import style from './NavBar.module.css';
 import logo from '../../assets/8Rookies.png';
 import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+
+
 import { cleanUser } from '../../Redux/actions';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
+import { getOrder } from '../../Redux/actionsCarrito';
+
 
 export default function NavBar() {
-  const cart = useSelector((state) => state.cart)
+  //const cart = useSelector((state) => state.cart)
   const userActive = useSelector((state) => state.userActive);
   
   const dispatch=useDispatch()
 
+
+  const inCart = useSelector((state) => state.inCart)
+
+
   const { loginWithRedirect,logout ,isAuthenticated, user } = useAuth0();
+
+  if(isAuthenticated){
+    var cart = inCart
+  } else {
+    const cartStorage = localStorage.getItem("cartItems");
+    const parsedCart = JSON.parse(cartStorage);
+    var cart = parsedCart
+  };
+
+
+  const handleOnClick = () => {
+    loginWithRedirect();
+
+  };
 
   function cerrar(){
     if(userActive[0]==='banned'){
       logout()
       dispatch(cleanUser())
-    }
-  }
+    }}
   return (
   
     <nav className={style.container}>
@@ -66,15 +87,16 @@ export default function NavBar() {
         </div>
       ) : (
         
-          <button className={style.btnLogin} onClick={()=>{
-           loginWithRedirect();cerrar()}}><h3>Login</h3></button>
+
+          <button className={style.btnLogin} onClick={()=>{handleOnClick();cerrar()}}><h3>Login</h3></button>
+
 
       )}
        <Link to='/products/carrito' className={style.containerCart}>
       <i ><AiOutlineShoppingCart style={{ fontSize: '50px', color: 'white', marginTop: "10px"}}/></i>
-      {cart.length >= 1 && 
+      {cart?.length >= 1 && 
           <>
-          <h4 className={style.numberProducts}>{cart.length}</h4>
+          <h4 className={style.numberProducts}>{cart?.length}</h4>
           </>
           }
       </Link>
