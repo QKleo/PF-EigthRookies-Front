@@ -8,7 +8,7 @@ import NavBar from './Components/NavBar/NavBar';
 import ProductDetail from './Components/ProductDetail/productDetail';
 import Category from './Components/Category/Category';
 import Carrito from './Components/Carrito/Carrito';
-// import PurchasePage from './Components/PurchasePage/PurchasePage';
+import PurchasePage from './Components/PurchasePage/PurchasePage';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,6 +41,7 @@ function App() {
   useEffect(() => {
     if(isAuthenticated){
       dispatch(getOrder({ status: 'inCart' }))
+      dispatch(getOrder({ status: 'pending' }))
     }
   }, [dispatch,isAuthenticated]);
  
@@ -55,7 +56,7 @@ function App() {
         <Route path="products/:id" element={<ProductDetail />} />
         {/* <Route path="/products" element={<HomeScreen />} /> */}
         <Route path={`/search`} element={<Category />} />
-        {/* <Route path="/purchase" element={<PurchasePage />} /> */}
+        <Route path={`/purchase`} element={<PurchasePage />} />
 
 
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />

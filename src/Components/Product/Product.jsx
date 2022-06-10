@@ -24,9 +24,9 @@ export default function Product(props) {
     // checkeo el stock y luego
     if(isAuthenticated){
       await dispatch(postOrder({...products, amount: products.quantity, productId: products.id, status: "inCart"}))
-      dispatch(getOrder({ status: 'inCart' }))
+      dispatch(getOrder({ status: 'inCart' })) // base de datos
     } else {
-      dispatch(addToCart(products))
+      dispatch(addToCart(products)) // local storage
     }
     messageSuccess(`${products.name}  added to cart`)
   }
