@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Product from "../Product/Product";
 import s from "../Home/home.module.css";
-import {clearCart, deleteOrder, getOrder, postAllOrders, postOrder} from "../../Redux/actionsCarrito";
-import { useEffect } from "react";
+import {clearCart, deleteOrder, postAllOrders} from "../../Redux/actionsCarrito";
 import { messageError } from "../Herramientas/MessageBox";
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -15,19 +14,11 @@ export default function Carrito() {
   const dispatch = useDispatch()
   const {isAuthenticated, loginWithRedirect} = useAuth0();
 
-  if(isAuthenticated){
-    var cart = inCart
-  } else {
-    const cartStorage = localStorage.getItem("cartItems");
-    const parsedCart = JSON.parse(cartStorage);
-    var cart = parsedCart
-  };
-
-  console.log(cart)
+  console.log(inCart)
   const handleOnClick = () => {
     if (isAuthenticated) {
       if (address && address.length) {
-        const ordersIds = cart.map((e) => e.orders[0].id);
+        const ordersIds = inCart.map((e) => e.orders[0].id);
         dispatch(postAllOrders({ orderIds: ordersIds }));
         setTimeout(() => {
           navigate('/purchase');
@@ -42,19 +33,13 @@ export default function Carrito() {
 
   const handleOnRemove = () => {
     if(isAuthenticated){
-      cart?.map((e) => {
-        dispatch(deleteOrder(e.orders[0].id))
+      inCart?.map((e) => {
+        return dispatch(deleteOrder(e.orders[0].id))
       })
     } else {
       dispatch(clearCart())
     };
   }
-
-  useEffect(() => {
-    if(isAuthenticated){
-    dispatch(getOrder({ status: 'inCart' }))
-    }
-  }, [dispatch]);
 
   return (
     
@@ -69,17 +54,18 @@ export default function Carrito() {
           Clear Cart 🛒
         </button>
       </div>
-      {(cart && !cart.error) ?
+      {(inCart && !inCart.error) ?
       <>
       <div className={s.grid}>
-      {cart?.map((e) => (
+      {inCart?.map((e) => (
           <Product products={e} key={e.id}/>
       ))}
       </div>
-   
+        {isAuthenticated ?
         <h1 style={{display: "flex"}}>
           Address: <input style={{width: "40vw"}}></input>
-        </h1>
+        </h1> : 
+        <></>}
       <button className={s.btnvolver} onClick={() => handleOnClick()}>
       {"Checkout"}
       </button>

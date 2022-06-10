@@ -48,6 +48,7 @@ function Landing() {
         first_name: user.given_name || user.nickname,
         last_name: user.family_name || undefined,
         image: user.picture,
+        
         shoppingCar: carrito
 
       }));
@@ -66,7 +67,11 @@ function Landing() {
   const SLIDE_COUNT = 5;
   const slides = Array.from(Array(SLIDE_COUNT).keys());
 
+<<<<<<< HEAD
   //if(userActive[0].nameCreate.functions === "banned"){
+=======
+  
+>>>>>>> 2ba4c84d777f0a0e407e47b614bf04f279a2369a
 
   return (
     <div>
