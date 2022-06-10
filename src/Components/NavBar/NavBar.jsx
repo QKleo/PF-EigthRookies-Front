@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import style from './NavBar.module.css';
 import logo from '../../assets/8Rookies.png';
@@ -6,33 +6,24 @@ import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 
+
 import { cleanUser } from '../../Redux/actions';
 
 import { useDispatch, useSelector } from 'react-redux';
+
+
+
 import { useAuth0 } from '@auth0/auth0-react';
-import { getOrder } from '../../Redux/actionsCarrito';
 
 
-export default function NavBar() {
-  //const cart = useSelector((state) => state.cart)
-  const userActive = useSelector((state) => state.userActive);
-  
+
+
+export default function NavBar(props) {
   const dispatch=useDispatch()
-
-
-  const inCart = useSelector((state) => state.inCart)
-
+  const { inCart } = props;
+  const userActive = useSelector((state) => state.userActive)
 
   const { loginWithRedirect,logout ,isAuthenticated, user } = useAuth0();
-
-  if(isAuthenticated){
-    var cart = inCart
-  } else {
-    const cartStorage = localStorage.getItem("cartItems");
-    const parsedCart = JSON.parse(cartStorage);
-    var cart = parsedCart
-  };
-
 
   const handleOnClick = () => {
     loginWithRedirect();
@@ -94,9 +85,9 @@ export default function NavBar() {
       )}
        <Link to='/products/carrito' className={style.containerCart}>
       <i ><AiOutlineShoppingCart style={{ fontSize: '50px', color: 'white', marginTop: "10px"}}/></i>
-      {cart?.length >= 1 && 
+      {inCart?.length >= 1 && 
           <>
-          <h4 className={style.numberProducts}>{cart?.length}</h4>
+          <h4 className={style.numberProducts}>{inCart?.length}</h4>
           </>
           }
       </Link>
