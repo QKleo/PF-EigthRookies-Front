@@ -6,17 +6,27 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
-
+import { cleanUser } from '../../Redux/actions';
+import { useDispatch } from 'react-redux';
 
 export default function NavBar() {
   const cart = useSelector((state) => state.cart)
   const userActive = useSelector((state) => state.userActive);
+  
+  const dispatch=useDispatch()
 
-  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect,logout ,isAuthenticated, user } = useAuth0();
 
-
+  function cerrar(){
+    if(userActive[0]==='banned'){
+      logout()
+      dispatch(cleanUser())
+    }
+  }
   return (
+  
     <nav className={style.container}>
+       
       <Link to={'/'}><img className={style.logo} src={logo} alt="The rookies" /></Link>
       <SearchBox />
       <Link className={style.link} to="/">
@@ -26,7 +36,7 @@ export default function NavBar() {
         <Link className={style.link} to="/search">
           <h3>Products</h3>
         </Link>
-      {isAuthenticated ? (
+      {isAuthenticated&&userActive.length>0&&userActive[0]!=='banned' ? (
         <div className={style.containerAuth}>
           <>
           <>
@@ -37,22 +47,27 @@ export default function NavBar() {
           }
           
               </>
-     
+           
             <Link className={style.link} to="/login">
+           
               <div className={style.login}>
+             
                 <img
                   className={style.imgUser}
                   src={user.picture}
                   alt="img user"
                 />
-                <h4>Hola {user.given_name}</h4>
+        
+               <h4>Hola {user.given_name}</h4>
+              
               </div>
             </Link>
           </>
         </div>
       ) : (
         
-          <button className={style.btnLogin} onClick={loginWithRedirect}><h3>Login</h3></button>
+          <button className={style.btnLogin} onClick={()=>{
+           loginWithRedirect();cerrar()}}><h3>Login</h3></button>
 
       )}
        <Link to='/products/carrito' className={style.containerCart}>

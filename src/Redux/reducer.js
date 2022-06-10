@@ -4,7 +4,7 @@ import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
     SEARCH_PRODUCT, TODOS_CATEGORY, TODOS_PRODUCT, VACIAR_AUXILIARP, FILTRAR_POR_PRECIO,
     NO_HAY_MATCH, VACIAR_RESPUESTA, ORDENAR, ELIMINARDECARRITO,
-    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY
+    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER
 } from "./actions";
 
 
@@ -29,6 +29,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
     switch (type) {
         case FIND_OR_CREATE_USER:
+            console.log(payload)
             return {
                 ...state,
                 userActive: payload,
@@ -186,6 +187,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 Respuesta: payload
             };
+        case CLEANUSER:
+            return{
+                ...state,
+                userActive:payload
+            }
 
         default: return state;
     }
