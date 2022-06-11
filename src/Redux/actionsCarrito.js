@@ -69,6 +69,11 @@ export const putOrder = (order) => async (dispatch) => {
     })
 }
 
+
+
+
+
+
 export const postAllOrders = (orderIds) => async (dispatch) => {
     var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`)
     return dispatch({
