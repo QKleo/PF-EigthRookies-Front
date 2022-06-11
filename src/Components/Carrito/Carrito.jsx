@@ -5,29 +5,32 @@ import s from "../Home/home.module.css";
 import {clearCart, deleteOrder, postAllOrders} from "../../Redux/actionsCarrito";
 import { messageError } from "../Herramientas/MessageBox";
 import { useAuth0 } from '@auth0/auth0-react';
+import { useState } from "react";
 
 export default function Carrito() {
-  const navigate = useNavigate
+  const navigate = useNavigate()
   const inCart = useSelector((state) => state.inCart);
-  const userInfo = useSelector((state) => state.userActive);
-  const address = userInfo?.address || ""
-  const dispatch = useDispatch()
-  const {isAuthenticated, loginWithRedirect} = useAuth0();
+  // const userInfo = useSelector((state) => state.userInfo);
+  // const address = userInfo?.address || "";
+  const [address, setAddress] = useState('');
+  const dispatch = useDispatch();
+  const {isAuthenticated, loginWithRedirect, user} = useAuth0();
 
-  console.log(inCart)
-  const handleOnClick = () => {
+ 
+  function handleOnClick(e){
+    e.preventDefault();
     if (isAuthenticated) {
       if (address && address.length) {
         const ordersIds = inCart.map((e) => e.orders[0].id);
-        dispatch(postAllOrders({ orderIds: ordersIds }));
+        dispatch(postAllOrders({ orderIds: ordersIds}));
         setTimeout(() => {
-          navigate('/purchase');
+          return navigate(`/purchase`);
         }, 1000);
       } else {
       return messageError("Addres is required")
       }
-    }
-  return loginWithRedirect();
+    } else {
+  return loginWithRedirect();}
   }
 
 
@@ -39,6 +42,10 @@ export default function Carrito() {
     } else {
       dispatch(clearCart())
     };
+  }
+
+  const handleChange = (e) => {
+    setAddress(e.target.value)
   }
 
   return (
@@ -63,10 +70,10 @@ export default function Carrito() {
       </div>
         {isAuthenticated ?
         <h1 style={{display: "flex"}}>
-          Address: <input style={{width: "40vw"}}></input>
+          Address: <input style={{width: "40vw"}} onChange={handleChange} value={address}></input>
         </h1> : 
         <></>}
-      <button className={s.btnvolver} onClick={() => handleOnClick()}>
+      <button className={s.btnvolver} onClick={(e) => handleOnClick(e)}>
       {"Checkout"}
       </button>
 
