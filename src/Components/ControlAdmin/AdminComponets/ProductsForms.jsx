@@ -60,8 +60,8 @@ export default function ProductsForms(){
             setformState({...formState,
                 ['name']:value,['description']:obj.description,['image']:obj.image,
                 ['image2']:obj.image2,['image3']:obj.image3,['image4']:obj.image4,
-                ['price']:obj.price,['amount']:obj.amount,
-                ['category']:obj.categoryid*1,['inputcategory']:obj.categoryName,
+                ['price']:obj.price,['amount']:obj.amount*1,
+                ['category']:obj.categoryid,['inputcategory']:obj.categoryName,
                 ['productId']:obj.id
         
         
@@ -142,6 +142,7 @@ export default function ProductsForms(){
                         dispatch(upDateProduct(formState.productId,formState))
                         cleanState()
                         messageSuccess("Product updated")
+                        console.log(formState)
                         dispatch(obtenerTodosProducts())
                         
                 
@@ -183,7 +184,7 @@ export default function ProductsForms(){
                            {namesMostra.length>0&&namesMostra.map((e,i)=>{
                             obj={id:e.id,name:e.name,description:e.description,image:e.image,
                             image2:e.image2,image3:e.image3,image4:e.image4,price:e.price,
-                            amount:e.amount,categoryid:e.category&&e.category.id,
+                            amount:e.amount*1,categoryid:e.category&&e.category.id*1,
 
                             categoryName:e.category&&e.category.name}
 
@@ -272,6 +273,7 @@ export default function ProductsForms(){
                     disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) } >
+                        <option>add category</option>
                         {Category.map((e,i)=>{
                                 
                             return <option value={e.id}key={i}>{e.name}</option>})}
