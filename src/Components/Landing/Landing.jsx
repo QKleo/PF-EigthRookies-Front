@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardDiscount from './CardDiscount';
 import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
@@ -22,7 +22,7 @@ const reducer = (state, action) => {
 };
 
 function Landing() {
-
+  
   const crear = useDispatch();
   const userActive = useSelector((state) => state.userActive);
   const carrito = useSelector((state) => state.cart);
@@ -90,6 +90,7 @@ function Landing() {
 
     </div>
   )
-}
+  
+  }  
 
 export default Landing
