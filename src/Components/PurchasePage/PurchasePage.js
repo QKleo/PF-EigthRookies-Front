@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Preview from '../Mercadopago/Preview';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { getOrder } from '../../Redux/actionsCarrito';
@@ -13,7 +12,7 @@ export default function PurchasePage() {
     const inPending = useSelector((state) => state.pending);
     const resPutOrder = useSelector((state) => state.resPutOrder);
     const resDelete = useSelector((state) => state.deleted);
-    const [data, setData] = useState('');
+  const [url, setUrl] = useState('');
   
     useEffect(() => {
         if(isAuthenticated){
@@ -33,33 +32,25 @@ export default function PurchasePage() {
                 price: e.price
             }
         });
+
         //Hago el Post de MercadoPago
-            const idToken = axios
-            .post('http://localhost:3001/mercadopay', {
+          axios.post('http://localhost:3001/mercadopay', {
               carrito: item,
-            //   baseURL: window.location.href.slice(0, -9),
-            })
-            .then((data) => {
-              //llega id
-              if (data) {
-                setData(data.data);
+          }).then((r) => {
+            if (r) {
+              setUrl(r.data.url);
               }
-            })
-            .catch((err) => console.error(err));
-        
+           }).catch((err) => console.error(err));
         }
+
     },[inPending, resDelete, resPutOrder])
-    console.log("soy data", data.response)
-    console.log("soy data", data)
+
 return (
     <>
-
-      {/* {data && <Preview data={data} inPending={inPending} />}
-
-      prueba */}
-      {/* {inPending && <Preview data={data} products={inPending} />} */}
-      
-   
+    <button
+      onClick={() => window.location.href = `${url}`} >
+      Pay with MercadoPago
+    </button>
     </>
     );
 }
