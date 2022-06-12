@@ -12,11 +12,11 @@ export default function Preview({ products, data }) {
   const [render, setRender] = useState(true);
   const [status, setStatus] = useState(false);
   const [productPrices, setProductPrices] = useState(0);
-  const product = useSelector((state) => state.pending);
+  const fullPrice = useSelector((state) => state.resPostAllOrders);
   const userInfo = useSelector((state) => state.userInfo);
   const address = userInfo?.address || "";
 
- 
+ console.log(products)
   useEffect(() => {
     setProductPrices(products?.reduce((a, b) => ({
           price:
@@ -55,7 +55,7 @@ export default function Preview({ products, data }) {
         </label>
         <div>
           {products && products?.length > 0 && (
-            <h1>Products price: {productPrices}</h1>
+            <h1>Products price: {productPrices && productPrices}</h1>
           )}
           {products && products?.length > 0 && (
             <h1>Shipping cost: {"$200"}</h1>

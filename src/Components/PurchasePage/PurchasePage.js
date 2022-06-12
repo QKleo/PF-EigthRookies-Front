@@ -57,7 +57,7 @@ return (
       {/* {data && <Preview data={data} inPending={inPending} />}
 
       prueba */}
-      {/* {inPending && <Preview data={data} products={inPending} />} */}
+      {data && <Preview data={data} products={inPending} />}
       
    
     </>
