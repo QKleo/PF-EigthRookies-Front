@@ -69,18 +69,8 @@ export const putOrder = (order) => async (dispatch) => {
     })
 }
 
-<<<<<<< HEAD
-
-
-
-
-
-export const postAllOrders = (orderIds) => async (dispatch) => {
-    var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`)
-=======
 export const postAllOrders = (order) => async (dispatch) => {
     var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`, order)
->>>>>>> 0eb5095da37acbaf9799f43ada4c65d64579ebc6
     return dispatch({
         type: POST_ALL_ORDERS,
         payload: data
