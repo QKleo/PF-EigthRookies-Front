@@ -8,6 +8,7 @@ export const GET_ORDERS="GET_ORDERS";
 export const DELETE_ORDER="DELETE_ORDER";
 export const PUT_ORDER="PUT_ORDER";
 export const POST_ALL_ORDERS="POST_ALL_ORDERS";
+export const CHANGE_ORDER_STATUS="CHANGE_ORDER_STATUS";
 
 export const addToCart = (product) => ({type:AGREGARCARRITO, payload: product})
 
@@ -71,8 +72,17 @@ export const putOrder = (order) => async (dispatch) => {
 
 export const postAllOrders = (order) => async (dispatch) => {
     var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`, order)
+    console.log(data, "data de actionsCarrito")
     return dispatch({
         type: POST_ALL_ORDERS,
+        payload: data
+    })
+}
+
+export const changeOrderStatus = (order) => async (dispatch) => {
+    var {data} = await axios.put(`http://localhost:3001/mercadopay`, order)
+    return dispatch({
+        type: CHANGE_ORDER_STATUS,
         payload: data
     })
 }
