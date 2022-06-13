@@ -8,18 +8,23 @@ import NavBar from './Components/NavBar/NavBar';
 import ProductDetail from './Components/ProductDetail/productDetail';
 import Category from './Components/Category/Category';
 import Carrito from './Components/Carrito/Carrito';
-// import PurchasePage from './Components/PurchasePage/PurchasePage';
+import PurchasePage from './Components/PurchasePage/PurchasePage';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch , useSelector } from 'react-redux';
 import { postOrder , getOrder} from './Redux/actionsCarrito';
+
 import FormUser from './Components/Users/FormUser'
+
+import Preview from './Components/Mercadopago/Preview';
+
+
 
 
 function App() {
-  const {isAuthenticated} = useAuth0();
+  const {isAuthenticated, user} = useAuth0();
   const dispatch = useDispatch();
   const inCart = useSelector((state) => state.inCart);
   
@@ -29,7 +34,7 @@ function App() {
     if(cart){
       var parsedCart = JSON.parse(cart);
       parsedCart.map((el) => 
-        dispatch(postOrder({...el, amount: el.quantity, productId: el.id, status: "inCart"}))
+        dispatch(postOrder({...el, amount: el.quantity, email:user.email, productId: el.id, status: "inCart"}))
        
       );
       localStorage.removeItem("cartItems")
@@ -40,10 +45,10 @@ function App() {
 
   useEffect(() => {
     if(isAuthenticated){
-      dispatch(getOrder({ status: 'inCart' }))
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+
     }
   }, [dispatch,isAuthenticated]);
- 
 
   return (
     <div>
@@ -55,7 +60,8 @@ function App() {
         <Route path="products/:id" element={<ProductDetail />} />
         {/* <Route path="/products" element={<HomeScreen />} /> */}
         <Route path={`/search`} element={<Category />} />
-        {/* <Route path="/purchase" element={<PurchasePage />} /> */}
+        <Route path={`/checkout`} element={<PurchasePage />} />
+        <Route path={`/purchase/:purchaseId`} element={<Preview />} />
 
 
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />

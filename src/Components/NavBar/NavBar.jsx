@@ -52,7 +52,7 @@ export default function NavBar(props) {
         <div className={style.containerAuth}>
           <>
           <>
-            {userActive.length>0&&userActive[0].user&&userActive[0].user.functions==='admin'?
+            {userActive.length>0&&userActive[0].user.functions==='admin'?
               <Link className={style.link} to="/admin/controlpanel">Control Panel</Link>
             :<Link className={style.link} to="/edit/profile">Edit your Profile</Link>
             
