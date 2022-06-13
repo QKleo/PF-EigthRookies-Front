@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getOrder } from '../../Redux/actionsCarrito';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function PurchasePage() {
     const dispatch = useDispatch();
     const location = useLocation();
+    const navigate = useNavigate()
     const {isAuthenticated, user} = useAuth0();
-    const inPending = useSelector((state) => state.pending);
+    const inPending = useSelector((state) => state.inCart);
     const resPutOrder = useSelector((state) => state.resPutOrder);
     const resDelete = useSelector((state) => state.deleted);
   const [url, setUrl] = useState('');
@@ -17,7 +18,6 @@ export default function PurchasePage() {
     useEffect(() => {
         if(isAuthenticated){
       dispatch(getOrder({ status: 'inCart', user: user.email }))
-      dispatch(getOrder({ status: 'pending',  user: user.email }));
     }
     }, [resDelete, location.search, isAuthenticated]);
 
@@ -42,15 +42,15 @@ export default function PurchasePage() {
               }
            }).catch((err) => console.error(err));
         }
+        if(url && url.length){
+          return navigate(window.location.href = `${url}`);
+        }
 
-    },[inPending, resDelete, resPutOrder])
+    },[inPending, resDelete, resPutOrder, url])
 
 return (
     <>
-    <button
-      onClick={() => window.location.href = `${url}`} >
-      Pay with MercadoPago
-    </button>
+
     </>
     );
 }
