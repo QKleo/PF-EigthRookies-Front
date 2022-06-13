@@ -39,7 +39,7 @@ export default function Product(props) {
         productId: products.id,
         status: "inCart"})
         )
-      dispatch(getOrder({ status: 'inCart' }))
+      dispatch(getOrder({ status: 'inCart', user: user.email}))
     } else {
       dispatch(removeFromCart(products))
     }
