@@ -21,6 +21,9 @@ export const CREATEPRODUCT = 'CREATEPRODUCT';
 export const UPDATEPRODUCT = 'UPDATEPRODUCT';
 export const CREARCATEGORY = 'CREARCATEGORY';
 export const CLEANUSER='CLEANUSER';
+export const UPDATEPROFILEUSER='UPDATEPROFILEUSER';
+export const TODOSUSERS='TODOSUSERS';
+export const UPDATEFUNCTION='UPDATEFUNCTION';
 
 const URL = 'http://localhost:3001';
 
@@ -232,8 +235,10 @@ export function upDateProduct(id, body) {
                 return dispatch({
                     type: UPDATEPRODUCT,
                     payload: ['actualizando', body.id]
-                });
-            });
+                })
+           
+            })
+            .catch((err)=>console.log(err))
     };
 }
 
@@ -295,6 +300,47 @@ export function cleanUser(){
         })
     }
 }
+
+export function upDateProfileUser(id,body){
+    return(dispatch)=>{
+        axios.put(`${URL}/update/profileuser/${id}`,body)
+        .then((r)=>{
+            return dispatch({
+                type:UPDATEPROFILEUSER ,
+                payload:[{user:r.data}]
+            })
+        })
+        .catch((err)=>console.log(err))
+       
+        
+    }
+}
+export function todosUsers(){
+    return(dispatch)=>{
+        axios.get(`${URL}/users`)
+        .then((r)=>{
+            return dispatch({
+                type:TODOSUSERS,
+                payload:r.data
+            })
+        })
+        .catch((err)=>console.log(err))
+    }
+}
+export function upDateFunction(id,body){
+    return (dispatch)=>{
+        axios.put(`${URL}/updatefunction/${id}`,body)
+        .then((r)=>{
+            return dispatch({
+                type:UPDATEFUNCTION,
+                payload:['update function']
+            })
+        })
+
+
+    }
+}
+
 
 
 
