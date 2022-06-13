@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch , useSelector } from 'react-redux';
 import { postOrder , getOrder} from './Redux/actionsCarrito';
+import Preview from './Components/Mercadopago/Preview';
 
 
 
@@ -40,7 +41,6 @@ function App() {
 
   useEffect(() => {
     if(isAuthenticated){
-      dispatch(getOrder({ status: 'pending', user: user.email }))
       dispatch(getOrder({ status: 'inCart', user: user.email }))
 
     }
@@ -56,7 +56,8 @@ function App() {
         <Route path="products/:id" element={<ProductDetail />} />
         {/* <Route path="/products" element={<HomeScreen />} /> */}
         <Route path={`/search`} element={<Category />} />
-        <Route path={`/purchase`} element={<PurchasePage />} />
+        <Route path={`/checkout`} element={<PurchasePage />} />
+        <Route path={`/purchase/:purchaseId`} element={<Preview />} />
 
 
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />

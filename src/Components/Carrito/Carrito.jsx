@@ -21,10 +21,9 @@ export default function Carrito() {
     e.preventDefault();
     if (isAuthenticated) {
       if (address && address.length) {
-        const ordersIds = inCart.map((e) => e.orders[0].id);
-        dispatch(postAllOrders({ orderIds: ordersIds}));
+        dispatch(postAllOrders({ user: user.email, address: address}));
         setTimeout(() => {
-          return navigate(`/purchase`);
+          return navigate(`/checkout`);
         }, 1000);
       } else {
       return messageError("Addres is required")

@@ -38,7 +38,7 @@ export default function ProductsForms(){
     function traer(){
         dispatch(obtenerTodosProducts())
         dispatch(obtenerTodosCategory())
-        dispatch(vaciarRespuesta)
+        dispatch(vaciarRespuesta())
     }
     function handleOnChange(e){
         e.preventDefault(e)

@@ -2,72 +2,80 @@ import React, { useEffect, useState } from 'react';
 // import Success from './Success';
 // import Failure from './Failure';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { changeOrderStatus } from '../../Redux/actionsCarrito';
+import PreviewCard from '../PreviewCard/PreviewCard';
+import s from './preview.module.css'
 
-export default function Preview({ products, data }) {
-  const location = useLocation();
+export default function Preview() {
+  const {purchaseId} = useParams();
   const dispatch = useDispatch();
   const [res, setRes] = useState();
   const [render, setRender] = useState(true);
   const [status, setStatus] = useState(false);
-  const [productPrices, setProductPrices] = useState(0);
-  const fullPrice = useSelector((state) => state.resPostAllOrders);
-  const userInfo = useSelector((state) => state.userInfo);
-  const address = userInfo?.address || "";
+  const resPostAllOrders = useSelector((state) => state.resPostAllOrders);
+  const resChangeOrderStatus = useSelector((state) => state.resChangeOrderStatus);
+  const products = useSelector((state) => state.inCart);
+  const address = resPostAllOrders?.address || "";
 
- console.log(products)
+  console.log("soy 0", resChangeOrderStatus)
+
   useEffect(() => {
-    setProductPrices(products?.reduce((a, b) => ({
-          price:
-            a.price * (a.orders && a.orders[0].length > 0 ? a.orders[0].amount : 1) +
-            b.price * (b.orders && b.orders[0].length > 0 ? b.orders[0].amount : 1),
-        }))
-        .price.toFixed(2)
-        );
-    }, [products]);
+    if(products && products.length){
+    const ordersIds = products.map((e) => e.orders[0].id);
+    dispatch(changeOrderStatus({purchaseId: purchaseId, ordersIds: ordersIds}));
+    }
+  }, [products]);
+
+var today = new Date();
+
+var date = today.getFullYear()+'-'+(today.getMonth()+2)+'-'+today.getDate();
+
 
   return (
     <div>
+      {resChangeOrderStatus.status === "approved" ?
       <form>
-          <div>
+        <div>
+          <h1>Your payment has result: {resChangeOrderStatus.status}</h1>
+        </div>
+          <div className={s.grid}>
         {products?.length &&
           products?.map((product) => {
             return (
-              <div key={product.id}>
-                <img src={product.image} width="150px" alt={product.name}></img>
-                <h4>{product.name}</h4>
-                Quantity: <h4>{product.orders && product.orders[0].amount}</h4>
-                Price: <h4>{product.price}</h4>
-              </div>
+              <PreviewCard key={product.id} products={product}/>
             );
           })}
           </div>
         <label>
-          Directions:
+          Delivery Address:
           <select>
             {address?.length ? (  
             <option>{address}</option>
             ) : (
-            <option>Calle falsa 123</option>
+            <option>Rosalia de Castro 677</option>
             )}
           </select>
         </label>
         <div>
-          {products && products?.length > 0 && (
-            <h1>Products price: {productPrices && productPrices}</h1>
+          {resChangeOrderStatus && resChangeOrderStatus?.fullPrice && (
+            <h4>Cart price: ${resChangeOrderStatus && resChangeOrderStatus.fullPrice}</h4>
           )}
           {products && products?.length > 0 && (
-            <h1>Shipping cost: {"$200"}</h1>
+            <h4>Shipping cost: ${"$200"}</h4>
           )}
-          {products && products?.length > 0 && (
-            <h1>
+          {resChangeOrderStatus && resChangeOrderStatus?.fullPrice && (
+            <h4>
               Total:{' '}
-              {Math.round((Number(productPrices) + 200) * 100) / 100}
-            </h1>
+              ${Math.round((Number(resChangeOrderStatus.fullPrice) + 200) * 100) / 100}
+            </h4>
           )}
         </div>
+        <h5>
+        Estimated delivery date: {date}
+        </h5>
       </form>
+      : <h5>Your payment is pending confirmation</h5>}
     </div>
   );
 }
