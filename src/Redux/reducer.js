@@ -4,7 +4,10 @@ import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
     SEARCH_PRODUCT, TODOS_CATEGORY, TODOS_PRODUCT, VACIAR_AUXILIARP, FILTRAR_POR_PRECIO,
     NO_HAY_MATCH, VACIAR_RESPUESTA, ORDENAR, ELIMINARDECARRITO,
-    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER
+    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER,
+    UPDATEPROFILEUSER,
+    TODOSUSERS,
+    UPDATEFUNCTION
 } from "./actions";
 
 
@@ -27,6 +30,7 @@ const initialState = {
     finished: [],
     deleted: [],
     resPutOrder: [],
+    users:[],
     resPostAllOrders: {},
     resChangeOrderStatus: {},
     userInfo: {}
@@ -238,6 +242,22 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return{
                 ...state,
                 userActive:payload
+            }
+        case UPDATEPROFILEUSER:
+            console.log(payload)
+            return{
+                ...state,
+                userActive:payload
+            }
+        case TODOSUSERS:
+            return{
+                ...state,
+                users:payload
+            }
+        case UPDATEFUNCTION:
+            return{
+                ...state,
+                Respuesta:payload
             }
 
         default: return state;
