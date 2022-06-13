@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch , useSelector } from 'react-redux';
 import { postOrder , getOrder} from './Redux/actionsCarrito';
-
+import FormUser from './Components/Users/FormUser'
 
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
 
 
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />
-
+        <Route exact path='/edit/profile' element={<FormUser/>}/>
 
         <Route exact path='/products/carrito' element={<Carrito />} />
       </Routes>

@@ -261,7 +261,7 @@ export default function ProductsForms(){
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) }
                     placeholder={formState.UpDate?obj.amount:'amount'}
-                    value={formState.amount}/>
+                    value={formState.amount ||''}/>
                  
                 </div>
                 <div className={s.divInput}>
