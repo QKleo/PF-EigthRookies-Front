@@ -2,16 +2,21 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import s from "../../Global.module.css";
 import {
-  addToCart,
+  addToCart, getOrder, postOrder,
 } from "../../Redux/actionsCarrito";
 import { axiosDataId } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { messageSuccess } from "../Herramientas/MessageBox";
 import { AiOutlineShoppingCart} from "react-icons/ai";
+<<<<<<< HEAD
 import Reviews from "../Review/Reviews";
+=======
+import { useAuth0 } from '@auth0/auth0-react';
+>>>>>>> b5073af24a7e982750b0ffbb5094b3366705bec4
 
 
 export default function ProductDetail() {
+  const {isAuthenticated, user} = useAuth0();
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
   const product = useSelector((state) => state.product);
@@ -22,11 +27,16 @@ export default function ProductDetail() {
     dispatch(axiosDataId(id));
   }, [id, dispatch]);
 
-  const updateCartHandler = (product) => {
+  const updateCartHandler = async (products) => {      
     // checkeo el stock y luego
-    dispatch(addToCart(product));
-    messageSuccess("Product added to cart");
-  };
+    if(isAuthenticated){
+      await dispatch(postOrder({...products, amount: products.quantity, email:user.email,  productId: products.id, status: "inCart"}))
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+    } else {
+      dispatch(addToCart(products)) // local storage
+    }
+    messageSuccess(`${products.name}  added to cart`)
+  }
 
   return loading ? (
     <>
