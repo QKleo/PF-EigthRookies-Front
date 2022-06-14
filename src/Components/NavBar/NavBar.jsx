@@ -49,11 +49,11 @@ export default function NavBar(props) {
           <h3>Products</h3>
         </Link>
       {isAuthenticated&&userActive.length>0&&userActive[0]!=='banned' ? (
-        <div className={style.containerAuth}>
+       
           <>
           <>
             {userActive.length>0&&userActive[0].user.functions==='admin'?
-              <Link className={style.link} to="/admin/controlpanel">Control Panel</Link>
+              <Link className={style.link} to="/admin/controlpanel"><h3>Control Panel</h3></Link>
             :null
             
           }
@@ -75,7 +75,7 @@ export default function NavBar(props) {
               </div>
             </Link>
           </>
-        </div>
+      
       ) : (
         
 

@@ -13,8 +13,8 @@ export default function HistoryPurchase() {
     return (
         <>
             {userActive[0].user?.shoppingCars
-                ? <div>
-            <h2 className='title'>This your history purchase</h2>
+                ? <>
+            
             {userActive[0].user.shoppingCars?.map((car) => {
                 return (
                     <div className="container-purchase" key={car.payment_id}>
@@ -26,7 +26,7 @@ export default function HistoryPurchase() {
                 </div>
             )
         })}
-      </div>
+      </>
                 : <div className="container-LoginAuth0">
                    <h2 className='title'>You have no purchace...</h2>
                 </div>

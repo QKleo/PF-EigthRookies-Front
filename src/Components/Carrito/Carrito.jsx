@@ -11,22 +11,20 @@ import { useEffect } from "react";
 export default function Carrito() {
   const navigate = useNavigate()
   const inCart = useSelector((state) => state.inCart);
-  // const userInfo = useSelector((state) => state.userInfo);
-  // const address = userInfo?.address || "";
-  const [address, setAddress] = useState('');
+  const userActive=useSelector(state=>state.userActive)
   const dispatch = useDispatch();
   const {isAuthenticated, loginWithRedirect, user} = useAuth0();
  
   function handleOnClick(e){
     e.preventDefault();
     if (isAuthenticated) {
-      if (address && address.length) {
-        dispatch(postAllOrders({ user: user.email, address: address}));
+      if (userActive[0].user.address && userActive[0].user.address.length > 0) {
+        dispatch(postAllOrders({ user: user.email}));
         setTimeout(() => {
           return navigate(`/checkout`);
         }, 1000);
       } else {
-      return messageError("Address is required")
+      return messageError("Please set delivery address in your Profile")
       }
     } else {
   return loginWithRedirect();}
@@ -43,9 +41,6 @@ export default function Carrito() {
     };
   }
 
-  const handleChange = (e) => {
-    setAddress(e.target.value)
-  }
 
   return (
     
@@ -67,11 +62,7 @@ export default function Carrito() {
           <Product products={e} key={e.id}/>
       ))}
       </div>
-        {isAuthenticated ?
-        <h1 style={{display: "flex"}}>
-          Address: <input style={{width: "40vw"}} onChange={handleChange} value={address}></input>
-        </h1> : 
-        <></>}
+      
       <button className={s.btnvolver} onClick={(e) => handleOnClick(e)}>
       {"Checkout"}
       </button>
