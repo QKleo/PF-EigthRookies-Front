@@ -3,29 +3,35 @@ import React, { useEffect, useState } from 'react';
 // import Failure from './Failure';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { changeOrderStatus } from '../../Redux/actionsCarrito';
+import { changeOrderStatus, getOrder, getUserInfo } from '../../Redux/actionsCarrito';
 import PreviewCard from '../PreviewCard/PreviewCard';
+import { useAuth0 } from '@auth0/auth0-react';
 import s from './preview.module.css'
 
 export default function Preview() {
   const {purchaseId} = useParams();
+  const {user, isAuthenticated} = useAuth0();
   const dispatch = useDispatch();
-  const [res, setRes] = useState();
-  const [render, setRender] = useState(true);
-  const [status, setStatus] = useState(false);
-  const resPostAllOrders = useSelector((state) => state.resPostAllOrders);
   const resChangeOrderStatus = useSelector((state) => state.resChangeOrderStatus);
-  const products = useSelector((state) => state.inCart);
-  const address = resPostAllOrders?.address || "";
-
-  console.log("soy 0", resChangeOrderStatus)
+  const inCart = useSelector((state) => state.inCart);
+  const products = useSelector((state) => state.finished);
+  const userInfo = useSelector((state) => state.userInfo);
+  const address = userInfo?.address || "";
 
   useEffect(() => {
-    if(products && products.length){
-    const ordersIds = products.map((e) => e.orders[0].id);
+    if(isAuthenticated && inCart.length > 0){
+    const ordersIds = inCart.map((e) => e.orders[0].id);
     dispatch(changeOrderStatus({purchaseId: purchaseId, ordersIds: ordersIds}));
     }
-  }, [products]);
+  }, [ isAuthenticated, inCart]);
+
+  useEffect(() => {
+    if(isAuthenticated){
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+      dispatch(getOrder({status: "finished", user: user.email, purchaseId: purchaseId}))
+      dispatch(getUserInfo(user.email))
+    }
+  }, [isAuthenticated, resChangeOrderStatus]);
 
 var today = new Date();
 
@@ -62,7 +68,7 @@ var date = today.getFullYear()+'-'+(today.getMonth()+2)+'-'+today.getDate();
             <h4>Cart price: ${resChangeOrderStatus && resChangeOrderStatus.fullPrice}</h4>
           )}
           {products && products?.length > 0 && (
-            <h4>Shipping cost: ${"$200"}</h4>
+            <h4>Shipping cost: {"$200"}</h4>
           )}
           {resChangeOrderStatus && resChangeOrderStatus?.fullPrice && (
             <h4>

@@ -35,7 +35,8 @@ export default function PurchasePage() {
 
         //Hago el Post de MercadoPago
           axios.post('http://localhost:3001/mercadopay', {
-              carrito: item,
+            carrito: item,
+            userEmail: user.email
           }).then((r) => {
             if (r) {
               setUrl(r.data.url);
