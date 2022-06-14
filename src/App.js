@@ -29,9 +29,11 @@ function App() {
   const userActive = useSelector((state) => state.userActive);
   const dispatch = useDispatch();
   const inCart = useSelector((state) => state.inCart);
+  const resPostOrder = useSelector((state) => state.postOrder);
   
   useMemo(() => {
-    if(isAuthenticated){
+    if(isAuthenticated && userActive.length > 0){
+      console.log(userActive, "soy useractive")
     const cart = window.localStorage.getItem("cartItems");
     if(cart){
       var parsedCart = JSON.parse(cart);
@@ -43,10 +45,11 @@ function App() {
       }
     }
   }
-  ,[isAuthenticated])
+  ,[isAuthenticated, userActive])
 
   useEffect(() => {
-    if(isAuthenticated){
+    if(isAuthenticated && userActive.length > 0){
+      console.log("entre al useEffect")
       dispatch(getOrder({ status: 'inCart', user: user.email }))
 
     }
@@ -63,7 +66,7 @@ function App() {
       }));
     }
 
-  }, [isAuthenticated, userActive.length]);
+  }, [isAuthenticated, userActive, resPostOrder]);
 
   return (
     <div>

@@ -67,7 +67,6 @@ function Landing() {
 
   return (
     <div>
-      { console.log(userActive)}
     <h1>Welcome to The Rookies!</h1>
 
       <EmblaCarousel slides={slides} />  
