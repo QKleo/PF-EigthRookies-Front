@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { upDateProfileUser } from "../../Redux/actions"
+import '../Login/login.css'
 
 export default function(){
     const userActive=useSelector(state=>state.userActive)
@@ -13,10 +14,9 @@ export default function(){
         address:userActive[0].user?userActive[0].user.address:'',
         phone:userActive[0].user?userActive[0].user.phone:'',
         postal_code:userActive[0].user?userActive[0].user.postal_code:'',
-        //shoppingCars:userActive[0].user.shoppingCars?userActive[0].user.shoppingCars:'',
+        shoppingCars:userActive[0].user.shoppingCars?userActive[0].user.shoppingCars:'',
     })
     const dispatch=useDispatch()
-    console.log(userActive)
 
     function handleOnChange(e){
         e.preventDefault(e)
@@ -34,9 +34,9 @@ export default function(){
     }
 
     return(
-        <div>
+        <div className="container-LoginAuth0">
          
-            <h4>Edit your profile</h4>
+            <h2 className='title'>Edit your profile</h2>
             <form action=""autoComplete="off">
             <div>
                 <label htmlFor="">first_name</label>
@@ -64,15 +64,9 @@ export default function(){
                 onChange={(e)=>{handleOnChange(e)}}/>
             </div>
 
-
-
-
-
-
             </form>
-            {console.log(userData)}
             <div>
-                <button onClick={(e)=>handleOnClick(e)}>submit</button>
+                <button className='btnBlue' onClick={(e)=>handleOnClick(e)}>Submit changes</button>
             </div>
         </div>
     )

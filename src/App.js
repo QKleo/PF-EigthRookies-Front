@@ -19,12 +19,14 @@ import { postOrder , getOrder} from './Redux/actionsCarrito';
 import FormUser from './Components/Users/FormUser'
 
 import Preview from './Components/Mercadopago/Preview';
+import { findOrCreateUser } from './Redux/actions';
 
 
 
 
 function App() {
   const {isAuthenticated, user} = useAuth0();
+  const userActive = useSelector((state) => state.userActive);
   const dispatch = useDispatch();
   const inCart = useSelector((state) => state.inCart);
   
@@ -48,7 +50,20 @@ function App() {
       dispatch(getOrder({ status: 'inCart', user: user.email }))
 
     }
-  }, [dispatch,isAuthenticated]);
+    if(userActive[0]==='banned'){isAuthenticated=false}
+   
+    if (isAuthenticated && !userActive.length) {
+      dispatch(findOrCreateUser({
+        email: user.email,
+        first_name: user.given_name || user.nickname,
+        last_name: user.family_name || undefined,
+        image: user.picture,
+        
+
+      }));
+    }
+
+  }, [isAuthenticated, userActive.length]);
 
   return (
     <div>

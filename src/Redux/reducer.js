@@ -1,4 +1,7 @@
-import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER, GET_ORDERS, DELETE_ORDER, PUT_ORDER, POST_ALL_ORDERS} from "./actionsCarrito"
+
+
+import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER, GET_ORDERS, DELETE_ORDER, PUT_ORDER, POST_ALL_ORDERS, CHANGE_ORDER_STATUS, GET_USER_INFO} from "./actionsCarrito"
+
 
 import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
@@ -31,6 +34,12 @@ const initialState = {
     deleted: [],
     resPutOrder: [],
     users:[],
+
+
+    resPostAllOrders: {},
+    resChangeOrderStatus: {},
+    userInfo: {}
+
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -210,6 +219,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 resPostAllOrders: payload,
             }
+        case GET_USER_INFO:
+            return {
+                ...state,
+                userInfo: payload
+            } 
         case CREATEPRODUCT:
             return {
                 ...state,

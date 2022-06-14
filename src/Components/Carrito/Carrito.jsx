@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Product from "../Product/Product";
 import s from "../Home/home.module.css";
-import {clearCart, deleteOrder, postAllOrders} from "../../Redux/actionsCarrito";
+import {clearCart, deleteOrder, getOrder, postAllOrders} from "../../Redux/actionsCarrito";
 import { messageError } from "../Herramientas/MessageBox";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Carrito() {
   const navigate = useNavigate()
@@ -15,7 +16,6 @@ export default function Carrito() {
   const [address, setAddress] = useState('');
   const dispatch = useDispatch();
   const {isAuthenticated, loginWithRedirect, user} = useAuth0();
-
  
   function handleOnClick(e){
     e.preventDefault();
@@ -26,7 +26,7 @@ export default function Carrito() {
           return navigate(`/checkout`);
         }, 1000);
       } else {
-      return messageError("Addres is required")
+      return messageError("Address is required")
       }
     } else {
   return loginWithRedirect();}
