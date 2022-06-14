@@ -47,7 +47,7 @@ export default function Product(props) {
   }
   
   return (
-    <div className={a.cardContainer}>
+    <div  className={a.cardContainer}>
          <div style={{ marginTop: "20px", alignItems: "center" }}>
         <Link to={`/products/${products.id}`}>
           <img
@@ -62,6 +62,7 @@ export default function Product(props) {
       <Link to={`/products/${products.id}`}>
         <h4 style={{ textAlign: "center", color: "black" }}>
           {products.name.replace(/[#-]/g, " ")}
+
         </h4>
       </Link>
 
@@ -77,6 +78,7 @@ export default function Product(props) {
           <button className={s.btnLand} onClick={() => updateCartHandler(products)}>
             <AiOutlineShoppingCart className={s.cartLogo} />
           </button>
+
           
           {(products.quantity >= 1 || products.orders) && 
           <>
@@ -87,11 +89,12 @@ export default function Product(props) {
           </>
           }
 
-        
+
           
           
         </div>
-      
+        <h4> In stock: {products.amount}</h4>
+
     </div>
   )
 }
