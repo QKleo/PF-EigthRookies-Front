@@ -51,7 +51,8 @@ export const putOrder = (order) => async (dispatch) => {
     var {data} = await axios.put(`http://localhost:3001/order`, {
         amount: order.amount,
         productId: order.productId,
-        status: order.status
+        status: order.status,
+        user: order.user
       })
     return dispatch({
         type: PUT_ORDER,

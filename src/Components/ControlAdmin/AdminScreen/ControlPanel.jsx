@@ -5,6 +5,7 @@ import ProductsForm from '../AdminComponets/ProductsForms'
 import CategoryForm from "../AdminComponets/CategoryForms"
 import { obtenerTodosProducts,obtenerTodosCategory } from "../../../Redux/actions"
 import s from "../AdminComponets/createProductScreen.module.css"
+import UsersForm from "../AdminComponets/UsersForms"
 
 export default function ControlPanel(){
     const Allproduct=useSelector((state)=>state.Allproduct)
@@ -47,7 +48,7 @@ export default function ControlPanel(){
         </div>              
             {localState.product&&<ProductsForm/>}
             {localState.category&&<CategoryForm/>}    
-
+            {localState.users&&<UsersForm/>}
         
         </div>   
     )

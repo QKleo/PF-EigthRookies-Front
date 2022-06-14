@@ -18,7 +18,7 @@ export default function ProductDetail() {
   const product = useSelector((state) => state.product);
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  console.log("isAuthenticated en product detail", isAuthenticated)
   useEffect(() => {
     dispatch(axiosDataId(id));
   }, [id, dispatch]);

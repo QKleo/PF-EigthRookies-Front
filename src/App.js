@@ -15,8 +15,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch , useSelector } from 'react-redux';
 import { postOrder , getOrder} from './Redux/actionsCarrito';
+
+import FormUser from './Components/Users/FormUser'
+
 import Preview from './Components/Mercadopago/Preview';
 import { findOrCreateUser } from './Redux/actions';
+
 
 
 
@@ -25,9 +29,11 @@ function App() {
   const userActive = useSelector((state) => state.userActive);
   const dispatch = useDispatch();
   const inCart = useSelector((state) => state.inCart);
+  const resPostOrder = useSelector((state) => state.postOrder);
   
   useMemo(() => {
-    if(isAuthenticated){
+    if(isAuthenticated && userActive.length > 0){
+      console.log(userActive, "soy useractive")
     const cart = window.localStorage.getItem("cartItems");
     if(cart){
       var parsedCart = JSON.parse(cart);
@@ -39,10 +45,11 @@ function App() {
       }
     }
   }
-  ,[isAuthenticated])
+  ,[isAuthenticated, userActive])
 
   useEffect(() => {
-    if(isAuthenticated){
+    if(isAuthenticated && userActive.length > 0){
+      console.log("entre al useEffect")
       dispatch(getOrder({ status: 'inCart', user: user.email }))
 
     }
@@ -59,7 +66,7 @@ function App() {
       }));
     }
 
-  }, [isAuthenticated, userActive.length]);
+  }, [isAuthenticated, userActive, resPostOrder]);
 
   return (
     <div>
@@ -76,7 +83,7 @@ function App() {
 
 
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />
-
+        <Route exact path='/edit/profile' element={<FormUser/>}/>
 
         <Route exact path='/products/carrito' element={<Carrito />} />
       </Routes>
