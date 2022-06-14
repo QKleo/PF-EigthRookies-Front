@@ -8,6 +8,7 @@ import { axiosDataId } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { messageSuccess } from "../Herramientas/MessageBox";
 import { AiOutlineShoppingCart} from "react-icons/ai";
+import Reviews from "../Review/Reviews";
 
 
 export default function ProductDetail() {
@@ -88,6 +89,26 @@ export default function ProductDetail() {
           {" "}
           <AiOutlineShoppingCart className={s.cartLogo} />
         </button>
+      </div>
+      <hr/>
+      <div>
+        <Reviews productId={product.id} />
+      </div>
+      <div>
+        {
+          product.reviews?.map(element =>(
+            <div key={element.id}>
+              
+              <label style={{textAligne:'center'}}>{element.title}</label> 
+              <textarea 
+              value={element.content} 
+              rows="3" cols="70"
+              readonly/>
+              {/* <span style={{fontSize:'18px'}}>{element.content}</span> */}
+
+            </div>
+          ))
+        }
       </div>
     </div>
   );
