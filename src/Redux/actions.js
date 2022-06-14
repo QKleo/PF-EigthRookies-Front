@@ -23,7 +23,8 @@ export const CREARCATEGORY = 'CREARCATEGORY';
 export const CLEANUSER='CLEANUSER';
 export const UPDATEPROFILEUSER='UPDATEPROFILEUSER';
 export const TODOSUSERS='TODOSUSERS';
-export const UPDATEFUNCTION='UPDATEFUNCTION';
+export const UPDATEFUNCTION = 'UPDATEFUNCTION';
+export const GET_PAYMENT_ID = 'GET_PAYMENT_ID'
 
 const URL = 'http://localhost:3001';
 
@@ -60,6 +61,16 @@ export function findProduct(name) {
         dispatch({
             type: SEARCH_PRODUCT,
             payload: product
+        });
+    };
+}
+
+export function getPayId(payment_id) {
+    return async function (dispatch) {
+        const pay = await axios.get(`http://localhost:3001/purchases/${payment_id}`);
+        dispatch({
+            type: GET_PAYMENT_ID,
+            payload: pay.data
         });
     };
 }
