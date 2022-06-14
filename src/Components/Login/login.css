@@ -1,31 +1,59 @@
 @import url('../../Global.module.css');
 .container-index {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   min-height: 88.7vh;
   background-color: var(--secondary-color);
 }
 
 .container-LoginAuth0 {
   margin: 20px;
-  margin-bottom: 0px;
   background-color: #fff;
   display:flex;
   flex-direction: column;
   align-items: center;
-  max-width: 700px;
+  width: auto;
   height: max-content;
   padding: 25px 30px;
   border-radius: 5px;
 }
 
-.title-Auth0{
-  margin-bottom: 10px;
+.container-purchase {
+  margin: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: max-content;
+  padding: 5px;
+  border: solid 1px var(--secondary-color);
+  border-radius: 5px;
+}
+
+.title {
+  color: var(--primary-color);
+}
+
+.btnBlue {
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+  background: var(--secondary-color);
+  border-radius: 4px;
+  color: var(--primary-color);
   font-family: var(--primary-font);
-  font-size: 25px;
-  font-weight: 800;
-  position: relative;
+  padding: 12px 28px;
+    font-style: normal;
+    font-weight: var(--font-weight);
+    font-size: var(--btn-font-size);
+    transition-duration: 0.7s;
+  }
+  
+  .btnLogout:hover {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 .btnLogout {
