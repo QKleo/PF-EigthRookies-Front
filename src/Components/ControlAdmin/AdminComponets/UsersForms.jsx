@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux/es/exports"
 import { useSelector } from "react-redux/es/exports"
 import { useEffect } from "react"
 import { todosUsers,upDateFunction, vaciarRespuesta } from "../../../Redux/actions"
-
+import OrdersTask from "./OrdersTask"
 
 export default function UsersForm(){
     const dispatch=useDispatch()
@@ -76,7 +76,9 @@ export default function UsersForm(){
             <div>
                 <button onClick={(e)=>{handleOnClick(e)}}>submit</button>
             </div>
-          
+            <div>
+                <OrdersTask/>
+            </div>
         </div>
     )
 }

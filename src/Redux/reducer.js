@@ -10,7 +10,7 @@ import {
     FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER,
     UPDATEPROFILEUSER,
     TODOSUSERS,
-    UPDATEFUNCTION, GET_PAYMENT_ID
+    UPDATEFUNCTION, GET_PAYMENT_ID ,GET_ALLORDERS ,UPDATEORDER
 } from "./actions";
 
 import {OBTENER_MATCH, CLEAN_COMMENT} from "./actionReviews";
@@ -39,7 +39,8 @@ const initialState = {
     resPostAllOrders: {},
     resChangeOrderStatus: {},
     userInfo: {},
-    match:false
+    match:false,
+    AllOrders:[],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -269,7 +270,17 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 match: payload
 
-            };   
+            }
+        case GET_ALLORDERS:
+            return{
+                ...state,
+                AllOrders:payload
+            }
+        case UPDATEORDER:
+            return{
+                ...state,
+                Respuesta:payload
+            }   
 
         default: return state;
     }
