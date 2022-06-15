@@ -1,34 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import s from "../../Global.module.css";
 import {
-  addToCart,
-  clearCart,
-  removeFromCart,
+  addToCart, getOrder, postOrder,
 } from "../../Redux/actionsCarrito";
 import { axiosDataId } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { messageSuccess } from "../Herramientas/MessageBox";
-import { AiOutlineShoppingCart} from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
+import Reviews from "../Review/Reviews";
+
+
+import { useAuth0 } from '@auth0/auth0-react';
+import { cleanComment, obtenerMatch } from '../../Redux/actionReviews';
+import { AiOutlineStar} from 'react-icons/ai';
 
 
 export default function ProductDetail() {
+  const { isAuthenticated, user } = useAuth0();
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
   const product = useSelector((state) => state.product);
+  const match = useSelector((state) => state.match)
   const { id } = useParams();
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(axiosDataId(id));
-  }, [id, dispatch]);
+    if(isAuthenticated) dispatch(obtenerMatch(user.email, id));
+    return ()=>{dispatch(cleanComment())}
+  }, [id, dispatch, isAuthenticated]);
 
-  const updateCartHandler = (product) => {
+  const updateCartHandler = async (products) => {
     // checkeo el stock y luego
-    dispatch(addToCart(product));
-    messageSuccess("Product added to cart");
-  };
-
+    if (isAuthenticated) {
+      await dispatch(postOrder({ ...products, amount: products.quantity, email: user.email, productId: products.id, status: "inCart" }))
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+    } else {
+      dispatch(addToCart(products)) // local storage
+    }
+    messageSuccess(`${products.name}  added to cart`)
+  }
+  
   return loading ? (
     <>
       <p> Calling to the rookies...</p>
@@ -39,12 +54,12 @@ export default function ProductDetail() {
     </>
   ) : (
     <div className={s.productContainer}>
-      <h1 style={{fontSize:"45px"}}>{product?.name}</h1>
+      <h1 style={{ fontSize: "45px" }}>{product?.name}</h1>
 
       <div className={s.imgproducts}>
         <div className={s.leftproducts}>
-          <img
-            style={{ border: "2px solid black", borderRadius: "10px"}}
+          {/* <img
+            style={{ border: "2px solid black", borderRadius: "10px" }}
             src={product.image}
             width="65"
             height="60"
@@ -55,7 +70,7 @@ export default function ProductDetail() {
             src={product.image}
             width="66"
             height="60"
-            
+            alt={product.name}
           />
           <img
             style={{ border: "2px solid black", borderRadius: "10px" }}
@@ -63,16 +78,16 @@ export default function ProductDetail() {
             width="65"
             height="60"
             alt="products"
-          />
+          /> */}
         </div>
 
         <div>
           {/* <h1>{product?.name}</h1> */}
-          <img src={product.image} width="450px" height="400px" alt="" />
+          <img src={product.image} width="400px" height="350px" alt="" />
         </div>
       </div>
       {/* <div className={s.categories}>{product?.category}</div> */}
-      <div className={s.description}>{product.description}</div>
+      <div className={s.description}> <h1>Details:</h1> {product.description}</div>
 
       <div
         style={{
@@ -90,6 +105,51 @@ export default function ProductDetail() {
           {" "}
           <AiOutlineShoppingCart className={s.cartLogo} />
         </button>
+      </div>
+      <hr />
+      {
+        match ? <div>
+          <Reviews productId={product.id} />
+        </div> :
+          null
+      }
+
+      <div>
+        {
+          product.reviews?.map(element => (
+         
+         
+         
+         
+         <div className={s.comentario} key={element.id}>
+              
+              {/* {element.rate === 1 ? "⭐" :
+               element.rate === 2 ? "⭐⭐":
+               element.rate === 3 ? "⭐⭐⭐":
+               element.rate === 4 ? "⭐⭐⭐⭐":
+               element.rate === 5 ? "⭐⭐⭐⭐⭐":
+               null
+               } */}
+              
+             <div className={s.comentario2}>  
+             {element.rate === 1 ? "⭐" :
+               element.rate === 2 ? "⭐⭐":
+               element.rate === 3 ? "⭐⭐⭐":
+               element.rate === 4 ? "⭐⭐⭐⭐":
+               element.rate === 5 ? "⭐⭐⭐⭐⭐":
+               null
+              }
+              <label style={{ textAligne: 'center' }}> {element.title} </label>
+              </div>
+             <div>   <textarea 
+                style={{ resize: 'none', borderRadius:'10px' }}
+                value={element.content}
+                rows="3" cols="70"
+                readonly />    </div>
+             
+            </div>
+          ))
+        }
       </div>
     </div>
   );

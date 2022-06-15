@@ -23,11 +23,11 @@ function CardDiscount({ image, name, id, price, discount }) {
                     
                 </fieldset>
                 <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
-                    <button>Ver más</button>
+                    <button>Ver más</button> 
                 </Link>
             
             </div>
-            <h1>{name.replace(/[#-]/g, " ")}</h1>
+            <h4 style={{ textAlign: "center", color: "black" }}>{name.replace(/[#-]/g, " ")}</h4>
             <del><h2 style={{color: "black"}}>${price}</h2></del>
         </div>
     );
