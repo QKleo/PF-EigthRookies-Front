@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getPayId } from '../../Redux/actions'
 import {useNavigate} from 'react-router-dom'
 import '../Login/login.css'
+import s from '../Mercadopago/preview.module.css'
 
 export default function HistoryPurchase() {
 
@@ -22,7 +23,7 @@ export default function HistoryPurchase() {
             
             {userActive[0].user.shoppingCars?.map((car) => {
                 return (
-                    <div className="container-purchase" key={car.payment_id}>
+                    <div className={s.containerDiv} key={car.payment_id}>
                         <p>Status: <strong>{car.status}</strong></p>
                         <p>Order Nº: <strong>{ car.payment_id}</strong></p>
                         <p>Payment type: <strong>{ car.payment_type}</strong></p>
@@ -36,7 +37,7 @@ export default function HistoryPurchase() {
         })}
       </>
                 : <div className="container-LoginAuth0">
-                   <h2 className='title'>You have no purchace...</h2>
+                   <h2 className='title'>You have no purchase...</h2>
                 </div>
         }
         

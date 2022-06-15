@@ -133,3 +133,28 @@
     align-content: center;
     align-items: center;
 }
+
+.barDiv{
+    background : blue;
+}
+
+.logo {
+    height: 42px;
+    width: 50px;
+    transition: all .3s ease-in-out;
+    color: white;
+}
+
+.asdasdsa{
+
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around
+}
+
+.generalContainer{
+    margin: 5%;
+    padding: 5%;
+    box-shadow: 5px 5px 10px rgb(0 40 0 / 50%);
+}

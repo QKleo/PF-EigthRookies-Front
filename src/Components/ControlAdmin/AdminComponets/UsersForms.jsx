@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { todosUsers,upDateFunction, vaciarRespuesta } from "../../../Redux/actions"
 import s from "./createProductScreen.module.css"
 import { messageSuccess } from "../../Herramientas/MessageBox";
-
+import {IoMdColorFill} from 'react-icons/io'; 
 
 export default function UsersForm(){
     const dispatch=useDispatch()
@@ -44,11 +44,15 @@ export default function UsersForm(){
     }
 
     return(
-        <div className={s.userForm}>
-            <div>
-            <h2 style={{color:'green'}}>Color green = Role Admin</h2>
-            <h2 style={{color:'blue'}}>Color blue = Role User</h2>
-            <h2 style={{color:'red'}}>Color red = Role Banned</h2>
+        <div className={s.generalContainer}>
+            
+            <div className={s.asdasdsa}>
+            <div style={{background:'#057605', borderRadius: "25px"}}><IoMdColorFill className={s.logo}/></div>
+            <h4>Role Admin</h4>
+            <div style={{background:'#094067', borderRadius: "25px"}}><IoMdColorFill className={s.logo}/></div>
+            <h4> Role Buyer</h4>
+            <div style={{background:'#d90808', borderRadius: "25px"}}><IoMdColorFill className={s.logo}/></div>
+            <h4>Role Banned</h4>
             </div>
             <form action=""autoComplete="off">
                 <div className={s.updateUser}>
