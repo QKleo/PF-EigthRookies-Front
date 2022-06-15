@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux/es/exports"
 import { useSelector } from "react-redux/es/exports"
 import { useEffect } from "react"
 import { todosUsers,upDateFunction, vaciarRespuesta } from "../../../Redux/actions"
+import s from "./createProductScreen.module.css"
+import { messageSuccess } from "../../Herramientas/MessageBox";
 
 
 export default function UsersForm(){
@@ -28,25 +30,28 @@ export default function UsersForm(){
         e.preventDefault(e)
         dispatch(upDateFunction(localSate.email,{newfunctions:localSate.newfunctions}))
         dispatch(vaciarRespuesta())
+        messageSuccess(`User role updated`)
     }
 
     return(
-        <div>
-            <h6 style={{color:'green'}}>o-admin</h6>
-            <h6 style={{color:'blue'}}>o-usuario</h6>
-            <h6 style={{color:'red'}}>o-banned</h6>
-            <form action=""autoComplete="off">
+        <div className={s.userForm}>
             <div>
-                <select name="newfunctions" id="" onChange={(e)=>{handleOnChange(e)}}>
-                    <option value="">seleccione functions</option>
-                    <option value="usuario">usuario</option>
-                    <option value="admin">admin</option>
-                    <option value="banned">banned</option>
-                </select>
+            <h2 style={{color:'green'}}>Color green = Role Admin</h2>
+            <h2 style={{color:'blue'}}>Color blue = Role User</h2>
+            <h2 style={{color:'red'}}>Color red = Role Banned</h2>
             </div>
-            <div>
+            <form action=""autoComplete="off">
+
+                <select className={s.selectUser} name="newfunctions" id="" onChange={(e)=>{handleOnChange(e)}}>
+                    <option value="">Change user role</option>
+                    <option value="usuario">Buyer</option>
+                    <option value="admin">Admin</option>
+                    <option value="banned">Banned</option>
+                </select>
+          
+  
                 <select name="email" id=""onChange={(e)=>{handleOnChange(e)}}>
-                    <option value="">users</option>
+                    <option value="">Users</option>
                     {users.length>0&&users.map((e,i)=>{
                         return <option key={i} value={e.email}
                         style={{color:e.functions==='admin'?'green':e.functions==='usuario'?'blue':'red'}}
@@ -56,12 +61,12 @@ export default function UsersForm(){
                         </option>
                     })}
                 </select>
-            </div>
+     
 
             </form>
-            <div>
-                <button onClick={(e)=>{handleOnClick(e)}}>submit</button>
-            </div>
+        
+                <button className={s.button} onClick={(e)=>{handleOnClick(e)}}>Submit</button>
+     
           
         </div>
     )
