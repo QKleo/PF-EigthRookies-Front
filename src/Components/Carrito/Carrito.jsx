@@ -1,32 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Product from "../Product/Product";
-import s from "../Home/home.module.css";
-import {clearCart, deleteOrder, getOrder, postAllOrders} from "../../Redux/actionsCarrito";
+import s from "./carrito.module.css";
+import {clearCart, deleteOrder, postAllOrders} from "../../Redux/actionsCarrito";
 import { messageError } from "../Herramientas/MessageBox";
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState } from "react";
-import { useEffect } from "react";
 
 export default function Carrito() {
   const navigate = useNavigate()
   const inCart = useSelector((state) => state.inCart);
-  // const userInfo = useSelector((state) => state.userInfo);
-  // const address = userInfo?.address || "";
-  const [address, setAddress] = useState('');
+  const userActive=useSelector(state=>state.userActive)
   const dispatch = useDispatch();
   const {isAuthenticated, loginWithRedirect, user} = useAuth0();
  
   function handleOnClick(e){
     e.preventDefault();
     if (isAuthenticated) {
-      if (address && address.length) {
-        dispatch(postAllOrders({ user: user.email, address: address}));
+      if (userActive[0].user.address && userActive[0].user.address.length > 0) {
+        dispatch(postAllOrders({ user: user.email}));
         setTimeout(() => {
           return navigate(`/checkout`);
         }, 1000);
       } else {
-      return messageError("Address is required")
+      return messageError("Please set delivery address in your Profile")
       }
     } else {
   return loginWithRedirect();}
@@ -36,6 +32,7 @@ export default function Carrito() {
   const handleOnRemove = () => {
     if(isAuthenticated){
       inCart?.map((e) => {
+        
         return dispatch(deleteOrder(e.orders[0].id))
       })
     } else {
@@ -43,9 +40,6 @@ export default function Carrito() {
     };
   }
 
-  const handleChange = (e) => {
-    setAddress(e.target.value)
-  }
 
   return (
     
@@ -67,11 +61,7 @@ export default function Carrito() {
           <Product products={e} key={e.id}/>
       ))}
       </div>
-        {isAuthenticated ?
-        <h1 style={{display: "flex"}}>
-          Address: <input style={{width: "40vw"}} onChange={handleChange} value={address}></input>
-        </h1> : 
-        <></>}
+      
       <button className={s.btnvolver} onClick={(e) => handleOnClick(e)}>
       {"Checkout"}
       </button>

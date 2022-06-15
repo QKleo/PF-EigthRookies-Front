@@ -51,7 +51,8 @@ export const putOrder = (order) => async (dispatch) => {
     var {data} = await axios.put(`http://localhost:3001/order`, {
         amount: order.amount,
         productId: order.productId,
-        status: order.status
+        status: order.status,
+        user: order.user
       })
     return dispatch({
         type: PUT_ORDER,
@@ -61,7 +62,7 @@ export const putOrder = (order) => async (dispatch) => {
 
 export const postAllOrders = (order) => async (dispatch) => {
     var {data} = await axios.post(`http://localhost:3001/order/postAllOrders`, order)
-    console.log(data, "data de actionsCarrito")
+
     return dispatch({
         type: POST_ALL_ORDERS,
         payload: data

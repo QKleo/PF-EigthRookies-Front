@@ -4,13 +4,13 @@ import Product from "../Product/Product";
 import estilo from './category.module.css'
 import { fetchData, axiosCategories } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { FcSearch } from 'react-icons/fc';
 
 export default function ProductScreen() {
   const navigate = useNavigate()
   const { search } = useLocation();
   const dispatch = useDispatch();
 
-  // const loading = useSelector(state => state.loading)
   const pages = useSelector(state => state.pages)
   const error = useSelector(state => state.error)
   const products = useSelector(state => state.products)
@@ -81,17 +81,18 @@ function handleOnClick(e){
 }
 
   return (
-    // loading ? (
-    //   <>
-    //     <p> Calling to the rookies...</p>
-    //   </>
-    // ) :
+     products && products.length<1 ? (
+      <div className={estilo.size}>
+       
+        <h1 style={{margin: "100px"}}> <FcSearch style={{ fontSize: '100px'}}/> There are no products that match your search</h1>
+      </div>
+    ):
       error ? (
-        <>
+        <div className={estilo.size}>
           <p> {error}</p>
-        </>
+        </div>
       ) :
-        <>
+        <div className={estilo.size}>
           <div className={estilo.filterDiv}>
           <select onChange={(e) => {
             navigate(getFilterUrl({
@@ -176,7 +177,7 @@ function handleOnClick(e){
               
               ))}
             </div>
-        </>
+        </div>
   );
 
 }
