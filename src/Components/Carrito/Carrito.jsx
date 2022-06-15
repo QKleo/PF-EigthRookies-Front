@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Product from "../Product/Product";
-import s from "../Home/home.module.css";
-import {clearCart, deleteOrder, getOrder, postAllOrders} from "../../Redux/actionsCarrito";
+import s from "./carrito.module.css";
+import {clearCart, deleteOrder, postAllOrders} from "../../Redux/actionsCarrito";
 import { messageError } from "../Herramientas/MessageBox";
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState } from "react";
-import { useEffect } from "react";
 
 export default function Carrito() {
   const navigate = useNavigate()

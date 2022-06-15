@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-// import Success from './Success';
-// import Failure from './Failure';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { changeOrderStatus, getOrder, getUserInfo } from '../../Redux/actionsCarrito';
@@ -36,8 +34,7 @@ export default function Preview() {
 
 var today = new Date();
 
-var date = today.getFullYear()+'-'+(today.getMonth()+2)+'-'+today.getDate();
-
+  var date = today.getFullYear() + '-' + (today.getMonth() + 2) + '-' + today.getDate();
 
   return (
     <div>

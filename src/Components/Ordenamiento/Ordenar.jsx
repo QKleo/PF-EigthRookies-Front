@@ -21,12 +21,6 @@ export default function Ordenar(props){
             <button className={o.buttonor} onClick={()=>
                 dispatch(ordenar(props.arrObj,props.arrObjAux,'price',false))}
                 >Price-Menor-mayor</button>
-        
-        
-        
         </div>
-
-
-
     )
 }

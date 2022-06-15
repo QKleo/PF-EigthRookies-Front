@@ -8,7 +8,6 @@ import {FcPaid} from 'react-icons/fc';
 export default function HistoryDetailsView() {
 
     const paymentDetails = useSelector((state) => state.paymentDetails)
-    console.log(paymentDetails)
 
   return (
       <div className={a.allContainer}>
@@ -38,17 +37,3 @@ export default function HistoryDetailsView() {
     </div>
   )
 }
-
-/* 
-product = {title: item.title,
-        unit_price: item.price,
-        quantity: item.quantity}
-
-const formatInfo = {
-            products: r.data.additional_info.items,
-            date: r.data.date_approved,
-            status: r.data.status,
-            fullPrice: r.data.transaction_amount,
-        };
-*/
-

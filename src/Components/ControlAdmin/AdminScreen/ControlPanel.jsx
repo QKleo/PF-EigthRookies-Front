@@ -1,15 +1,11 @@
 
-import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux" 
+import { useState } from "react"
 import ProductsForm from '../AdminComponets/ProductsForms'
 import CategoryForm from "../AdminComponets/CategoryForms"
-import { obtenerTodosProducts,obtenerTodosCategory } from "../../../Redux/actions"
 import s from "../AdminComponets/createProductScreen.module.css"
 import UsersForm from "../AdminComponets/UsersForms"
 
 export default function ControlPanel(){
-    const Allproduct=useSelector((state)=>state.Allproduct)
-    const Category=useSelector((state)=>state.Category)
     const[localState,setlocalState]=useState({
         createCategory:false,
         deleteCategory:false,
@@ -22,16 +18,6 @@ export default function ControlPanel(){
         users:false,
 
     })
-    const dispatch=useDispatch()
- 
-    
-
-
-    function handleOnChangeOperation(){}
-
-    function handleOnChangeSearch(){}
-
-    function handleOnClick(){}
 
     return(
         <div className={s.fullSize}> 

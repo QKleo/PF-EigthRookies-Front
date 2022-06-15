@@ -55,7 +55,7 @@ export function findOrCreateUser(user) {
 export function findProduct(name) {
     return async function (dispatch) 
     
-    {   console.log(name);
+    { 
         const res = await axios.get(`${URL}/paginado?name=${name}`);
         const product = res.data;
         dispatch({
@@ -138,7 +138,7 @@ export function vaciarProductResultAux() {
 
 export function filtrarPorPrecio(arrObj, arrObjAux, value) {
     let r = [];
-    console.log(arrObjAux, 'filtro');
+
     if (arrObjAux.length > 0) { arrObj = arrObjAux; }
     return (dispatch) => {
         r = arrObj.filter(e => e.price * 1 < value);
@@ -167,20 +167,19 @@ export function vaciarRespuesta() {
 }
 
 export function ordenar(arrObj, arrObjAux, atributo, bandera) {
-    console.log(arrObjAux, 'orden');
+
     if (arrObjAux.length > 0) { arrObj = arrObjAux; }
     let aux = [];
     let estado = [];
 
     return (dispatch) => {
         aux = arrObj.map(e => { return e[atributo]; });
-        // console.log(aux)
         if (atributo === 'name') {
             aux = aux.sort();
         }
         else if (atributo === 'price') {
             aux = ordenarBublee(aux);
-            console.log(aux);
+
 
         }
         if (bandera) { aux = aux.reverse(); }
@@ -240,7 +239,7 @@ export function createProduct(body) {
 
 export function upDateProduct(id, body) {
     return (dispatch) => {
-        console.log(id, 'voy', body, 'yendo');
+
         axios.put(`${URL}/updateproduct/${id}`, body)
             .then(() => {
                 return dispatch({
@@ -351,7 +350,3 @@ export function upDateFunction(id,body){
 
     }
 }
-
-
-
-
