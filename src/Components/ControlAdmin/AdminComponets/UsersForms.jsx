@@ -4,7 +4,9 @@ import { useDispatch } from "react-redux/es/exports"
 import { useSelector } from "react-redux/es/exports"
 import { useEffect } from "react"
 import { todosUsers,upDateFunction, vaciarRespuesta } from "../../../Redux/actions"
-
+import s from "./createProductScreen.module.css"
+import { messageSuccess } from "../../Herramientas/MessageBox";
+import {IoMdColorFill} from 'react-icons/io'; 
 
 export default function UsersForm(){
     const dispatch=useDispatch()
@@ -32,6 +34,7 @@ export default function UsersForm(){
         if(usersMostra.length>0){
         dispatch(upDateFunction(localSate.emailInput,{newfunctions:localSate.newfunctions}))
         dispatch(vaciarRespuesta())}
+        messageSuccess(`User role updated`)
     }
     if(localSate.emailInput.length===0&&users.length>0){
         usersMostra=users
@@ -41,26 +44,32 @@ export default function UsersForm(){
     }
 
     return(
-        <div >
-            <h3 style={{color:'green'}}>o-admin</h3>
-            <h3 style={{color:'blue'}}>o-usuario</h3>
-            <h3 style={{color:'red'}}>o-banned</h3>
-            <form action=""autoComplete="off" style={{display:"flex", marginTop: "20px", alignItems: "center", justifyContent:"center", gap:"20px" }}>
-            <div>
+        <div className={s.generalContainer}>
+            
+            <div className={s.asdasdsa}>
+            <div style={{background:'#057605', borderRadius: "25px"}}><IoMdColorFill className={s.logo}/></div>
+            <h4>Role Admin</h4>
+            <div style={{background:'#094067', borderRadius: "25px"}}><IoMdColorFill className={s.logo}/></div>
+            <h4> Role Buyer</h4>
+            <div style={{background:'#d90808', borderRadius: "25px"}}><IoMdColorFill className={s.logo}/></div>
+            <h4>Role Banned</h4>
+            </div>
+            <form action=""autoComplete="off">
+                <div className={s.updateUser}>
                 <select name="newfunctions" id="" onChange={(e)=>{handleOnChange(e)}}>
-                    <option value="">select functions</option>
-                    <option value="usuario">user</option>
-                    <option value="admin">admin</option>
-                    <option value="banned">banned</option>
+                    <option value="">Change user role</option>
+                    <option value="usuario">Buyer</option>
+                    <option value="admin">Admin</option>
+                    <option value="banned">Banned</option>
                 </select>
-            </div>
-            <div>
-                <input type="text"placeholder="search"onChange={(e)=>handleOnChange(e)}
+         
+            
+                <input type="text"placeholder="Search user..."onChange={(e)=>handleOnChange(e)}
                 name='emailInput' value={localSate.emailInput||''}/>
-            </div>
-            <div>
+         
+         
                 <select name="email" id=""onChange={(e)=>{handleOnChange(e)}}>
-                    <option value="">users</option>
+                    <option value="">Select user</option>
                     {usersMostra.length>0&&usersMostra.map((e,i)=>{
                         return <option key={i} value={e.email}
                         style={{color:e.functions==='admin'?'green':e.functions==='usuario'?'blue':'red'}}
@@ -70,12 +79,12 @@ export default function UsersForm(){
                         </option>
                     })}
                 </select>
-            </div>
-
-            </form>
-            <div>
-                <button style={{display:"flex", marginTop: "40px", alignItems: "center", justifyContent:"center", padding:"1rem", marginLeft:"47%" }} onClick={(e)=>{handleOnClick(e)}}>submit</button>
-            </div>
+                </div>
+                    </form>
+            
+        
+                <button className={s.button} onClick={(e)=>{handleOnClick(e)}}>Submit</button>
+     
           
         </div>
     )

@@ -48,16 +48,6 @@ export default function Product(props) {
   }
   
   return (
-<<<<<<< HEAD
-    <div  className={a.cardContainer}>
-         <div style={{ marginTop: "20px", alignItems: "center" }}>
-        <Link to={`/products/${products.id}`}>
-          <img
-            src={products.image}
-            alt={products.name}
-            width="220px"
-            height="220px"
-=======
     <div className={a.cardContainer}>
       <div className={a.pictureContainer}>
       <Link to={`/products/${products.id}`} className={a.maxImg}>
@@ -68,7 +58,6 @@ export default function Product(props) {
             src={products.image}
             alt={products.name}
             className={a.maxImg}
->>>>>>> a52bc0506ed0e87bde755fe5ce4fa17916fc7b6e
           />
        
   
@@ -106,13 +95,8 @@ export default function Product(props) {
           </>
           }
 
-<<<<<<< HEAD
-
-          
-=======
         
       </div>
->>>>>>> a52bc0506ed0e87bde755fe5ce4fa17916fc7b6e
           
         </div>
         <h4> In stock: {products.amount}</h4>

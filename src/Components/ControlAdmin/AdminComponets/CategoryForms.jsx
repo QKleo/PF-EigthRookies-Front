@@ -5,6 +5,7 @@ import { crearCategory } from "../../../Redux/actions";
 import { messageSuccess } from "../../Herramientas/MessageBox";
 import s from "./createProductScreen.module.css"
 
+
 export default function CategoryForm(){
 
     const dispatch=useDispatch()
