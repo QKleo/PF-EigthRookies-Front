@@ -159,10 +159,12 @@ export default function ProductsForms(){
             <button className={s.button2} onClick={()=>setformState({['new']:true,['UpDate']:false})}>Add new</button>
             <button className={s.button2} onClick={()=>setformState({['UpDate']:true,['new']:false})}>Update product</button>
             </div>
+            {formState.new || formState.UpDate ? <>
             <form action="" autoComplete="off" className={s.formSize}>
 
                 <div className={s.divInput}>
                 <label>Product name: </label>
+                <div className={s.searchProduct}>
                  <input type="text" name='name'
                  disabled={formState.new?!formState.new:
                     formState.UpDate?!formState.UpDate:true}
@@ -188,7 +190,7 @@ export default function ProductsForms(){
                                return <option value={obj.name || ''}
                                key={i}>{obj.name}</option>})}
                         </select>  
-                    }    
+                    }    </div>
                 </div>
                 <div className={s.divInput}>
                 <label>Product description: </label>
@@ -252,7 +254,7 @@ export default function ProductsForms(){
                     
                 </div>
                 <div className={s.divInput}>
-                <label>Product Amount: </label>
+                <label>Product stock: </label>
                     <input type="text"name='amount' 
                     disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
@@ -261,16 +263,17 @@ export default function ProductsForms(){
                     value={formState.amount ||''}/>
                  
                 </div>
-                <div className={s.divInput}>
-                    <label>{obj.categoryName}</label>
-                </div>
+                {formState.UpDate&& <div className={s.categorySelected}>
+                    <label>Current Category: {obj.categoryName}</label>
+                </div>}
+                
                 <div className={s.divInput}>
                 <label>Product category: </label>
                     <select name='category' 
                     disabled={formState.new?!formState.new:
                         formState.UpDate?!formState.UpDate:true}
                     onChange={(e)=>handleOnChange(e) } >
-                        <option>add category</option>
+                        <option>Select new category</option>
                         {Category.map((e,i)=>{
                                 
                             return <option value={e.id}key={i}>{e.name}</option>})}
@@ -283,8 +286,8 @@ export default function ProductsForms(){
         {formState.UpDate&&<button onClick={(e)=>handleOnClick(e)} className={s.button2}>Update product</button>}
 
         </div>
-
-      
+        </>
+             : <></>}
         
         </>
     )
