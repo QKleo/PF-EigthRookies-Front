@@ -101,12 +101,7 @@ export default function Reviews ({productId}) {
                     </div>
                     <div>
                     <label>stars</label>
-                    {/* <input 
-                    name="rate"
-                    value={review.rate}
-                    type="number" id="quantity" min="1" max="5"
-                    onChange={e=>handleChange(e)}
-                    /> */}
+                    
                     <div>
                         <strong>Star</strong>
                         <select onChange={e => {setRating(e)}}>
