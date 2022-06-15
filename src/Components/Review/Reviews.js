@@ -49,6 +49,14 @@ export default function Reviews ({productId}) {
         }
     }
 
+    function setRating(e){
+        e.preventDefault()
+        setReview({
+            ...review,
+            rate:e.target.value
+        })
+    }
+
 
    function handleChange(e){
     e.preventDefault()
@@ -93,12 +101,18 @@ export default function Reviews ({productId}) {
                     </div>
                     <div>
                     <label>stars</label>
-                    <input 
-                    name="rate"
-                    value={review.rate}
-                    type="number" id="quantity" min="1" max="5"
-                    onChange={e=>handleChange(e)}
-                    />
+                    
+                    <div>
+                        <strong>Star</strong>
+                        <select onChange={e => {setRating(e)}}>
+                            <option value=""> select... </option>
+                            <option value="1"> -1- </option>
+                            <option value="2"> -2- </option>
+                            <option value="3"> -3- </option>
+                            <option value="4"> -4- </option>
+                            <option value="5"> -5- </option>
+                        </select>
+                    </div>
                     {error.rate && <p style={{color:"red"}}>
                             {error.rate}</p>}
                     </div>

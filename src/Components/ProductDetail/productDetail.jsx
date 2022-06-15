@@ -11,9 +11,10 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import Reviews from "../Review/Reviews";
 
+
 import { useAuth0 } from '@auth0/auth0-react';
 import { cleanComment, obtenerMatch } from '../../Redux/actionReviews';
-
+import { AiOutlineStar} from 'react-icons/ai';
 
 
 export default function ProductDetail() {
@@ -117,15 +118,22 @@ export default function ProductDetail() {
         {
           product.reviews?.map(element => (
             <div key={element.id}>
-              <p>Star: {element.rate}</p>
+              
+              {element.rate === 1 ? "⭐" :
+               element.rate === 2 ? "⭐⭐":
+               element.rate === 3 ? "⭐⭐⭐":
+               element.rate === 4 ? "⭐⭐⭐⭐":
+               element.rate === 5 ? "⭐⭐⭐⭐⭐":
+               null
+               }
+              
               <label style={{ textAligne: 'center' }}>{element.title}</label>
               <textarea
                 style={{ resize: 'none' }}
                 value={element.content}
                 rows="3" cols="70"
                 readonly />
-              {/* <span style={{fontSize:'18px'}}>{element.content}</span> */}
-
+             
             </div>
           ))
         }
