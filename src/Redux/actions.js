@@ -20,29 +20,57 @@ export const ACTUALIZAR = 'ACTUALIZAR';
 export const CREATEPRODUCT = 'CREATEPRODUCT';
 export const UPDATEPRODUCT = 'UPDATEPRODUCT';
 export const CREARCATEGORY = 'CREARCATEGORY';
+export const CLEANUSER='CLEANUSER';
+export const UPDATEPROFILEUSER='UPDATEPROFILEUSER';
+export const TODOSUSERS='TODOSUSERS';
+export const UPDATEFUNCTION = 'UPDATEFUNCTION';
+export const GET_PAYMENT_ID = 'GET_PAYMENT_ID'
 
 const URL = 'http://localhost:3001';
 
 export function findOrCreateUser(user) {
-    return async function (dispatch) {
-        const res = await axios.post(`${URL}/admin/register`, user);
-        const userDB = res.data;
-        dispatch({
-            type: FIND_OR_CREATE_USER,
-            payload: [userDB]
-        });
+    return (dispatch)=> {
+        axios.post(`${URL}/admin/register`, user)
+        .then((r)=>{
+            if(r.data[0]!=='banned'){
+                dispatch({
+                    type: FIND_OR_CREATE_USER,
+                    payload: [r.data]
+                })
+
+            }else(
+                dispatch({
+                    type:FIND_OR_CREATE_USER,
+                    payload:['banned']
+                })
+            )
+
+
+        })
+      
+       
     };
 }
 
 export function findProduct(name) {
     return async function (dispatch) 
     
-    {   console.log(name);
+    { 
         const res = await axios.get(`${URL}/paginado?name=${name}`);
         const product = res.data;
         dispatch({
             type: SEARCH_PRODUCT,
             payload: product
+        });
+    };
+}
+
+export function getPayId(payment_id) {
+    return async function (dispatch) {
+        const pay = await axios.get(`http://localhost:3001/purchases/${payment_id}`);
+        dispatch({
+            type: GET_PAYMENT_ID,
+            payload: pay.data
         });
     };
 }
@@ -110,7 +138,7 @@ export function vaciarProductResultAux() {
 
 export function filtrarPorPrecio(arrObj, arrObjAux, value) {
     let r = [];
-    console.log(arrObjAux, 'filtro');
+
     if (arrObjAux.length > 0) { arrObj = arrObjAux; }
     return (dispatch) => {
         r = arrObj.filter(e => e.price * 1 < value);
@@ -139,20 +167,19 @@ export function vaciarRespuesta() {
 }
 
 export function ordenar(arrObj, arrObjAux, atributo, bandera) {
-    console.log(arrObjAux, 'orden');
+
     if (arrObjAux.length > 0) { arrObj = arrObjAux; }
     let aux = [];
     let estado = [];
 
     return (dispatch) => {
         aux = arrObj.map(e => { return e[atributo]; });
-        // console.log(aux)
         if (atributo === 'name') {
             aux = aux.sort();
         }
         else if (atributo === 'price') {
             aux = ordenarBublee(aux);
-            console.log(aux);
+
 
         }
         if (bandera) { aux = aux.reverse(); }
@@ -212,14 +239,16 @@ export function createProduct(body) {
 
 export function upDateProduct(id, body) {
     return (dispatch) => {
-        console.log(id, 'voy', body, 'yendo');
+
         axios.put(`${URL}/updateproduct/${id}`, body)
             .then(() => {
                 return dispatch({
                     type: UPDATEPRODUCT,
                     payload: ['actualizando', body.id]
-                });
-            });
+                })
+           
+            })
+            .catch((err)=>console.log(err))
     };
 }
 
@@ -270,5 +299,54 @@ export const axiosCategories = () => async (dispatch) => {
     } catch (err) {
         return dispatch({ type: 'AXIOS_FAIL', payload: getError(err) });
     }
-};
 
+};
+export function cleanUser(){
+    return(dispatch)=>{
+
+        return dispatch({
+            type:CLEANUSER,
+            payload:[]
+        })
+    }
+}
+
+export function upDateProfileUser(id,body){
+    return(dispatch)=>{
+        axios.put(`${URL}/update/profileuser/${id}`,body)
+        .then((r)=>{
+            return dispatch({
+                type:UPDATEPROFILEUSER ,
+                payload:[{user:r.data}]
+            })
+        })
+        .catch((err)=>console.log(err))
+       
+        
+    }
+}
+export function todosUsers(){
+    return(dispatch)=>{
+        axios.get(`${URL}/users`)
+        .then((r)=>{
+            return dispatch({
+                type:TODOSUSERS,
+                payload:r.data
+            })
+        })
+        .catch((err)=>console.log(err))
+    }
+}
+export function upDateFunction(id,body){
+    return (dispatch)=>{
+        axios.put(`${URL}/updatefunction/${id}`,body)
+        .then((r)=>{
+            return dispatch({
+                type:UPDATEFUNCTION,
+                payload:['update function']
+            })
+        })
+
+
+    }
+}
