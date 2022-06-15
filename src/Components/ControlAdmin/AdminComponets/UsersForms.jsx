@@ -13,8 +13,10 @@ export default function UsersForm(){
     const[localSate,setlocalSate]=useState({
         email:'',
         functions:'',
-        newfunctions:''
+        newfunctions:'',
+        emailInput:''
     })
+    let usersMostra=''
     const users= useSelector(state=>state.users)
     const Respuesta=useSelector(state=>state.Respuesta)
     useEffect(()=>{dispatch(todosUsers())},[Respuesta.length])
@@ -24,13 +26,21 @@ export default function UsersForm(){
         e.preventDefault(e)
         const{name,value}=e.target
         name==='newfunctions'&&setlocalSate({...localSate,['newfunctions']:value})
-        name==='email'&&setlocalSate({...localSate,['email']:value})
+        name==='email'&&setlocalSate({...localSate,['emailInput']:value})
+        name==='emailInput'&&setlocalSate({...localSate,['emailInput']:value})
     }
     function handleOnClick(e){
         e.preventDefault(e)
-        dispatch(upDateFunction(localSate.email,{newfunctions:localSate.newfunctions}))
-        dispatch(vaciarRespuesta())
+        if(usersMostra.length>0){
+        dispatch(upDateFunction(localSate.emailInput,{newfunctions:localSate.newfunctions}))
+        dispatch(vaciarRespuesta())}
         messageSuccess(`User role updated`)
+    }
+    if(localSate.emailInput.length===0&&users.length>0){
+        usersMostra=users
+    }
+    if(localSate.emailInput.length>0&&users.length>0){
+        usersMostra=users.filter(e=>e.email.toLowerCase().match(localSate.emailInput.toLowerCase()))
     }
 
     return(
@@ -41,18 +51,22 @@ export default function UsersForm(){
             <h2 style={{color:'red'}}>Color red = Role Banned</h2>
             </div>
             <form action=""autoComplete="off">
-
-                <select className={s.selectUser} name="newfunctions" id="" onChange={(e)=>{handleOnChange(e)}}>
+                <div className={s.updateUser}>
+                <select name="newfunctions" id="" onChange={(e)=>{handleOnChange(e)}}>
                     <option value="">Change user role</option>
                     <option value="usuario">Buyer</option>
                     <option value="admin">Admin</option>
                     <option value="banned">Banned</option>
                 </select>
-          
-  
+         
+            
+                <input type="text"placeholder="Search user..."onChange={(e)=>handleOnChange(e)}
+                name='emailInput' value={localSate.emailInput||''}/>
+         
+         
                 <select name="email" id=""onChange={(e)=>{handleOnChange(e)}}>
-                    <option value="">Users</option>
-                    {users.length>0&&users.map((e,i)=>{
+                    <option value="">Select user</option>
+                    {usersMostra.length>0&&usersMostra.map((e,i)=>{
                         return <option key={i} value={e.email}
                         style={{color:e.functions==='admin'?'green':e.functions==='usuario'?'blue':'red'}}
                         >{e.email}
@@ -61,9 +75,9 @@ export default function UsersForm(){
                         </option>
                     })}
                 </select>
-     
-
-            </form>
+                </div>
+                    </form>
+            
         
                 <button className={s.button} onClick={(e)=>{handleOnClick(e)}}>Submit</button>
      

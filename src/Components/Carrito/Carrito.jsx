@@ -34,6 +34,7 @@ export default function Carrito() {
   const handleOnRemove = () => {
     if(isAuthenticated){
       inCart?.map((e) => {
+        
         return dispatch(deleteOrder(e.orders[0].id))
       })
     } else {
