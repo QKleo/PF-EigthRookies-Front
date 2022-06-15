@@ -8,11 +8,12 @@ import { axiosDataId } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { messageSuccess } from "../Herramientas/MessageBox";
 import { AiOutlineShoppingCart} from "react-icons/ai";
-<<<<<<< HEAD
+
 import Reviews from "../Review/Reviews";
-=======
+
 import { useAuth0 } from '@auth0/auth0-react';
->>>>>>> b5073af24a7e982750b0ffbb5094b3366705bec4
+import { obtenerMatch } from '../../Redux/actionReviews';
+
 
 
 export default function ProductDetail() {
@@ -20,11 +21,18 @@ export default function ProductDetail() {
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
   const product = useSelector((state) => state.product);
+  const argumento = useSelector((state) => state.match)
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const payload ={
+    productId: product.id,
+    userEmail: user.email
+  }
+
   useEffect(() => {
     dispatch(axiosDataId(id));
+    dispatch(obtenerMatch(payload));
   }, [id, dispatch]);
 
   const updateCartHandler = async (products) => {      
@@ -37,7 +45,7 @@ export default function ProductDetail() {
     }
     messageSuccess(`${products.name}  added to cart`)
   }
-
+  console.log(argumento)
   return loading ? (
     <>
       <p> Calling to the rookies...</p>
@@ -101,16 +109,22 @@ export default function ProductDetail() {
         </button>
       </div>
       <hr/>
+        {/* {
+          argumento[0].msg === "false" ?  null :  
       <div>
         <Reviews productId={product.id} />
       </div>
+
+} */}
+
       <div>
         {
           product.reviews?.map(element =>(
             <div key={element.id}>
-              
+              <p>Star: {element.rate}</p>
               <label style={{textAligne:'center'}}>{element.title}</label> 
               <textarea 
+              style={{resize:'none'}}
               value={element.content} 
               rows="3" cols="70"
               readonly/>

@@ -80,7 +80,9 @@ export default function Reviews ({productId}) {
                 <form onSubmit={handleClick}>
                     <div>
                     <label>Ingrese su review (minimo 5 palabras)</label>
+                    <br/>
                     <textarea 
+                        style={{resize:'none'}}
                         name="content"
                         value={review.content}
                         rows="3" cols="70"

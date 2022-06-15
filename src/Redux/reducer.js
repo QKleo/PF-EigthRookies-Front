@@ -10,6 +10,7 @@ import {
     UPDATEFUNCTION
 } from "./actions";
 
+import {OBTENER_MATCH} from "./actionReviews";
 
 const initialState = {
     userActive: [],
@@ -33,7 +34,8 @@ const initialState = {
     users:[],
     resPostAllOrders: {},
     resChangeOrderStatus: {},
-    userInfo: {}
+    userInfo: {},
+    match:[]
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -259,6 +261,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 Respuesta:payload
             }
+        case OBTENER_MATCH:
+            return {
+                ...state,
+                match: payload
+            }    
 
         default: return state;
     }

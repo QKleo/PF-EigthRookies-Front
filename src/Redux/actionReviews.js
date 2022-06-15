@@ -2,6 +2,7 @@ import axios from 'axios';
 export const ADD_REVIEW = "addReview";
 export const ERROR_MESSAGE = "errorMesage";
 export const UPDATE_REVIEW= "updateReview";
+export const OBTENER_MATCH= "obtenerMatch";
 
 export function addReview(review, productId) {
 	return async (dispatch) => {
@@ -38,3 +39,13 @@ export function updateReview(productId, updateRewiew){
      
 }
 
+export function obtenerMatch(payload){
+    return async function (dispatch){
+        const info = await axios.get(`http://localhost:3001/routeReview/pagado?productId=${payload.productId}&userEmail=${payload.userEmail}`)
+        return dispatch({
+            type: OBTENER_MATCH,
+            payload: info.data
+        })
+    }
+	
+}
