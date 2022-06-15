@@ -73,7 +73,7 @@ export default function ProductDetail() {
 
         <div>
           {/* <h1>{product?.name}</h1> */}
-          <img src={product.image} width="450px" height="400px" alt="" />
+          <img src={product.image} width="400px" height="420px" alt="" />
         </div>
       </div>
       {/* <div className={s.categories}>{product?.category}</div> */}

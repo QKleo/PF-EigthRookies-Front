@@ -53,17 +53,17 @@ export default function Product(props) {
           <img
             src={products.image}
             alt={products.name}
-            width="200px"
-            height="200px"
+            width="220px"
+            height="220px"
           />
         </Link>
       </div>
 
       <Link to={`/products/${products.id}`}>
-        <h4 style={{ textAlign: "center", color: "black" }}>
+        <h2 style={{ textAlign: "center", color: "black", fontSize:"20px" }}>
           {products.name.replace(/[#-]/g, " ")}
 
-        </h4>
+        </h2>
       </Link>
 
       <div

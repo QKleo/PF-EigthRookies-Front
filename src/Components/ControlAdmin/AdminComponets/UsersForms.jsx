@@ -31,15 +31,15 @@ export default function UsersForm(){
     }
 
     return(
-        <div>
-            <h6 style={{color:'green'}}>o-admin</h6>
-            <h6 style={{color:'blue'}}>o-usuario</h6>
-            <h6 style={{color:'red'}}>o-banned</h6>
-            <form action=""autoComplete="off">
+        <div >
+            <h3 style={{color:'green'}}>o-admin</h3>
+            <h3 style={{color:'blue'}}>o-usuario</h3>
+            <h3 style={{color:'red'}}>o-banned</h3>
+            <form action=""autoComplete="off" style={{display:"flex", marginTop: "20px", alignItems: "center", justifyContent:"center", gap:"20px" }}>
             <div>
                 <select name="newfunctions" id="" onChange={(e)=>{handleOnChange(e)}}>
-                    <option value="">seleccione functions</option>
-                    <option value="usuario">usuario</option>
+                    <option value="">select functions</option>
+                    <option value="usuario">user</option>
                     <option value="admin">admin</option>
                     <option value="banned">banned</option>
                 </select>
@@ -60,7 +60,7 @@ export default function UsersForm(){
 
             </form>
             <div>
-                <button onClick={(e)=>{handleOnClick(e)}}>submit</button>
+                <button style={{display:"flex", marginTop: "40px", alignItems: "center", justifyContent:"center", padding:"1rem", marginLeft:"47%" }} onClick={(e)=>{handleOnClick(e)}}>submit</button>
             </div>
           
         </div>

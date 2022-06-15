@@ -264,9 +264,9 @@ export default function ProductsForms(){
                     value={formState.amount ||''}/>
                  
                 </div>
-                <div className={s.divInput}>
+                {/* <div className={s.divInput}>
                     <label>{obj.categoryName}</label>
-                </div>
+                </div> */}
                 <div className={s.divInput}>
                 <label>Product category: </label>
                     <select name='category' 
