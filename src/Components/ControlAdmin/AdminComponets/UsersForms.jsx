@@ -84,20 +84,21 @@ export default function UsersForm(){
                 </select>
 
             </div>
-
             </form>
+            
+           <form>
             <div>
-                <button onClick={(e)=>{handleOnClick(e)}}>submit</button>
+                <button className={s.button2} onClick={(e)=>{handleOnClick(e)}}>submit</button>
             </div>
             <div>
                 <OrdersTask/>
             </div>
 
-                </div>
-                    </form>
-            
-        
-                <button className={s.button} onClick={(e)=>{handleOnClick(e)}}>Submit</button>
+                
+            </form>
+                    
+                    
+                    {/* <button className={s.button} onClick={(e)=>{handleOnClick(e)}}>Submit</button> */}
      
           
 

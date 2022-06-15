@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {addReview} from '../../Redux/actionReviews';
 import { useAuth0 } from '@auth0/auth0-react';
 import { getOrder } from '../../Redux/actionsCarrito';
-
+import s from "../../../src/Global.module.css";
 
 //addReview(review, productId)
 
@@ -84,39 +84,39 @@ export default function Reviews ({productId}) {
     return (
         <div>
             <div>
-                <h3>Agrega tu review</h3>
+                <h2 style={{color: "black"}}>Reviews</h2>
                 <form onSubmit={handleClick}>
                     <div>
-                    <label>Ingrese su review (minimo 5 palabras)</label>
+                    <label>Add to review (min 5 words)</label>
                     <br/>
                     <textarea 
-                        style={{resize:'none'}}
+                        style={{resize:'none', borderRadius:'10px', width:'500px', height:'100px'}}
                         name="content"
                         value={review.content}
                         rows="3" cols="70"
                         onChange={e=>handleChange(e)} type="text" 
-                        placeholder='tu content' />
+                        placeholder=' You review' />
                         {error.content && <p style={{color:"red"}}>
                             {error.content}</p>}
                     </div>
+                    <div>                    
                     <div>
-                    <label>stars</label>
-                    
-                    <div>
-                        <strong>Star</strong>
+                        <strong>Stars </strong>
                         <select onChange={e => {setRating(e)}}>
-                            <option value=""> select... </option>
-                            <option value="1"> -1- </option>
-                            <option value="2"> -2- </option>
-                            <option value="3"> -3- </option>
-                            <option value="4"> -4- </option>
-                            <option value="5"> -5- </option>
+                            <option value="">select</option>
+                            <option value="1">⭐ </option>
+                            <option value="2">⭐⭐ </option>
+                            <option value="3">⭐⭐⭐ </option>
+                            <option value="4">⭐⭐⭐⭐ </option>
+                            <option value="5">⭐⭐⭐⭐⭐ </option>
                         </select>
                     </div>
                     {error.rate && <p style={{color:"red"}}>
                             {error.rate}</p>}
                     </div>
-                    <input type="submit" value="Enviar Review"/>
+                   
+                   
+                    <button className={s.btnreview} type="submit" value="Enviar Review"> Enviar </button>
                 </form>
                 
             </div>
