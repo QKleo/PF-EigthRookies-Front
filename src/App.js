@@ -1,36 +1,86 @@
 import { Routes, Route } from 'react-router-dom';
-import React from 'react';
-
+import React, { useEffect, useMemo } from 'react';
 import ControlPanel from './Components/ControlAdmin/AdminScreen/ControlPanel';
-import HomeScreen from './Components/Home/HomeScreen';
+// import HomeScreen from './Components/Home/HomeScreen';
 import Landing from './Components/Landing/Landing';
 import LoginAuth0 from './Components/Login/LoginAuth0';
 import NavBar from './Components/NavBar/NavBar';
 import ProductDetail from './Components/ProductDetail/productDetail';
-import CreateProductScreen from './Components/Home/CreateProductScreen';
 import Category from './Components/Category/Category';
 import Carrito from './Components/Carrito/Carrito';
+import PurchasePage from './Components/PurchasePage/PurchasePage';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useDispatch , useSelector } from 'react-redux';
+import { postOrder , getOrder} from './Redux/actionsCarrito';
+
+import FormUser from './Components/Users/FormUser'
+
+import Preview from './Components/Mercadopago/Preview';
+import { findOrCreateUser } from './Redux/actions';
+
+
 
 
 function App() {
+  const {isAuthenticated, user} = useAuth0();
+  const userActive = useSelector((state) => state.userActive);
+  const dispatch = useDispatch();
+  const inCart = useSelector((state) => state.inCart);
+  
+  useMemo(() => {
+    if(isAuthenticated){
+    const cart = window.localStorage.getItem("cartItems");
+    if(cart){
+      var parsedCart = JSON.parse(cart);
+      parsedCart.map((el) => 
+        dispatch(postOrder({...el, amount: el.quantity, email:user.email, productId: el.id, status: "inCart"}))
+       
+      );
+      localStorage.removeItem("cartItems")
+      }
+    }
+  }
+  ,[isAuthenticated])
+
+  useEffect(() => {
+    if(isAuthenticated){
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+
+    }
+    if(userActive[0]==='banned'){isAuthenticated=false}
+   
+    if (isAuthenticated && !userActive.length) {
+      dispatch(findOrCreateUser({
+        email: user.email,
+        first_name: user.given_name || user.nickname,
+        last_name: user.family_name || undefined,
+        image: user.picture,
+        
+
+      }));
+    }
+
+  }, [isAuthenticated, userActive.length]);
 
   return (
     <div>
 
-      <NavBar />
+      <NavBar inCart={inCart} />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<LoginAuth0 />} />
         <Route path="products/:id" element={<ProductDetail />} />
-        <Route path="/products" element={<HomeScreen />} />
+        {/* <Route path="/products" element={<HomeScreen />} /> */}
         <Route path={`/search`} element={<Category />} />
+        <Route path={`/checkout`} element={<PurchasePage />} />
+        <Route path={`/purchase/:purchaseId`} element={<Preview />} />
 
 
         <Route exact path='/admin/controlpanel' element={<ControlPanel />} />
-
+        <Route exact path='/edit/profile' element={<FormUser/>}/>
 
         <Route exact path='/products/carrito' element={<Carrito />} />
       </Routes>

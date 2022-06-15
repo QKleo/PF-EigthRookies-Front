@@ -1,10 +1,16 @@
-import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER, GET_ORDERS} from "./actionsCarrito"
+
+
+import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER, GET_ORDERS, DELETE_ORDER, PUT_ORDER, POST_ALL_ORDERS, CHANGE_ORDER_STATUS, GET_USER_INFO} from "./actionsCarrito"
+
 
 import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
     SEARCH_PRODUCT, TODOS_CATEGORY, TODOS_PRODUCT, VACIAR_AUXILIARP, FILTRAR_POR_PRECIO,
     NO_HAY_MATCH, VACIAR_RESPUESTA, ORDENAR, ELIMINARDECARRITO,
-    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY
+    FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER,
+    UPDATEPROFILEUSER,
+    TODOSUSERS,
+    UPDATEFUNCTION
 } from "./actions";
 
 
@@ -15,20 +21,32 @@ const initialState = {
     Allproduct: [],
     Category: [],
     Respuesta: [],
-    cart: localStorage.getItem('cartItems')
-        ? JSON.parse(localStorage.getItem('cartItems'))
-        : [],
     product: [],
     loading: true,
     error: "",
     postOrder: [],
-    inCart: []
+    inWishList: [],
+    inCart: localStorage.getItem('cartItems')
+    ? JSON.parse(localStorage.getItem('cartItems'))
+    : [],
+    pending: [],
+    finished: [],
+    deleted: [],
+    resPutOrder: [],
+    users:[],
+
+
+    resPostAllOrders: {},
+    resChangeOrderStatus: {},
+    userInfo: {}
+
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
 
     switch (type) {
         case FIND_OR_CREATE_USER:
+            console.log(payload)
             return {
                 ...state,
                 userActive: payload,
@@ -90,36 +108,41 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 productResultAux: payload
             };
         case AGREGARCARRITO:
-
+            console.log(payload)
             const newItem = payload;
-            const itemInCart = state.cart.find((p) => p.id === newItem.id);
+            console.log(state.inCart)
+            const itemInCart = state.inCart?.find((p) => p.id === newItem.id);
             const cartItems = itemInCart
-                ? state.cart.map((item) => item.id === newItem.id
+                ? state.inCart.map((item) => item.id === newItem.id
                     ? { ...item, quantity: item.quantity + 1 }
                     : item)
-                : [...state.cart, { ...newItem, quantity: 1 }];
+                : [...state.inCart, { ...newItem, quantity: 1 }];
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            console.log("soy add 1", state.cart);
+        
             return {
                 ...state,
-                cart: cartItems
+                inCart: cartItems,
             };
         case REMOVE_FROM_CART:
-            const productToDelete = state.cart.find((p) => p.id === payload.id);
+            const productToDelete = state.inCart?.find((p) => p.id === payload.id);
             const cartProducts = productToDelete?.quantity > 1
-                ? state.cart.map((item) => item.id === productToDelete.id
+                ? state.inCart.map((item) => item.id === productToDelete.id
                     ? { ...item, quantity: item.quantity - 1 }
                     : item)
-                : state.cart.filter((p) => p.id !== payload.id);
+                : state.inCart.filter((p) => p.id !== payload.id);
             localStorage.setItem('cartItems', JSON.stringify(cartProducts));
 
-            console.log("soy remove 1", state.cart);
+
             return {
                 ...state,
-                cart: cartProducts
+                inCart: cartProducts
             };
         case CLEAR_CART:
-            return { ...state, cart: [] };
+            localStorage.removeItem('cartItems')
+            return { 
+                ...state, 
+                inCart: [],
+            };
         case FILTRO_POR_CATEGORY:
             return {
                 ...state,
@@ -163,14 +186,44 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
             return {
             ...state,
-            postOrder: payload
+            postOrder: payload,
             }
         case GET_ORDERS:
+            if(
+                payload.status === "inWishList" || 
+                payload.status === "inCart" || 
+                payload.status === "finished" || 
+                payload.status === "pending"){
+            return {
+                    ...state,
+                    [payload.status]: payload.data,
+                }} else{
+                    return{
+                      ...state,
+                      historial: payload
+                    }
+                  }
+        case DELETE_ORDER:
             return {
                 ...state,
-                inCart: payload
+                deleted: payload,
+                inCart: []
+            };
+        case PUT_ORDER:
+            return {
+                ...state,
+                resPutorder: payload,
             }
-               
+        case POST_ALL_ORDERS:
+            return {
+                ...state,
+                resPostAllOrders: payload,
+            }
+        case GET_USER_INFO:
+            return {
+                ...state,
+                userInfo: payload
+            } 
         case CREATEPRODUCT:
             return {
                 ...state,
@@ -186,6 +239,27 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 Respuesta: payload
             };
+        case CLEANUSER:
+            return{
+                ...state,
+                userActive:payload
+            }
+        case UPDATEPROFILEUSER:
+            console.log(payload)
+            return{
+                ...state,
+                userActive:payload
+            }
+        case TODOSUSERS:
+            return{
+                ...state,
+                users:payload
+            }
+        case UPDATEFUNCTION:
+            return{
+                ...state,
+                Respuesta:payload
+            }
 
         default: return state;
     }

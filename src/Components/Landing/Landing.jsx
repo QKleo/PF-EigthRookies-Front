@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardDiscount from './CardDiscount';
 import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
@@ -22,12 +22,12 @@ const reducer = (state, action) => {
 };
 
 function Landing() {
-
+  
   const crear = useDispatch();
   const userActive = useSelector((state) => state.userActive);
   const carrito = useSelector((state) => state.cart);
-  const { isAuthenticated, user } = useAuth0()
-
+  let { isAuthenticated, user } = useAuth0()
+  let validar=true
   useEffect(() => {
     const axiosData = async () => {
       dispatch({ type: 'AXIOS_REQUEST' });
@@ -39,20 +39,21 @@ function Landing() {
       }
     };
     axiosData();
-
+    if(userActive[0]==='banned'){isAuthenticated=false}
+   
     if (isAuthenticated && !userActive.length) {
-      console.log('envie el post');
       crear(findOrCreateUser({
         email: user.email,
         first_name: user.given_name || user.nickname,
         last_name: user.family_name || undefined,
         image: user.picture,
-        idRol: 1,
+        
         shoppingCar: carrito
+
       }));
     }
 
-  }, [isAuthenticated, userActive]);
+  }, [isAuthenticated, userActive.length]);
 
 
   const [{ products }, dispatch] = useReducer((reducer), {
@@ -62,8 +63,11 @@ function Landing() {
   const SLIDE_COUNT = 5;
   const slides = Array.from(Array(SLIDE_COUNT).keys());
 
+  
+
   return (
     <div>
+      { console.log(userActive)}
     <h1>Welcome to The Rookies!</h1>
 
       <EmblaCarousel slides={slides} />  
@@ -86,6 +90,7 @@ function Landing() {
 
     </div>
   )
-}
+  
+  }  
 
 export default Landing

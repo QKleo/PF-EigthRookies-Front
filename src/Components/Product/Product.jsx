@@ -2,35 +2,50 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import s from "../../../src/Global.module.css";
 import a from "./product.module.css";
-import { AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-// import { addToCart, removeFromCart } from "../../Redux/actionsCarrito";
 import { messageSuccess } from "../Herramientas/MessageBox";
-
-
-
-
 import {
   addToCart,
-  clearCart,
+  getOrder,
+  postOrder,
   removeFromCart,
+  putOrder
 } from "../../Redux/actionsCarrito";
-import { useEffect, useState } from "react";
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Product(props) {
+  const {isAuthenticated, user} = useAuth0();
  
   const dispatch=useDispatch()
   const { products } = props;
 
-
-  const updateCartHandler = (products) => {      
+  const updateCartHandler = async (products) => {      
     // checkeo el stock y luego
-    dispatch(addToCart(products))
-    messageSuccess(`${products.name}  added to cart`)
+    if(isAuthenticated){
+      await dispatch(postOrder({...products, amount: products.quantity, email:user.email,  productId: products.id, status: "inCart"}))
+      dispatch(getOrder({ status: 'inCart', user: user.email }))
+    } else {
+      dispatch(addToCart(products)) // local storage
     }
-  
+    messageSuccess(`${products.name}  added to cart`)
+  }
 
-    
+  const reduceHandler = async (products) => {      
+    // checkeo el stock y luego
+    if(isAuthenticated){
+      await dispatch(putOrder({
+        amount: -1,
+        productId: products.id,
+        status: "inCart"})
+        )
+      dispatch(getOrder({ status: 'inCart', user: user.email}))
+    } else {
+      dispatch(removeFromCart(products))
+    }
+    messageSuccess(`${products.name}  removed from cart`)
+  }
+  
   return (
     <div className={a.cardContainer}>
          <div style={{ marginTop: "20px", alignItems: "center" }}>
@@ -38,8 +53,8 @@ export default function Product(props) {
           <img
             src={products.image}
             alt={products.name}
-            width="200px"
-            height="200px"
+            width="300px"
+            height="300px"
           />
         </Link>
       </div>
@@ -63,10 +78,10 @@ export default function Product(props) {
             <AiOutlineShoppingCart className={s.cartLogo} />
           </button>
           
-          {products.quantity >= 1 && 
+          {(products.quantity >= 1 || products.orders) && 
           <>
-          <h4 className={a.price}>{products.quantity}</h4>
-          <button className={s.sacarBtn} onClick={() => dispatch(removeFromCart(products))}>
+          <h4 className={a.price}>{products.quantity || products.orders[0].amount}</h4>
+          <button className={s.sacarBtn} onClick={() => reduceHandler(products)}>
           {"-"}
           </button>
           </>

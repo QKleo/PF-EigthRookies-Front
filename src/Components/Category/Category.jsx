@@ -4,19 +4,17 @@ import Product from "../Product/Product";
 import estilo from './category.module.css'
 import { fetchData, axiosCategories } from "../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrder } from "../../Redux/actionsCarrito";
 
 export default function ProductScreen() {
   const navigate = useNavigate()
   const { search } = useLocation();
   const dispatch = useDispatch();
 
-  const loading = useSelector(state => state.loading)
+  // const loading = useSelector(state => state.loading)
   const pages = useSelector(state => state.pages)
   const error = useSelector(state => state.error)
   const products = useSelector(state => state.products)
   const categories = useSelector(state => state.categories)
-  const cart = useSelector((state) => state.cart)
   
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';
@@ -26,10 +24,9 @@ export default function ProductScreen() {
   const order = sp.get('order') || 'ASC';
   const page = sp.get('page') || 1;
   
-  console.log("soy query desde el front", query)
+
     useEffect(() => {
       dispatch(axiosCategories());
-      dispatch(getOrder({ status: 'inCart' }))
       dispatch(fetchData(page, category, order, price, query));
     }, [page, category, order, price, query, dispatch]);
 
