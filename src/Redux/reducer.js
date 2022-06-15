@@ -13,6 +13,7 @@ import {
     UPDATEFUNCTION, GET_PAYMENT_ID
 } from "./actions";
 
+import {OBTENER_MATCH, CLEAN_COMMENT} from "./actionReviews";
 
 const initialState = {
     paymentDetails: {},
@@ -37,8 +38,8 @@ const initialState = {
     users: [],
     resPostAllOrders: {},
     resChangeOrderStatus: {},
-    userInfo: {}
-
+    userInfo: {},
+    match:false
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -258,6 +259,17 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 Respuesta:payload
             }
+        case OBTENER_MATCH:
+            return {
+                ...state,
+                match: payload
+            } 
+            case CLEAN_COMMENT:
+            return {
+                ...state,
+                match: payload
+
+            };   
 
         default: return state;
     }
