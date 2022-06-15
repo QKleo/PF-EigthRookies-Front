@@ -57,7 +57,7 @@ export default function ProductDetail() {
 
       <div className={s.imgproducts}>
         <div className={s.leftproducts}>
-          <img
+          {/* <img
             style={{ border: "2px solid black", borderRadius: "10px" }}
             src={product.image}
             width="65"
@@ -77,12 +77,12 @@ export default function ProductDetail() {
             width="65"
             height="60"
             alt="products"
-          />
+          /> */}
         </div>
 
         <div>
           {/* <h1>{product?.name}</h1> */}
-          <img src={product.image} width="400px" height="420px" alt="" />
+          <img className={s.imagenzoom} data-zoom="https://http2.mlstatic.com/D_NQ_NP_653103-MLA45043898058_032021-F.webp" src={product.image} width="400px" height="420px" alt="" />
         </div>
       </div>
       {/* <div className={s.categories}>{product?.category}</div> */}

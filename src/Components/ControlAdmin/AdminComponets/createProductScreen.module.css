@@ -33,8 +33,7 @@
 .divInput{
     display: flex;
     justify-content: space-between;
-    width: 61vh;
-    padding: 1%;
+    padding: 2rem;
     align-content: center;
     align-items: center;
 }

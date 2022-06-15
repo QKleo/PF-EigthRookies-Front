@@ -23,7 +23,7 @@ function CardDiscount({ image, name, id, price, discount }) {
                     
                 </fieldset>
                 <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
-                    <button>Ver más</button>
+                    <button>Ver más</button> 
                 </Link>
             
             </div>
