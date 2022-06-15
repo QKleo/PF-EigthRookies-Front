@@ -4,9 +4,12 @@ import { useDispatch } from "react-redux/es/exports"
 import { useSelector } from "react-redux/es/exports"
 import { useEffect } from "react"
 import { todosUsers,upDateFunction, vaciarRespuesta } from "../../../Redux/actions"
+
+import OrdersTask from "./OrdersTask"
 import s from "./createProductScreen.module.css"
 import { messageSuccess } from "../../Herramientas/MessageBox";
 import {IoMdColorFill} from 'react-icons/io'; 
+
 
 export default function UsersForm(){
     const dispatch=useDispatch()
@@ -79,6 +82,17 @@ export default function UsersForm(){
                         </option>
                     })}
                 </select>
+
+            </div>
+
+            </form>
+            <div>
+                <button onClick={(e)=>{handleOnClick(e)}}>submit</button>
+            </div>
+            <div>
+                <OrdersTask/>
+            </div>
+
                 </div>
                     </form>
             
@@ -86,6 +100,7 @@ export default function UsersForm(){
                 <button className={s.button} onClick={(e)=>{handleOnClick(e)}}>Submit</button>
      
           
+
         </div>
     )
 }

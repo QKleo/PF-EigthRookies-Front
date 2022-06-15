@@ -25,6 +25,9 @@ export const UPDATEPROFILEUSER='UPDATEPROFILEUSER';
 export const TODOSUSERS='TODOSUSERS';
 export const UPDATEFUNCTION = 'UPDATEFUNCTION';
 export const GET_PAYMENT_ID = 'GET_PAYMENT_ID'
+export const GET_ALLORDERS='GET_ALLORDERS'
+export const UPDATEORDER='UPDATEORDER'
+
 
 const URL = 'http://localhost:3001';
 
@@ -348,5 +351,38 @@ export function upDateFunction(id,body){
         })
 
 
+    }
+}
+export function getOrders(){
+    return(dispatch)=>{
+        axios.get(`${URL}/taskmanager`)
+        .then((r)=>{
+            return dispatch({
+                type:GET_ALLORDERS,
+                payload:r.data
+            })
+        })
+        .catch((err)=>console.log(err))
+
+    }
+}
+export function upDateOrder(id,body){
+    
+    return(dispatch)=>{
+        
+        axios.put(`http://localhost:3001/updateStatus/${id}`,body)
+        .then((r)=>{
+            return dispatch({
+                type:UPDATEORDER,
+                payload:['algo']
+            })
+        })
+        .catch((err)=>console.log(err))
+            
+             
+             
+          
+        
+        
     }
 }
