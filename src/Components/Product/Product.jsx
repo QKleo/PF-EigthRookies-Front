@@ -20,9 +20,12 @@ export default function Product(props) {
   const dispatch=useDispatch()
   const { products } = props;
 
+ 
+
   const updateCartHandler = async (products) => {      
     // checkeo el stock y luego
     if(isAuthenticated){
+      console.log("user.email en product Card", user.email)
       await dispatch(postOrder({...products, amount: products.quantity, email:user.email,  productId: products.id, status: "inCart"}))
       dispatch(getOrder({ status: 'inCart', user: user.email }))
     } else {
@@ -37,7 +40,8 @@ export default function Product(props) {
       await dispatch(putOrder({
         amount: -1,
         productId: products.id,
-        status: "inCart"})
+        status: "inCart",
+        user: user.email})
         )
       dispatch(getOrder({ status: 'inCart', user: user.email}))
     } else {
@@ -48,17 +52,22 @@ export default function Product(props) {
   
   return (
     <div className={a.cardContainer}>
-         <div style={{ marginTop: "20px", alignItems: "center" }}>
-        <Link to={`/products/${products.id}`}>
+      <div className={a.pictureContainer}>
+      <Link to={`/products/${products.id}`} className={a.maxImg}>
+       
+          
+      
           <img
             src={products.image}
             alt={products.name}
-            width="300px"
-            height="300px"
+            className={a.maxImg}
           />
-        </Link>
+       
+  
+      </Link>
       </div>
-
+      <div>
+      
       <Link to={`/products/${products.id}`}>
         <h4 style={{ textAlign: "center", color: "black" }}>
           {products.name.replace(/[#-]/g, " ")}
@@ -88,7 +97,7 @@ export default function Product(props) {
           }
 
         
-          
+      </div>
           
         </div>
       

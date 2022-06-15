@@ -1,4 +1,7 @@
+
+
 import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER, GET_ORDERS, DELETE_ORDER, PUT_ORDER, POST_ALL_ORDERS, CHANGE_ORDER_STATUS, GET_USER_INFO} from "./actionsCarrito"
+
 
 import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
@@ -32,9 +35,12 @@ const initialState = {
     deleted: [],
     resPutOrder: [],
     users:[],
+
+
     resPostAllOrders: {},
     resChangeOrderStatus: {},
     userInfo: {}
+
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -180,7 +186,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case GET_ORDERS:
             if(
-                payload.status === "inWishList" ||
+                payload.status === "inWishList" || 
                 payload.status === "inCart" || 
                 payload.status === "finished" || 
                 payload.status === "pending"){
@@ -203,11 +209,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 resPutorder: payload,
-            }
-        case CHANGE_ORDER_STATUS:
-            return {
-                ...state,
-                resChangeOrderStatus: payload
             }
         case POST_ALL_ORDERS:
             return {

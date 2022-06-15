@@ -14,17 +14,16 @@ export default function LoginAuth0() {
 
       <div className="container-LoginAuth0">
         <img src={user?.picture} alt={user?.name} />
-        <h2 className='title'>Hello {user?.name}</h2>
-        <p>Here you have all your personal information...</p>
-        <h4>{user?.email}</h4>
-        <button className='btnLogout' onClick={logout} >Cerrar sesión</button>
+        <h2 className='title'>{user?.name}</h2>
+       
+        <FormUser />
+       
+        <button className='btnLogout' onClick={logout} >Log out</button>
       </div>
       
-      <div className="container-LoginAuth0">
-        <FormUser />
-      </div>
-
-      <div className="container-LoginAuth0">
+      
+      <h2 className='title'>This your history purchase</h2>
+      <div className="container-history">
         <HistoryPurchase />
       </div>
 
