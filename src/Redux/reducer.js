@@ -1,4 +1,7 @@
+
+
 import{AGREGARCARRITO, REMOVE_FROM_CART, CLEAR_CART, POST_ORDER, GET_ORDERS, DELETE_ORDER, PUT_ORDER, POST_ALL_ORDERS, CHANGE_ORDER_STATUS, GET_USER_INFO} from "./actionsCarrito"
+
 
 import {
     FIND_OR_CREATE_USER, FILTRO_POR_CATEGORYAUX,
@@ -7,11 +10,12 @@ import {
     FILTRO_POR_CATEGORY, ACTUALIZAR, CREATEPRODUCT, UPDATEPRODUCT, CREARCATEGORY, CLEANUSER,
     UPDATEPROFILEUSER,
     TODOSUSERS,
-    UPDATEFUNCTION
+    UPDATEFUNCTION, GET_PAYMENT_ID
 } from "./actions";
 
 
 const initialState = {
+    paymentDetails: {},
     userActive: [],
     productResult: [],
     productResultAux: [],
@@ -30,20 +34,26 @@ const initialState = {
     finished: [],
     deleted: [],
     resPutOrder: [],
-    users:[],
+    users: [],
     resPostAllOrders: {},
     resChangeOrderStatus: {},
     userInfo: {}
+
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
 
     switch (type) {
         case FIND_OR_CREATE_USER:
-            console.log(payload)
             return {
                 ...state,
                 userActive: payload,
+            };
+
+        case GET_PAYMENT_ID:
+            return {
+                ...state,
+                paymentDetails: payload,
             };
 
         case SEARCH_PRODUCT:
@@ -52,11 +62,9 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 productResultAux: payload,
             };
         case TODOS_PRODUCT:
-            // console.log('voy',payload)
             return {
                 ...state,
                 Allproduct: payload,
-                // productResultAux:payload,
                 productResult: payload,
             };
         case TODOS_CATEGORY:
@@ -76,8 +84,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
             };
         case FILTRAR_POR_PRECIO:
-            console.log(payload);
-
             return {
                 ...state,
                 productResultAux: payload
@@ -96,15 +102,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
             };
 
         case ORDENAR:
-            // console.log(payload)
             return {
                 ...state,
                 productResultAux: payload
             };
         case AGREGARCARRITO:
-            console.log(payload)
             const newItem = payload;
-            console.log(state.inCart)
             const itemInCart = state.inCart?.find((p) => p.id === newItem.id);
             const cartItems = itemInCart
                 ? state.inCart.map((item) => item.id === newItem.id
@@ -143,9 +146,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 productResult: payload,
             };
         case ACTUALIZAR:
-
-            console.log('llega?');
-            console.log(payload);
             return {
                 ...state,
                 productResultAux: '',
@@ -184,7 +184,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case GET_ORDERS:
             if(
-                payload.status === "inWishList" ||
+                payload.status === "inWishList" || 
                 payload.status === "inCart" || 
                 payload.status === "finished" || 
                 payload.status === "pending"){
@@ -244,7 +244,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 userActive:payload
             }
         case UPDATEPROFILEUSER:
-            console.log(payload)
             return{
                 ...state,
                 userActive:payload

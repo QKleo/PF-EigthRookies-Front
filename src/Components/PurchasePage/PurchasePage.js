@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getOrder } from '../../Redux/actionsCarrito';
 import { useAuth0 } from '@auth0/auth0-react';
+import s from './purchasePage.module.css'
 
 export default function PurchasePage() {
     const dispatch = useDispatch();
@@ -50,8 +51,8 @@ export default function PurchasePage() {
     },[inPending, resDelete, resPutOrder, url])
 
 return (
-    <>
-
-    </>
+    <div className={s.size}>
+       <h1> Redirecting to Mercado Pago... </h1>
+    </div>
     );
 }

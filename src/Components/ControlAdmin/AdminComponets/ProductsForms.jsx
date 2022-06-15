@@ -142,10 +142,7 @@ export default function ProductsForms(){
                         dispatch(upDateProduct(formState.productId,formState))
                         cleanState()
                         messageSuccess("Product updated")
-                        console.log(formState)
                         dispatch(obtenerTodosProducts())
-                        
-                
                 }
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CardDiscount from './CardDiscount';
 import s from './landing.module.css'
 import { useEffect, useReducer} from 'react';
@@ -27,7 +27,7 @@ function Landing() {
   const userActive = useSelector((state) => state.userActive);
   const carrito = useSelector((state) => state.cart);
   let { isAuthenticated, user } = useAuth0()
-  let validar=true
+
   useEffect(() => {
     const axiosData = async () => {
       dispatch({ type: 'AXIOS_REQUEST' });
@@ -67,7 +67,6 @@ function Landing() {
 
   return (
     <div>
-      { console.log(userActive)}
     <h1>Welcome to The Rookies!</h1>
 
       <EmblaCarousel slides={slides} />  

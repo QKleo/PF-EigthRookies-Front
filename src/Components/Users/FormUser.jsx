@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { upDateProfileUser } from "../../Redux/actions"
+import { messageSuccess } from "../Herramientas/MessageBox";
 import '../Login/login.css'
 
 export default function(){
@@ -31,35 +32,36 @@ export default function(){
     function handleOnClick(e){
         e.preventDefault(e)
         dispatch(upDateProfileUser(userData.email,userData))
+        messageSuccess(`Your profile has been updated`)
     }
 
     return(
-        <div className="container-LoginAuth0">
+        <>
          
             <h2 className='title'>Edit your profile</h2>
             <form action=""autoComplete="off">
-            <div>
-                <label htmlFor="">first_name</label>
+            <div className="divForm">
+                <label htmlFor="">First name</label>
                 <input type="text" name='first_name' value={userData.first_name||''}
                 onChange={(e)=>{handleOnChange(e)}} />
             </div>
-            <div>
-                <label htmlFor="">last_name</label>
+            <div className="divForm">
+                <label htmlFor="">Last name</label>
                 <input type="text" name='last_name'value={userData.last_name||''}
                 onChange={(e)=>{handleOnChange(e)}}/>
             </div>
-            <div>
-                <label htmlFor="">address</label>
+            <div className="divForm">
+                <label htmlFor="">Address</label>
                 <input type="text" name='address'value={userData.address||''}
                 onChange={(e)=>{handleOnChange(e)}}/>
             </div>
-            <div>
-                <label htmlFor="">phone</label>
+            <div className="divForm">
+                <label htmlFor="">Phone</label>
                 <input type="number" name='phone'value={userData.phone||''}
                 onChange={(e)=>{handleOnChange(e)}}/>
             </div>
-            <div>
-                <label htmlFor="">postal_code</label>
+            <div className="divForm">
+                <label htmlFor="">Postal code</label>
                 <input type="number" name='postal_code'value={userData.postal_code||''}
                 onChange={(e)=>{handleOnChange(e)}}/>
             </div>
@@ -68,6 +70,6 @@ export default function(){
             <div>
                 <button className='btnBlue' onClick={(e)=>handleOnClick(e)}>Submit changes</button>
             </div>
-        </div>
+        </>
     )
 }

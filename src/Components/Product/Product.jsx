@@ -15,8 +15,8 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Product(props) {
-  const {isAuthenticated, user} = useAuth0();
- 
+  
+  const {isAuthenticated, user} = useAuth0(); 
   const dispatch=useDispatch()
   const { products } = props;
 
@@ -37,7 +37,8 @@ export default function Product(props) {
       await dispatch(putOrder({
         amount: -1,
         productId: products.id,
-        status: "inCart"})
+        status: "inCart",
+        user: user.email})
         )
       dispatch(getOrder({ status: 'inCart', user: user.email}))
     } else {
@@ -47,6 +48,7 @@ export default function Product(props) {
   }
   
   return (
+<<<<<<< HEAD
     <div  className={a.cardContainer}>
          <div style={{ marginTop: "20px", alignItems: "center" }}>
         <Link to={`/products/${products.id}`}>
@@ -55,10 +57,25 @@ export default function Product(props) {
             alt={products.name}
             width="220px"
             height="220px"
+=======
+    <div className={a.cardContainer}>
+      <div className={a.pictureContainer}>
+      <Link to={`/products/${products.id}`} className={a.maxImg}>
+       
+          
+      
+          <img
+            src={products.image}
+            alt={products.name}
+            className={a.maxImg}
+>>>>>>> a52bc0506ed0e87bde755fe5ce4fa17916fc7b6e
           />
-        </Link>
+       
+  
+      </Link>
       </div>
-
+      <div>
+      
       <Link to={`/products/${products.id}`}>
         <h2 style={{ textAlign: "center", color: "black", fontSize:"20px" }}>
           {products.name.replace(/[#-]/g, " ")}
@@ -89,8 +106,13 @@ export default function Product(props) {
           </>
           }
 
+<<<<<<< HEAD
 
           
+=======
+        
+      </div>
+>>>>>>> a52bc0506ed0e87bde755fe5ce4fa17916fc7b6e
           
         </div>
         <h4> In stock: {products.amount}</h4>
