@@ -4,16 +4,12 @@ import p from './paginado.module.css'
 
 export default function PaginadoAux(props){
     let aux=[]
-   // let num=props.max
    const [activeItemIndex, setActiveItemIndex] = useState(0);
    const chevronWidth = 1;
-   
-   
-    
+
     for(let i=1;i<=props.max+1;i++){
         aux.push(i)
     }
-    //console.log(props.max)
    
 
     return( 

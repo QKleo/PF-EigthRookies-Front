@@ -4,15 +4,8 @@ import style from './NavBar.module.css';
 import logo from '../../assets/8Rookies.png';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-
-
-
 import { cleanUser } from '../../Redux/actions';
-
 import { useDispatch, useSelector } from 'react-redux';
-
-
-
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -29,7 +22,7 @@ export default function NavBar(props) {
     loginWithRedirect();
 
   };
-  //console.log(userActive)
+
   function cerrar(){
     if(userActive[0]==='banned'){
       logout()
