@@ -33,8 +33,10 @@
 .divInput{
     display: flex;
     justify-content: space-between;
-    width: 85vh;
+    width: 61vh;
     padding: 1%;
+    align-content: center;
+    align-items: center;
 }
 
 .buttonContainer{
@@ -66,9 +68,14 @@
 
 .formSize{
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(600px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
     justify-items: center;
-    margin-top: 15.5px;
+    margin: 5%;
+    padding: 5%;
+    border-radius: 3%;
+    background-color: #c0e1f80d;
+    box-shadow: 5px 5px 10px rgba(0, 40, 0, 0.5);
+    border: none;
 }
 .button2{
     cursor: pointer;
@@ -84,3 +91,70 @@
     color: var(--tertiary-color); 
     background-color: var(--secondary-color);
   }
+
+.searchProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.categorySelected{
+    font-weight: bolder;
+    display: flex;
+    padding: 0%;
+    border-radius: 5%;
+    align-content: center;
+    align-items: center;
+    background: white;
+    color: #094067;
+    border-color: #094067;
+}
+
+.selectUser{
+    margin: 25px;
+}
+
+.userForm{
+    display: flex;
+    justify-items: center;
+    margin: 5%;
+    padding: 5%;
+    border-radius: 1%;
+    background-color: #c0e1f80d;
+    box-shadow: 5px 5px 10px rgb(0 40 0 / 50%);
+    border: none;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.updateUser{
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.barDiv{
+    background : blue;
+}
+
+.logo {
+    height: 42px;
+    width: 50px;
+    transition: all .3s ease-in-out;
+    color: white;
+}
+
+.asdasdsa{
+
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around
+}
+
+.generalContainer{
+    margin: 5%;
+    padding: 5%;
+    box-shadow: 5px 5px 10px rgb(0 40 0 / 50%);
+}
