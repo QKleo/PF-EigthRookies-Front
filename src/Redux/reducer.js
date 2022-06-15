@@ -34,9 +34,7 @@ const initialState = {
     finished: [],
     deleted: [],
     resPutOrder: [],
-    users:[],
-
-
+    users: [],
     resPostAllOrders: {},
     resChangeOrderStatus: {},
     userInfo: {}
@@ -209,6 +207,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 resPutorder: payload,
+            }
+        case CHANGE_ORDER_STATUS:
+            return {
+                ...state,
+                resChangeOrderStatus: payload
             }
         case POST_ALL_ORDERS:
             return {
